@@ -71,11 +71,12 @@ export default {
   theme: './config/theme.config.js',
   // Webpack Configuration
   proxy: {
-    '/api/v1/weather': {
-      target: 'https://api.seniverse.com/',
-      changeOrigin: true,
-      pathRewrite: { '^/api/v1/weather': '/v3/weather' },
-    },
+    // '/api/v1/weather': {
+    //   target: 'https://api.seniverse.com/',
+    //   changeOrigin: true,
+    //   pathRewrite: { '^/api/v1/weather': '/v3/weather' },
+    // },
+    '/api/v1':'http://127.0.0.1:8080'
   },
   alias: {
     api: resolve(__dirname, './src/services/'),

@@ -5,8 +5,8 @@
   "scripts": {
     "analyze": "cross-env ANALYZE=1 umi build",
     "build": "umi build",
-    "start": "umi dev",
-    "start:no-mock": "cross-env MOCK=none umi dev",
+    "start": "cross-env MOCK=none umi dev",
+    "mock": "cross-env umi dev",
     "lint:js": "eslint --ext .js src",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "test": "cross-env BABELRC=none umi test",
