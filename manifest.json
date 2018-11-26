@@ -1,9 +1,9 @@
 {
-  "name": "Antd-Admin",
+  "name": "Phoenix AD",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#fff",
-  "description": "A front-end solution for enterprise applications built upon Ant Design and UmiJS",
+  "description": "Phoenix AD",
   "icons": [
     {
       "src": "logo.svg",

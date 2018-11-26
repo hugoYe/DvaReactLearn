@@ -29,25 +29,27 @@ class Login extends PureComponent {
     const { loading, form, i18n } = this.props;
     const { getFieldDecorator } = form;
 
-    let footerLinks = [
-      {
-        key: "github",
-        title: <Icon type="github" />,
-        href: "https://github.com/zuiidea/antd-admin",
-        blankTarget: true
-      }
-    ];
+    // deleted by hugo
+    // let footerLinks = [
+    //   {
+    //     key: "github",
+    //     title: <Icon type="github" />,
+    //     href: "https://github.com/zuiidea/antd-admin",
+    //     blankTarget: true
+    //   }
+    // ];
 
-    if (config.i18n) {
-      footerLinks = footerLinks.concat(
-        config.i18n.languages.map(item => ({
-          key: item.key,
-          title: (
-            <span onClick={setLocale.bind(null, item.key)}>{item.title}</span>
-          )
-        }))
-      );
-    }
+    // if (config.i18n) {
+    //   footerLinks = footerLinks.concat(
+    //     config.i18n.languages.map(item => ({
+    //       key: item.key,
+    //       title: (
+    //         <span onClick={setLocale.bind(null, item.key)}>{item.title}</span>
+    //       )
+    //     }))
+    //   );
+    // }
+    // deleted by hugo
 
     return (
       <Fragment>
@@ -94,7 +96,7 @@ class Login extends PureComponent {
               >
                 <Trans>Sign in</Trans>
               </Button>
-              <p>
+              {/* <p>
                 <span>
                   <Trans>Username</Trans>
                   ：guest
@@ -103,12 +105,13 @@ class Login extends PureComponent {
                   <Trans>Password</Trans>
                   ：guest
                 </span>
-              </p>
+              </p> */}
             </Row>
           </form>
         </div>
         <div className={styles.footer}>
-          <GlobalFooter links={footerLinks} copyright={config.copyright} />
+          {/* <GlobalFooter links={footerLinks} copyright={config.copyright} /> */}
+          <GlobalFooter copyright={config.copyright} />
         </div>
       </Fragment>
     );

@@ -1,6 +1,6 @@
 module.exports = {
-  siteName: "AntD Admin",
-  copyright: "Ant Design Admin  © 2018 zuiidea",
+  siteName: "Phoenix AD",
+  copyright: "© Copyright 2018 By Phoenix AD Tech.",
   logoPath: "/logo.svg",
   apiPrefix: "/api/v1",
   fixedHeader: true, // sticky primary layout header
