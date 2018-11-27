@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "dva";
-import { Button, Row, Form, Icon, Input } from "antd";
+import { Button, Row, Form, Icon, Input, Alert } from "antd";
 import { GlobalFooter } from "ant-design-pro";
 import { Trans, withI18n } from "@lingui/react";
 import { setLocale } from "utils";
@@ -19,11 +19,16 @@ class Login extends PureComponent {
     const { validateFieldsAndScroll } = form;
     validateFieldsAndScroll((errors, values) => {
       if (errors) {
+        errors.message = "Invalid username or password!";
         return;
       }
       dispatch({ type: "login/login", payload: values });
     });
   };
+
+  renderMessage = content => (
+    <Alert style={{ marginTop: 15 }} message={content} type="error" showIcon />
+  );
 
   render() {
     const { loading, form, i18n } = this.props;
@@ -62,12 +67,11 @@ class Login extends PureComponent {
             <FormItem hasFeedback>
               {getFieldDecorator("username", {
                 rules: [
-                  {
-                    required: true
-                  }
+                  { required: true, message: "Please input your username!" }
                 ]
               })(
                 <Input
+                  prefix={<Icon type="user" className={styles.prefixIcon} />}
                   onPressEnter={this.handleOk}
                   placeholder={i18n.t`Username`}
                 />
@@ -76,13 +80,12 @@ class Login extends PureComponent {
             <FormItem hasFeedback>
               {getFieldDecorator("password", {
                 rules: [
-                  {
-                    required: true
-                  }
+                  { required: true, message: "Please input your password!" }
                 ]
               })(
                 <Input
                   type="password"
+                  prefix={<Icon type="lock" className={styles.prefixIcon} />}
                   onPressEnter={this.handleOk}
                   placeholder={i18n.t`Password`}
                 />
@@ -108,6 +111,7 @@ class Login extends PureComponent {
               </p> */}
             </Row>
           </form>
+          {/* {this.renderMessage('Invalid username or password!')} */}
         </div>
         <div className={styles.footer}>
           {/* <GlobalFooter links={footerLinks} copyright={config.copyright} /> */}
