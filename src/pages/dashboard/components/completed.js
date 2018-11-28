@@ -17,7 +17,7 @@ import styles from "./completed.less";
 function Completed({ data }) {
   return (
     <div className={styles.sales}>
-      <div className={styles.title}>TEAM TOTAL COMPLETED</div>
+      <div className={styles.title}>30 DAYS PV UV</div>
       <ResponsiveContainer minHeight={360}>
         <AreaChart data={data}>
           <Legend
@@ -80,7 +80,7 @@ function Completed({ data }) {
           />
           <Area
             type="monotone"
-            dataKey="Task complete"
+            dataKey="PV"
             stroke={Color.grass}
             fill={Color.grass}
             strokeWidth={2}
@@ -89,7 +89,7 @@ function Completed({ data }) {
           />
           <Area
             type="monotone"
-            dataKey="Cards Complete"
+            dataKey="UV"
             stroke={Color.sky}
             fill={Color.sky}
             strokeWidth={2}

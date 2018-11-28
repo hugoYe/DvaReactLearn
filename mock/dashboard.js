@@ -58,11 +58,11 @@ const Dashboard = Mock.mock({
     sales: 3241,
     sold: 3556,
   },
-  'completed|12': [
+  'completed|30': [
     {
-      'name|+1': 2008,
-      'Task complete|200-1000': 1,
-      'Cards Complete|200-1000': 1,
+      'name|+1': 28,
+      'PV|25000-130000': 1,
+      'UV|25000-130000': 1,
     },
   ],
   'comments|5': [
