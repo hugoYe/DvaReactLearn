@@ -51,8 +51,8 @@ class PrimaryLayout extends PureComponent {
       theme,
       routeList,
       collapsed,
-      permissions,
-      notifications
+      permissions
+      // notifications
     } = app;
     const { isMobile } = this.state;
     const { onCollapseChange } = this;
@@ -85,14 +85,14 @@ class PrimaryLayout extends PureComponent {
     const headerProps = {
       menus,
       collapsed,
-      notifications,
+      // notifications,
       onCollapseChange,
       avatar: user.avatar,
       username: user.username,
       fixed: config.fixedHeader,
-      onAllNotificationsRead() {
-        dispatch({ type: "app/allNotificationsRead" });
-      },
+      // onAllNotificationsRead() {
+      //   dispatch({ type: "app/allNotificationsRead" });
+      // },
       onSignOut() {
         dispatch({ type: "app/signOut" });
       }

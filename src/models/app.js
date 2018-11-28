@@ -28,17 +28,17 @@ export default {
     locationPathname: "",
     locationQuery: {},
     theme: store.get("theme") || "light",
-    collapsed: store.get("collapsed") || false,
-    notifications: [
-      {
-        title: "New User is registered.",
-        date: new Date(Date.now() - 10000000)
-      },
-      {
-        title: "Application has been approved.",
-        date: new Date(Date.now() - 50000000)
-      }
-    ]
+    collapsed: store.get("collapsed") || false
+    // notifications: [
+    //   {
+    //     title: "New User is registered.",
+    //     date: new Date(Date.now() - 10000000)
+    //   },
+    //   {
+    //     title: "Application has been approved.",
+    //     date: new Date(Date.now() - 50000000)
+    //   }
+    // ]
   },
   subscriptions: {
     setupHistory({ dispatch, history }) {
@@ -160,10 +160,10 @@ export default {
     handleCollapseChange(state, { payload }) {
       store.set("collapsed", payload);
       state.collapsed = payload;
-    },
-
-    allNotificationsRead(state) {
-      state.notifications = [];
     }
+
+    // allNotificationsRead(state) {
+    //   state.notifications = [];
+    // }
   }
 };
