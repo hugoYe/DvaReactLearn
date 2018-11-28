@@ -11,7 +11,7 @@ import styles from "./index.less";
 const FormItem = Form.Item;
 
 @withI18n()
-@connect(({ loading }) => ({ loading }))
+@connect(({ login, loading }) => ({ login, loading }))
 @Form.create()
 class Login extends PureComponent {
   handleOk = () => {
@@ -31,7 +31,7 @@ class Login extends PureComponent {
   );
 
   render() {
-    const { loading, form, i18n } = this.props;
+    const { login, loading, form, i18n } = this.props;
     const { getFieldDecorator } = form;
 
     // deleted by hugo
@@ -111,7 +111,9 @@ class Login extends PureComponent {
               </p> */}
             </Row>
           </form>
-          {/* {this.renderMessage('Invalid username or password!')} */}
+          {login.status === "20001" &&
+            !loading.effects.login &&
+            this.renderMessage("Invalid username or password!")}
         </div>
         <div className={styles.footer}>
           {/* <GlobalFooter links={footerLinks} copyright={config.copyright} /> */}
