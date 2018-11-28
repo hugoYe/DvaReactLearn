@@ -48,7 +48,7 @@ class Dashboard extends PureComponent {
     } = dashboard;
 
     const numberCards = numbers.map((item, key) => (
-      <Col key={key} lg={6} md={12}>
+      <Col key={key} lg={8} md={12}>
         <NumberCard {...item} />
       </Col>
     ));

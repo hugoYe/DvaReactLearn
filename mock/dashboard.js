@@ -111,27 +111,27 @@ const Dashboard = Mock.mock({
     {
       icon: 'pay-circle-o',
       color: Color.green,
-      title: 'Online Review',
+      title: 'Yesterday Income',
       number: 2781,
     },
     {
-      icon: 'team',
+      icon: 'sliders',
       color: Color.blue,
-      title: 'New Customers',
+      title: 'Yesterday UV',
       number: 3241,
     },
     {
-      icon: 'message',
+      icon: 'eye',
       color: Color.purple,
-      title: 'Active Projects',
+      title: 'Yesterday PV',
       number: 253,
     },
-    {
-      icon: 'shopping-cart',
-      color: Color.red,
-      title: 'Referrals',
-      number: 4324,
-    },
+    // {
+    //   icon: 'shopping-cart',
+    //   color: Color.red,
+    //   title: 'Referrals',
+    //   number: 4324,
+    // },
   ],
 })
 
