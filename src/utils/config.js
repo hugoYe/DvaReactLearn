@@ -3,7 +3,7 @@ module.exports = {
   copyright: "© Copyright 2018 By Phoenix AD Tech.",
   logoPath: "/logo.svg",
   apiPrefix: "/api/v1",
-  fixedHeader: true, // sticky primary layout header
+  fixedHeader: false, // sticky primary layout header
 
   /* Layout configuration, specify which layout to use for route. */
   layouts: [
