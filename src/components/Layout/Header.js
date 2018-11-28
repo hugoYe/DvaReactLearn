@@ -23,12 +23,13 @@ class Header extends PureComponent {
       avatar,
       username,
       collapsed,
-      notifications,
-      onCollapseChange,
-      onAllNotificationsRead
+      // notifications,
+      onCollapseChange
+      // onAllNotificationsRead
     } = this.props;
 
     const rightContent = [
+      // user
       <Menu key="user" mode="horizontal" onClick={this.handleClickMenu}>
         <SubMenu
           title={
@@ -54,6 +55,7 @@ class Header extends PureComponent {
         item => item.key === i18n._language
       );
 
+      // language
       rightContent.unshift(
         <Menu
           key="language"
@@ -79,60 +81,61 @@ class Header extends PureComponent {
       );
     }
 
-    rightContent.unshift(
-      <Popover
-        placement="bottomRight"
-        trigger="click"
-        key="notifications"
-        overlayClassName={styles.notificationPopover}
-        getPopupContainer={() => document.querySelector("#layoutHeader")}
-        content={
-          <div className={styles.notification}>
-            <List
-              itemLayout="horizontal"
-              dataSource={notifications}
-              locale={{
-                emptyText: <Trans>You have viewed all notifications.</Trans>
-              }}
-              renderItem={item => (
-                <List.Item className={styles.notificationItem}>
-                  <List.Item.Meta
-                    title={
-                      <Ellipsis tooltip lines={1}>
-                        {item.title}
-                      </Ellipsis>
-                    }
-                    description={moment(item.date).fromNow()}
-                  />
-                  <Icon
-                    style={{ fontSize: 10, color: "#ccc" }}
-                    type="right"
-                    theme="outlined"
-                  />
-                </List.Item>
-              )}
-            />
-            {notifications.length ? (
-              <div
-                onClick={onAllNotificationsRead}
-                className={styles.clearButton}
-              >
-                <Trans>Clear notifications</Trans>
-              </div>
-            ) : null}
-          </div>
-        }
-      >
-        <Badge
-          count={notifications.length}
-          dot
-          offset={[-10, 10]}
-          className={styles.iconButton}
-        >
-          <Icon className={styles.iconFont} type="bell" />
-        </Badge>
-      </Popover>
-    );
+    // notifications
+    // rightContent.unshift(
+    //   <Popover
+    //     placement="bottomRight"
+    //     trigger="click"
+    //     key="notifications"
+    //     overlayClassName={styles.notificationPopover}
+    //     getPopupContainer={() => document.querySelector("#layoutHeader")}
+    //     content={
+    //       <div className={styles.notification}>
+    //         <List
+    //           itemLayout="horizontal"
+    //           dataSource={notifications}
+    //           locale={{
+    //             emptyText: <Trans>You have viewed all notifications.</Trans>
+    //           }}
+    //           renderItem={item => (
+    //             <List.Item className={styles.notificationItem}>
+    //               <List.Item.Meta
+    //                 title={
+    //                   <Ellipsis tooltip lines={1}>
+    //                     {item.title}
+    //                   </Ellipsis>
+    //                 }
+    //                 description={moment(item.date).fromNow()}
+    //               />
+    //               <Icon
+    //                 style={{ fontSize: 10, color: "#ccc" }}
+    //                 type="right"
+    //                 theme="outlined"
+    //               />
+    //             </List.Item>
+    //           )}
+    //         />
+    //         {notifications.length ? (
+    //           <div
+    //             onClick={onAllNotificationsRead}
+    //             className={styles.clearButton}
+    //           >
+    //             <Trans>Clear notifications</Trans>
+    //           </div>
+    //         ) : null}
+    //       </div>
+    //     }
+    //   >
+    //     <Badge
+    //       count={notifications.length}
+    //       dot
+    //       offset={[-10, 10]}
+    //       className={styles.iconButton}
+    //     >
+    //       <Icon className={styles.iconFont} type="bell" />
+    //     </Badge>
+    //   </Popover>
+    // );
 
     return (
       <Layout.Header
@@ -166,9 +169,9 @@ Header.propTypes = {
   menus: PropTypes.array,
   collapsed: PropTypes.bool,
   onSignOut: PropTypes.func,
-  notifications: PropTypes.array,
-  onCollapseChange: PropTypes.func,
-  onAllNotificationsRead: PropTypes.func
+  // notifications: PropTypes.array,
+  onCollapseChange: PropTypes.func
+  // onAllNotificationsRead: PropTypes.func
 };
 
 export default Header;
