@@ -46,7 +46,9 @@ class SiderMenu extends PureComponent {
             key={item.id}
             title={
               <Fragment>
-                {item.icon && <Icon type={item.icon} />}
+                {item.icon && (
+                  <Icon style={{ fontSize: "18px" }} type={item.icon} />
+                )}
                 <span>{item.name}</span>
               </Fragment>
             }
@@ -58,7 +60,9 @@ class SiderMenu extends PureComponent {
       return (
         <Menu.Item key={item.id}>
           <Navlink to={addLangPrefix(item.route) || "#"}>
-            {item.icon && <Icon type={item.icon} />}
+            {item.icon && (
+              <Icon style={{ fontSize: "18px" }} type={item.icon} />
+            )}
             <span>{item.name}</span>
           </Navlink>
         </Menu.Item>

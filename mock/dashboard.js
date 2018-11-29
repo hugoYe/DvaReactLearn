@@ -109,21 +109,21 @@ const Dashboard = Mock.mock({
   },
   numbers: [
     {
-      icon: 'pay-circle-o',
+      icon: 'dollar',
       color: Color.green,
       title: 'Yesterday Income',
       number: 2781,
     },
     {
-      icon: 'sliders',
-      color: Color.blue,
-      title: 'Yesterday UV',
+      icon: 'area-chart',
+      color: Color.grass,
+      title: 'Yesterday PV',
       number: 3241,
     },
     {
-      icon: 'eye',
-      color: Color.purple,
-      title: 'Yesterday PV',
+      icon: 'area-chart',
+      color: Color.sky,
+      title: 'Yesterday UV',
       number: 253,
     },
     // {
