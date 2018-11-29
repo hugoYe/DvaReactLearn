@@ -47,9 +47,9 @@ function Completed({ data }) {
           <XAxis
             dataKey="name"
             axisLine={{ stroke: Color.borderBase, strokeWidth: 1 }}
-            tickLine={false}
+            tickLine={true}
           />
-          <YAxis axisLine={false} tickLine={false} />
+          <YAxis axisLine={false} tickLine={true} />
           <CartesianGrid
             vertical={false}
             stroke={Color.borderBase}

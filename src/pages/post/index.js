@@ -10,10 +10,10 @@ import List from "./components/List";
 
 const { TabPane } = Tabs;
 
-const EnumPostStatus = {
-  UNPUBLISH: 1,
-  PUBLISHED: 2
-};
+// const EnumPostStatus = {
+//   UNPUBLISH: 1,
+//   PUBLISHED: 2
+// };
 
 @withI18n()
 @connect(({ post, loading }) => ({ post, loading }))
@@ -39,38 +39,38 @@ class Post extends PureComponent {
       }
     };
 
-    const handleTabClick = key => {
-      router.push({
-        pathname,
-        search: stringify({
-          status: key
-        })
-      });
-    };
+    // const handleTabClick = key => {
+    //   router.push({
+    //     pathname,
+    //     search: stringify({
+    //       status: key
+    //     })
+    //   });
+    // };
 
     return (
       <Page inner>
-        <Tabs
+        {/* <Tabs
           activeKey={
             query.status === String(EnumPostStatus.UNPUBLISH)
               ? String(EnumPostStatus.UNPUBLISH)
               : String(EnumPostStatus.PUBLISHED)
           }
           onTabClick={handleTabClick}
-        >
-          <TabPane
-            tab={i18n.t`Publised`}
-            key={String(EnumPostStatus.PUBLISHED)}
-          >
-            <List {...listProps} />
-          </TabPane>
-          <TabPane
+        > */}
+        {/* <TabPane
+          tab={i18n.t`Publised`}
+          key={String(EnumPostStatus.PUBLISHED)}
+        > */}
+        <List {...listProps} />
+        {/* </TabPane> */}
+        {/* <TabPane
             tab={i18n.t`Unpublished`}
             key={String(EnumPostStatus.UNPUBLISH)}
           >
             <List {...listProps} />
-          </TabPane>
-        </Tabs>
+          </TabPane> */}
+        {/* </Tabs> */}
       </Page>
     );
   }

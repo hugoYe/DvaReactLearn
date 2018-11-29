@@ -10,13 +10,12 @@ class List extends PureComponent {
     const { i18n, ...tableProps } = this.props;
     const columns = [
       {
-        title: i18n.t`Image`,
-        dataIndex: "image",
-        render: text => <Avatar shape="square" src={text} />
+        title: i18n.t`Date`,
+        dataIndex: "date"
       },
       {
-        title: i18n.t`Title`,
-        dataIndex: "title",
+        title: i18n.t`ChannelId`,
+        dataIndex: "channelId",
         render: text => (
           <Ellipsis tooltip length={30}>
             {text}
@@ -24,33 +23,33 @@ class List extends PureComponent {
         )
       },
       {
-        title: i18n.t`Author`,
-        dataIndex: "author"
+        title: i18n.t`ChannelName`,
+        dataIndex: "channelName"
       },
       {
-        title: i18n.t`Categories`,
-        dataIndex: "categories"
+        title: i18n.t`PV`,
+        dataIndex: "pv"
       },
       {
-        title: i18n.t`Tags`,
-        dataIndex: "tags"
+        title: i18n.t`UV`,
+        dataIndex: "uv"
       },
       {
-        title: i18n.t`Visibility`,
-        dataIndex: "visibility"
-      },
-      {
-        title: i18n.t`Comments`,
-        dataIndex: "comments"
-      },
-      {
-        title: i18n.t`Views`,
-        dataIndex: "views"
-      },
-      {
-        title: i18n.t`Publish Date`,
-        dataIndex: "date"
+        title: i18n.t`Income`,
+        dataIndex: "income"
       }
+      // {
+      //   title: i18n.t`Comments`,
+      //   dataIndex: "comments"
+      // },
+      // {
+      //   title: i18n.t`Views`,
+      //   dataIndex: "views"
+      // },
+      // {
+      //   title: i18n.t`Publish Date`,
+      //   dataIndex: "date"
+      // }
     ];
 
     return (
