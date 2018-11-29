@@ -35,7 +35,7 @@ const database = Mock.mock({
   //   },
   data: [
     {
-      date: Mock.mock('@now'),
+      date: '2018-11-29',
       channelId: 'pad0001',
       channelName: 'baidu',
       pv: 1231,

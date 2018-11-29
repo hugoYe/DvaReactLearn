@@ -6,6 +6,7 @@ import { router } from "utils";
 import { stringify } from "qs";
 import { withI18n } from "@lingui/react";
 import { Page } from "components";
+import Filter from "./components/Filter";
 import List from "./components/List";
 
 const { TabPane } = Tabs;
@@ -22,6 +23,31 @@ class Post extends PureComponent {
     const { post, loading, location, i18n } = this.props;
     const { list, pagination } = post;
     const { query, pathname } = location;
+
+    const handleRefresh = newQuery => {
+      router.push({
+        pathname,
+        search: stringify(
+          {
+            ...query,
+            ...newQuery
+          },
+          { arrayFormat: "repeat" }
+        )
+      });
+    };
+
+    const filterProps = {
+      filter: {
+        ...query
+      },
+      onFilterChange(value) {
+        handleRefresh({
+          ...value,
+          page: 1
+        });
+      }
+    };
 
     const listProps = {
       pagination,
@@ -50,6 +76,7 @@ class Post extends PureComponent {
 
     return (
       <Page inner>
+        <Filter {...filterProps} />
         {/* <Tabs
           activeKey={
             query.status === String(EnumPostStatus.UNPUBLISH)
