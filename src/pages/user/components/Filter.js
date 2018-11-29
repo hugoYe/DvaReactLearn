@@ -96,7 +96,7 @@ class Filter extends PureComponent {
             />
           )}
         </Col>
-        <Col
+        {/* <Col
           {...ColProps}
           xl={{ span: 4 }}
           md={{ span: 8 }}
@@ -113,10 +113,10 @@ class Filter extends PureComponent {
               }
             />
           )}
-        </Col>
+        </Col> */}
         <Col
           {...ColProps}
-          xl={{ span: 6 }}
+          xl={{ span: 7 }}
           md={{ span: 8 }}
           sm={{ span: 12 }}
           id="createTimeRangePicker"
