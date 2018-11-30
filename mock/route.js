@@ -15,7 +15,7 @@ const database = [
     name: 'Income Per Day',
     zhName: '每天收入',
     icon: 'bar-chart',
-    route: '/post',
+    route: '/income',
   },
   {
     id: '2',
