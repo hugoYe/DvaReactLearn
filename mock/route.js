@@ -37,9 +37,9 @@ const database = [
     id: '6',
     breadcrumbParentId: '1',
     name: 'User Center',
-    zhName: '用户管理',
+    zhName: '个人中心',
     icon: 'user',
-    route: '/userCenter',
+    route: '/usercenter',
   },
   // {
   //   id: '3',
