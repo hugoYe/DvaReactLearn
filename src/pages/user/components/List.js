@@ -44,35 +44,35 @@ class List extends PureComponent {
         render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>
       },
       {
-        title: <Trans>NickName</Trans>,
-        dataIndex: "nickName",
-        key: "nickName"
+        title: <Trans>RealName</Trans>,
+        dataIndex: "realName",
+        key: "realName"
+      },
+      // {
+      //   title: <Trans>Age</Trans>,
+      //   dataIndex: "age",
+      //   key: "age"
+      // },
+      // {
+      //   title: <Trans>Gender</Trans>,
+      //   dataIndex: "isMale",
+      //   key: "isMale",
+      //   render: text => <span>{text ? "Male" : "Female"}</span>
+      // },
+      {
+        title: <Trans>ChannelId</Trans>,
+        dataIndex: "channelId",
+        key: "channelId"
       },
       {
-        title: <Trans>Age</Trans>,
-        dataIndex: "age",
-        key: "age"
+        title: <Trans>ChannelName</Trans>,
+        dataIndex: "channelName",
+        key: "channelName"
       },
       {
-        title: <Trans>Gender</Trans>,
-        dataIndex: "isMale",
-        key: "isMale",
-        render: text => <span>{text ? "Male" : "Female"}</span>
-      },
-      {
-        title: <Trans>Phone</Trans>,
-        dataIndex: "phone",
-        key: "phone"
-      },
-      {
-        title: <Trans>Email</Trans>,
-        dataIndex: "email",
-        key: "email"
-      },
-      {
-        title: <Trans>Address</Trans>,
-        dataIndex: "address",
-        key: "address"
+        title: <Trans>Company</Trans>,
+        dataIndex: "company",
+        key: "company"
       },
       {
         title: <Trans>CreateTime</Trans>,
@@ -106,7 +106,7 @@ class List extends PureComponent {
         }}
         className={styles.table}
         bordered
-        scroll={{ x: 1200 }}
+        scroll={{ x: 1240 }}
         columns={columns}
         simple
         rowKey={record => record.id}

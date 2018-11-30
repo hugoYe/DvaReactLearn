@@ -7,12 +7,12 @@ let usersListData = Mock.mock({
     {
       id: '@id',
       name: '@name',
-      nickName: '@last',
-      phone: /^1[34578]\d{9}$/,
+      realName: '@last',
+      channelId: /^1[34578]\d{9}$/,
       'age|11-99': 1,
-      address: '@county(true)',
+      company: '@county(true)',
       isMale: '@boolean',
-      email: '@email',
+      channelName: '@email',
       createTime: '@datetime',
       avatar() {
         return randomAvatar()
@@ -152,7 +152,7 @@ module.exports = {
       if ({}.hasOwnProperty.call(other, key)) {
         newData = newData.filter(item => {
           if ({}.hasOwnProperty.call(item, key)) {
-            if (key === 'address') {
+            if (key === 'company') {
               return other[key].every(iitem => item[key].indexOf(iitem) > -1)
             } else if (key === 'createTime') {
               const start = new Date(other[key][0]).getTime()
@@ -182,7 +182,7 @@ module.exports = {
   },
 
   [`POST ${ApiPrefix}/users/delete`](req, res) {
-    const { ids=[] } = req.body
+    const { ids = [] } = req.body
     database = database.filter(item => !ids.some(_ => _ === item.id))
     res.status(204).end()
   },
@@ -197,7 +197,7 @@ module.exports = {
         Mock.Random.color(),
         '#757575',
         'png',
-        newData.nickName.substr(0, 1)
+        newData.realName.substr(0, 1)
       )
     newData.id = Mock.mock('@id')
 
