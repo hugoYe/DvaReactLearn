@@ -5,7 +5,7 @@ export default {
   namespace: "login",
 
   state: {
-    status: undefined
+    showAlert: false
   },
 
   effects: {
@@ -34,7 +34,8 @@ export default {
     changeLoginStatus(state, { payload }) {
       return {
         ...state,
-        status: payload.errorCode
+        showAlert: !payload.success,
+        payload
       };
     }
   }

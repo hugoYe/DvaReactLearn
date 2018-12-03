@@ -65,7 +65,7 @@ class Login extends PureComponent {
           </div>
           <form>
             <FormItem hasFeedback>
-              {getFieldDecorator("username", {
+              {getFieldDecorator("name", {
                 rules: [
                   { required: true, message: "Please input your username!" }
                 ]
@@ -95,7 +95,7 @@ class Login extends PureComponent {
               <Button
                 type="primary"
                 onClick={this.handleOk}
-                loading={loading.effects.login}
+                loading={loading.models.login}
               >
                 <Trans>Sign in</Trans>
               </Button>
@@ -111,9 +111,9 @@ class Login extends PureComponent {
               </p> */}
             </Row>
           </form>
-          {login.status === "20001" &&
-            !loading.effects.login &&
-            this.renderMessage("Invalid username or password!")}
+          {!loading.effects["login/login"] &&
+            login.showAlert &&
+            this.renderMessage(login.payload.msg)}
         </div>
         <div className={styles.footer}>
           {/* <GlobalFooter links={footerLinks} copyright={config.copyright} /> */}
