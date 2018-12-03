@@ -92,8 +92,8 @@ const NOTFOUND = {
 
 module.exports = {
   [`POST ${ApiPrefix}/user/login`](req, res) {
-    const { username, password } = req.body
-    const user = adminUsers.filter(item => item.username === username)
+    const { name, password } = req.body
+    const user = adminUsers.filter(item => item.username === name)
 
     if (user.length > 0 && user[0].password === password) {
       const now = new Date()
