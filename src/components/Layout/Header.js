@@ -43,6 +43,7 @@ class Header extends PureComponent {
           }
         >
           <Menu.Item key="SignOut">
+            <Icon type="logout" />
             <Trans>Sign out</Trans>
           </Menu.Item>
         </SubMenu>
