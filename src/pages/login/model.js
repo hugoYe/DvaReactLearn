@@ -11,7 +11,7 @@ export default {
   effects: {
     *login({ payload }, { put, call, select }) {
       const data = yield call(loginUser, payload);
-      yield put({ type: "changeLoginStatus", payload: data });
+      yield put({ type: "updateState", payload: data });
       const { locationQuery } = yield select(_ => _.app);
       if (data.success) {
         const { from } = locationQuery;
@@ -31,11 +31,11 @@ export default {
   },
 
   reducers: {
-    changeLoginStatus(state, { payload }) {
+    updateState(state, { payload }) {
       return {
         ...state,
         showAlert: !payload.success,
-        payload
+        ...payload
       };
     }
   }

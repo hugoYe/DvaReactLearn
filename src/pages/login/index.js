@@ -113,7 +113,7 @@ class Login extends PureComponent {
           </form>
           {!loading.effects["login/login"] &&
             login.showAlert &&
-            this.renderMessage(login.payload.msg)}
+            this.renderMessage(login.msg)}
         </div>
         <div className={styles.footer}>
           {/* <GlobalFooter links={footerLinks} copyright={config.copyright} /> */}
