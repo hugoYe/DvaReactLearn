@@ -11,6 +11,7 @@ import config from "config";
 
 export default {
   namespace: "app",
+
   state: {
     user: {},
     permissions: {
@@ -40,6 +41,7 @@ export default {
     //   }
     // ]
   },
+
   subscriptions: {
     setupHistory({ dispatch, history }) {
       history.listen(location => {
@@ -70,12 +72,14 @@ export default {
       dispatch({ type: "query" });
     }
   },
+
   effects: {
     *query({ payload }, { call, put, select }) {
-      const { success, user } = yield call(queryUserInfo, payload);
+      const res = yield call(queryUserInfo, payload);
+      const user = res.data;
       const { locationPathname } = yield select(_ => _.app);
 
-      if (success && user) {
+      if (res.success && user) {
         const { list } = yield call(queryRouteList);
         const { permissions } = user;
         let routeList = list;
@@ -144,6 +148,7 @@ export default {
       }
     }
   },
+
   reducers: {
     updateState(state, { payload }) {
       return {

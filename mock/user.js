@@ -31,7 +31,7 @@ const EnumRoleType = {
 
 const userPermission = {
   DEFAULT: {
-    visit: ['1', '6', '21', '7', '5', '51', '52', '53'],
+    visit: ['1', '7', '6'],
     role: EnumRoleType.DEFAULT,
   },
   ADMIN: {
@@ -137,7 +137,7 @@ module.exports = {
         user = other
       }
     }
-    response.user = user
+    response.data = user
     res.json(response)
   },
 
