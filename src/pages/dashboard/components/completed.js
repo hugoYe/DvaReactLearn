@@ -80,7 +80,7 @@ function Completed({ data }) {
           />
           <Area
             type="monotone"
-            dataKey="PV"
+            dataKey="pv"
             stroke={Color.grass}
             fill={Color.grass}
             strokeWidth={2}
@@ -89,7 +89,7 @@ function Completed({ data }) {
           />
           <Area
             type="monotone"
-            dataKey="UV"
+            dataKey="uv"
             stroke={Color.sky}
             fill={Color.sky}
             strokeWidth={2}

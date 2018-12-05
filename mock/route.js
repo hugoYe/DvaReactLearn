@@ -103,6 +103,8 @@ const database = [
 
 module.exports = {
   [`GET ${ApiPrefix}/routes`](req, res) {
-    res.status(200).json(database)
+    const response = {}
+    response.data = database;
+    res.status(200).json(response)
   },
 }

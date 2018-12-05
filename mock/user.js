@@ -117,7 +117,7 @@ module.exports = {
     res.status(200).end()
   },
 
-  [`GET ${ApiPrefix}/getUserInfo`](req, res) {
+  [`GET ${ApiPrefix}/user/getUserInfo`](req, res) {
     const cookie = req.headers.cookie || ''
     const cookies = qs.parse(cookie.replace(/\s/g, ''), { delimiter: ';' })
     const response = {}

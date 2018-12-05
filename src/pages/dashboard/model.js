@@ -47,11 +47,10 @@ export default modelExtend(model, {
   effects: {
     *query({ payload }, { call, put }) {
       console.log(payload);
-      const data = yield call(queryDashboard, parse(payload));
-      console.log(data);
+      const res = yield call(queryDashboard, parse(payload));
       yield put({
         type: "updateState",
-        payload: data
+        payload: res.data
       });
     }
     // *queryWeather({ payload = {} }, { call, put }) {

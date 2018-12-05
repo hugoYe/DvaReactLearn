@@ -80,7 +80,8 @@ export default {
       const { locationPathname } = yield select(_ => _.app);
 
       if (res.success && user) {
-        const { list } = yield call(queryRouteList);
+        const routeRes = yield call(queryRouteList);
+        let list = routeRes.data;
         const { permissions } = user;
         let routeList = list;
         if (

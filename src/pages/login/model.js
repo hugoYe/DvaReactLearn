@@ -10,12 +10,12 @@ export default {
 
   effects: {
     *login({ payload }, { put, call, select }) {
-      const data = yield call(loginUser, payload);
-      yield put({ type: "updateState", payload: data });
+      const response = yield call(loginUser, payload);
+      yield put({ type: "updateState", payload: response });
       const { locationQuery } = yield select(_ => _.app);
-      if (data.success) {
+      if (response.success) {
         const { from } = locationQuery;
-        yield put({ type: "app/query", payload: data.data });
+        yield put({ type: "app/query", payload: { id: response.data } });
         if (!pathMatchRegexp("/login", from)) {
           if (from === "/") router.push("/dashboard");
           else router.push(from);
