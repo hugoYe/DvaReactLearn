@@ -11,7 +11,9 @@ class List extends PureComponent {
     const columns = [
       {
         title: i18n.t`Date`,
-        dataIndex: "date"
+        dataIndex: "date",
+        width: 100,
+        fixed: "left"
       },
       {
         title: i18n.t`ChannelId`,
@@ -36,7 +38,9 @@ class List extends PureComponent {
       },
       {
         title: i18n.t`Income`,
-        dataIndex: "income"
+        dataIndex: "income",
+        width: 100,
+        fixed: "right"
       }
       // {
       //   title: i18n.t`Comments`,

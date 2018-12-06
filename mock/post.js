@@ -33,14 +33,14 @@ const database = Mock.mock({
   //       )
   //     },
   //   },
-  data: [
+  'data|36': [
     {
-      date: '2018-11-29',
+      date: '@dateTime',
       channelId: 'pad0001',
-      channelName: 'baidu',
-      pv: 1231,
-      uv: 123,
-      income: 124213
+      channelName: '@last',
+      'pv|100-10000': 1,
+      'uv|100-10000': 1,
+      'income|1000-100000': 1
     },
   ],
 }).data
