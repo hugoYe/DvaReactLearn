@@ -46,7 +46,7 @@ const database = Mock.mock({
 }).data
 
 module.exports = {
-  [`GET ${ApiPrefix}/getIncome`](req, res) {
+  [`GET ${ApiPrefix}/income`](req, res) {
     const { query } = req
     let { pageSize, page, ...other } = query
     pageSize = pageSize || 10
