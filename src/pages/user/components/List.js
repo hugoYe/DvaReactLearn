@@ -29,18 +29,20 @@ class List extends PureComponent {
     const { onDeleteItem, onEditItem, i18n, ...tableProps } = this.props;
 
     const columns = [
-      {
-        title: <Trans>Avatar</Trans>,
-        dataIndex: "avatar",
-        key: "avatar",
-        width: 72,
-        fixed: "left",
-        render: text => <Avatar style={{ marginLeft: 8 }} src={text} />
-      },
+      // {
+      //   title: <Trans>Avatar</Trans>,
+      //   dataIndex: "avatar",
+      //   key: "avatar",
+      //   width: 72,
+      //   fixed: "left",
+      //   render: text => <Avatar style={{ marginLeft: 8 }} icon="user" />
+      // },
       {
         title: <Trans>Name</Trans>,
-        dataIndex: "name",
-        key: "name",
+        dataIndex: "username",
+        key: "username",
+        width: 72,
+        fixed: "left",
         render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>
       },
       {

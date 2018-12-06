@@ -6,7 +6,7 @@ let usersListData = Mock.mock({
   'data|80-100': [
     {
       id: '@id',
-      name: '@name',
+      username: '@name',
       realName: '@last',
       channelId: /^1[34578]\d{9}$/,
       'age|11-99': 1,
@@ -141,7 +141,7 @@ module.exports = {
     res.json(response)
   },
 
-  [`GET ${ApiPrefix}/users`](req, res) {
+  [`GET ${ApiPrefix}/user/getUsers`](req, res) {
     const { query } = req
     let { pageSize, page, ...other } = query
     pageSize = pageSize || 10
@@ -175,10 +175,13 @@ module.exports = {
       }
     }
 
-    res.status(200).json({
-      data: newData.slice((page - 1) * pageSize, page * pageSize),
-      total: newData.length,
-    })
+    const response = {}
+    const data = {}
+    data.list = newData.slice((page - 1) * pageSize, page * pageSize)
+    data.total = newData.length
+    response.data = data
+
+    res.status(200).json(response)
   },
 
   [`POST ${ApiPrefix}/users/delete`](req, res) {
@@ -206,11 +209,13 @@ module.exports = {
     res.status(200).end()
   },
 
-  [`GET ${ApiPrefix}/user/:id`](req, res) {
+  [`GET ${ApiPrefix}/user/getUser/:id`](req, res) {
     const { id } = req.params
     const data = queryArray(database, id, 'id')
     if (data) {
-      res.status(200).json(data)
+      const response = {}
+      response.data = data
+      res.status(200).json(response)
     } else {
       res.status(200).json(NOTFOUND)
     }

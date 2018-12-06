@@ -5,8 +5,8 @@ export default {
   logoutUser: "/user/logout",
   loginUser: "POST /user/login",
 
-  queryUser: "/user/:id",
-  queryUserList: "/users",
+  queryUser: "/user/getUser/:id",
+  queryUserList: "/user/getUsers",
   updateUser: "Patch /user/:id",
   createUser: "POST /user/:id",
   removeUser: "DELETE /user/:id",
