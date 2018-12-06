@@ -24,21 +24,21 @@ export default modelExtend(pageModel, {
 
   effects: {
     *query({ payload }, { call, put }) {
-      const data = yield call(queryPostList, payload);
-      if (data.success) {
+      const res = yield call(queryPostList, payload);
+      if (res.success) {
         yield put({
           type: "querySuccess",
           payload: {
-            list: data.data,
+            list: res.data.list,
             pagination: {
               current: Number(payload.page) || 1,
               pageSize: Number(payload.pageSize) || 10,
-              total: data.total
+              total: res.data.total
             }
           }
         });
       } else {
-        throw data;
+        throw res;
       }
     }
   }
