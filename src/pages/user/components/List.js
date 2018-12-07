@@ -41,7 +41,7 @@ class List extends PureComponent {
         title: <Trans>Name</Trans>,
         dataIndex: "username",
         key: "username",
-        width: 72,
+        width: 100,
         fixed: "left",
         render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>
       },
@@ -84,6 +84,7 @@ class List extends PureComponent {
       {
         title: <Trans>Operation</Trans>,
         key: "operation",
+        width: 100,
         fixed: "right",
         render: (text, record) => {
           return (
@@ -108,7 +109,7 @@ class List extends PureComponent {
         }}
         className={styles.table}
         bordered
-        scroll={{ x: 1240 }}
+        scroll={{ x: 1200 }}
         columns={columns}
         simple
         rowKey={record => record.id}

@@ -22,11 +22,9 @@ export default {
         } else {
           router.push("/dashboard");
         }
+      } else {
+        throw response;
       }
-      // else {
-      //   console.log(data);
-      //   throw data;
-      // }
     }
   },
 

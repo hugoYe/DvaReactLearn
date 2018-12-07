@@ -9,14 +9,14 @@ let usersListData = Mock.mock({
       username: '@name',
       realName: '@last',
       channelId: /^1[34578]\d{9}$/,
-      'age|11-99': 1,
+      // 'age|11-99': 1,
       company: '@county(true)',
-      isMale: '@boolean',
+      // isMale: '@boolean',
       channelName: '@email',
       createTime: '@datetime',
-      avatar() {
-        return randomAvatar()
-      },
+      // avatar() {
+      //   return randomAvatar()
+      // },
     },
   ],
 })
