@@ -12,6 +12,13 @@ export default {
   removeUser: "DELETE /user/:id",
   removeUserList: "POST /users/delete",
 
+  // Channels
+  queryChannelList: "/channels/queryChannelList",
+  createChannel: "POST /channels/createChannel",
+  updateChannel: "Patch /channels/updateChannel",
+  removeChannel: "DELETE /channels/removeChannel",
+  removeChannelList: "POST /channels/removeChannelList",
+
   queryPostList: "/income",
 
   queryDashboard: "/dashboard"
