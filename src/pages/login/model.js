@@ -1,4 +1,5 @@
 import { router, pathMatchRegexp } from "utils";
+import { setToken } from "utils/token";
 import { loginUser } from "api";
 
 export default {
@@ -15,7 +16,7 @@ export default {
       const { locationQuery } = yield select(_ => _.app);
       if (response.success) {
         const { from } = locationQuery;
-        yield put({ type: "app/query", payload: { id: response.data } });
+        yield put({ type: "app/query" });
         if (!pathMatchRegexp("/login", from)) {
           if (from === "/") router.push("/dashboard");
           else router.push(from);
@@ -30,6 +31,9 @@ export default {
 
   reducers: {
     updateState(state, { payload }) {
+      if (payload.data !== null) {
+        setToken(payload.data.token);
+      }
       return {
         ...state,
         showAlert: !payload.success,

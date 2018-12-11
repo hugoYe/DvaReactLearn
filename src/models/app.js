@@ -124,8 +124,9 @@ export default {
       }
     },
 
-    *signOut({ payload }, { call, put }) {
+    *signOut({ payload }, { call, put, select }) {
       const data = yield call(logoutUser);
+      const { locationPathname } = yield select(_ => _.app);
       if (data.success) {
         yield put({
           type: "updateState",
@@ -143,7 +144,12 @@ export default {
             ]
           }
         });
-        yield put({ type: "query" });
+        router.push({
+          pathname: "/login",
+          search: stringify({
+            from: locationPathname
+          })
+        });
       } else {
         throw data;
       }

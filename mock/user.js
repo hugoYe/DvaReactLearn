@@ -114,7 +114,9 @@ module.exports = {
 
   [`GET ${ApiPrefix}/user/logout`](req, res) {
     res.clearCookie('token')
-    res.status(200).end()
+    const response = {}
+    response.success = true
+    res.json(response)
   },
 
   [`GET ${ApiPrefix}/user/getUserInfo`](req, res) {
