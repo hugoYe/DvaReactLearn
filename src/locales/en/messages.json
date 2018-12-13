@@ -21,7 +21,9 @@
   "Image": "Image",
   "Light": "Light",
   "Male": "Male",
-  "Name": "Name",
+  "Name": "UserName",
+  "RealName": "RealName",
+  "Company": "Company",
   "NickName": "NickName",
   "Not Found": "Not Found",
   "Operation": "Operation",
@@ -32,6 +34,9 @@
   "Please pick an address": "Please pick an address",
   "Publised": "Publised",
   "Publish Date": "Publish Date",
+  "Date": "Date",
+  "Income": "Income",
+  "Yesterday Income": "Yesterday Income",
   "Reset": "Reset",
   "Search": "Search",
   "Search Name": "Search Name",
@@ -50,5 +55,10 @@
   "Username": "Username",
   "Views": "Views",
   "Visibility": "Visibility",
-  "You have viewed all notifications.": "You have viewed all notifications."
+  "You have viewed all notifications.": "You have viewed all notifications.",
+  "ChannelId": "ChannelId",
+  "ChannelName": "ChannelName",
+  "UpdateTime": "UpdateTime",
+  "Create Channel": "Create Channel",
+  "Update Channel": "更新渠道"
 }

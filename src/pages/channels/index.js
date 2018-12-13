@@ -137,7 +137,7 @@ class Channels extends PureComponent {
           type="primary"
           style={{ marginBottom: 16 }}
         >
-          Create channel
+          {i18n.t`Create Channel`}
         </Button>
         {selectedRowKeys.length > 0 && (
           <Row style={{ marginBottom: 24, textAlign: "right", fontSize: 13 }}>

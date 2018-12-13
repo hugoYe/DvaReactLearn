@@ -21,7 +21,9 @@
   "Image": "图像",
   "Light": "明",
   "Male": "男性",
-  "Name": "名字",
+  "Name": "用户名",
+  "RealName": "真实姓名",
+  "Company": "公司名称",
   "NickName": "昵称",
   "Not Found": "未找到",
   "Operation": "操作",
@@ -32,6 +34,9 @@
   "Please pick an address": "选择地址",
   "Publised": "已发布",
   "Publish Date": "发布日期",
+  "Date": "日期",
+  "Income": "收入",
+  "Yesterday Income": "昨日收入",
   "Reset": "重置",
   "Search": "搜索",
   "Search Name": "搜索名字",
@@ -50,5 +55,10 @@
   "Username": "用户名",
   "Views": "浏览数",
   "Visibility": "可见性",
-  "You have viewed all notifications.": "您已查看所有通知"
+  "You have viewed all notifications.": "您已查看所有通知",
+  "ChannelId": "渠道ID",
+  "ChannelName": "渠道名称",
+  "UpdateTime": "更新时间",
+  "Create Channel": "创建渠道",
+  "Update Channel": "更新渠道"
 }
