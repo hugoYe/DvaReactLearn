@@ -108,9 +108,7 @@ class Channels extends PureComponent {
     const handleDeleteItems = () => {
       dispatch({
         type: "channels/multiDelete",
-        payload: {
-          ids: selectedRowKeys
-        }
+        payload: [...selectedRowKeys]
       }).then(() => {
         handleRefresh({
           page:
