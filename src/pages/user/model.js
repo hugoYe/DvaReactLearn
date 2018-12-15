@@ -6,7 +6,8 @@ import {
   createUser,
   removeUser,
   updateUser,
-  removeUserList
+  removeUserList,
+  getAllChannelName
 } from "api";
 import { pageModel } from "utils/model";
 
@@ -17,7 +18,8 @@ export default modelExtend(pageModel, {
     currentItem: {},
     modalVisible: false,
     modalType: "create",
-    selectedRowKeys: []
+    selectedRowKeys: [],
+    channelNameList: []
   },
 
   subscriptions: {
@@ -29,6 +31,7 @@ export default modelExtend(pageModel, {
             type: "query",
             payload
           });
+          dispatch({ type: "getChannelNameDict" });
         }
       });
     }
@@ -93,6 +96,18 @@ export default modelExtend(pageModel, {
         yield put({ type: "hideModal" });
       } else {
         throw data;
+      }
+    },
+
+    *getChannelNameDict({ payload }, { call, put }) {
+      const res = yield call(getAllChannelName);
+      if (res.success) {
+        yield put({
+          type: "updateState",
+          payload: {
+            channelNameList: res.data
+          }
+        });
       }
     }
   },

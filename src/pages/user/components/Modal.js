@@ -1,8 +1,7 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Form, Input, InputNumber, Radio, Modal, Cascader } from "antd";
-import { Trans, withI18n } from "@lingui/react";
-import city from "utils/city";
+import { Form, Input, Modal, Select } from "antd";
+import { withI18n } from "@lingui/react";
 
 const FormItem = Form.Item;
 
@@ -14,6 +13,7 @@ const formItemLayout = {
     span: 14
   }
 };
+
 @withI18n()
 @Form.create()
 class UserModal extends PureComponent {
@@ -29,13 +29,20 @@ class UserModal extends PureComponent {
         ...getFieldsValue(),
         key: item.key
       };
-      data.address = data.address.join(" ");
       onOk(data);
     });
   };
 
   render() {
-    const { item = {}, onOk, form, i18n, ...modalProps } = this.props;
+    const {
+      channelDict,
+      modalType,
+      item = {},
+      onOk,
+      form,
+      i18n,
+      ...modalProps
+    } = this.props;
     const { getFieldDecorator } = form;
 
     return (
@@ -49,7 +56,7 @@ class UserModal extends PureComponent {
                   required: true
                 }
               ]
-            })(<Input />)}
+            })(modalType === "create" ? <Input /> : <Input disabled="true" />)}
           </FormItem>
           <FormItem label={i18n.t`RealName`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("realName", {
@@ -59,7 +66,7 @@ class UserModal extends PureComponent {
                   required: true
                 }
               ]
-            })(<Input />)}
+            })(modalType === "create" ? <Input /> : <Input disabled="true" />)}
           </FormItem>
           <FormItem label={i18n.t`Company`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("company", {
@@ -69,22 +76,22 @@ class UserModal extends PureComponent {
                   required: true
                 }
               ]
-            })(<Input />)}
+            })(modalType === "create" ? <Input /> : <Input disabled="true" />)}
           </FormItem>
-          <FormItem label={i18n.t`Address`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator("address", {
-              initialValue: item.address && item.address.split(" "),
+          <FormItem label={i18n.t`ChannelName`} hasFeedback {...formItemLayout}>
+            {getFieldDecorator("channelName", {
+              initialValue: item.channelName,
               rules: [
                 {
-                  required: true
+                  required: true,
+                  message: "Please select channel!",
+                  type: "array"
                 }
               ]
             })(
-              <Cascader
-                style={{ width: "100%" }}
-                options={city}
-                placeholder={i18n.t`Pick an address`}
-              />
+              <Select mode="multiple" placeholder="Please select channel!">
+                {channelDict}
+              </Select>
             )}
           </FormItem>
         </Form>

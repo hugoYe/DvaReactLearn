@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { router } from "utils";
 import { connect } from "dva";
-import { Row, Col, Button, Popconfirm } from "antd";
+import { Row, Col, Button, Popconfirm, Select } from "antd";
 import { withI18n } from "@lingui/react";
 import { Page } from "components";
 import { stringify } from "qs";
@@ -22,8 +22,18 @@ class User extends PureComponent {
       currentItem,
       modalVisible,
       modalType,
-      selectedRowKeys
+      selectedRowKeys,
+      channelNameList
     } = user;
+
+    const dict = [];
+    for (let i = 0; i < channelNameList.length; i++) {
+      dict.push(
+        <Select.Option key={channelNameList[i]}>
+          {channelNameList[i]}
+        </Select.Option>
+      );
+    }
 
     const handleRefresh = newQuery => {
       router.push({
@@ -39,6 +49,8 @@ class User extends PureComponent {
     };
 
     const modalProps = {
+      channelDict: dict,
+      modalType: modalType,
       item: modalType === "create" ? {} : currentItem,
       visible: modalVisible,
       maskClosable: false,
