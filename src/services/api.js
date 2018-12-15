@@ -14,7 +14,7 @@ export default {
 
   // Channels
   getChannel: "/channel",
-  getAllChannel: "/channel/getAllChannel",
+  getChannels: "/channel/getChannels",
   addChannel: "POST /channel",
   updateChannel: "PUT /channel",
   deleteChannel: "DELETE /channel",

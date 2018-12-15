@@ -4,7 +4,7 @@ import { pathMatchRegexp } from "utils";
 import { pageModel } from "utils/model";
 import {
   getChannel,
-  getAllChannel,
+  getChannels,
   addChannel,
   updateChannel,
   deleteChannel,
@@ -37,7 +37,7 @@ export default modelExtend(pageModel, {
 
   effects: {
     *query({ payload = {} }, { call, put }) {
-      const res = yield call(getAllChannel, payload);
+      const res = yield call(getChannels, payload);
       if (res.success) {
         yield put({
           type: "querySuccess",
