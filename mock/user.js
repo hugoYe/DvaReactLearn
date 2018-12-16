@@ -6,7 +6,7 @@ let usersListData = Mock.mock({
   'data|80-100': [
     {
       id: '@id',
-      username: '@name',
+      userName: '@name',
       realName: '@last',
       channelId: /^1[34578]\d{9}$/,
       // 'age|11-99': 1,

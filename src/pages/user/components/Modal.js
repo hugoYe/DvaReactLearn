@@ -26,8 +26,7 @@ class UserModal extends PureComponent {
         return;
       }
       const data = {
-        ...getFieldsValue(),
-        key: item.key
+        ...getFieldsValue()
       };
       onOk(data);
     });
@@ -49,8 +48,8 @@ class UserModal extends PureComponent {
       <Modal {...modalProps} onOk={this.handleOk}>
         <Form layout="horizontal">
           <FormItem label={i18n.t`Name`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator("username", {
-              initialValue: item.username,
+            {getFieldDecorator("userName", {
+              initialValue: item.userName,
               rules: [
                 {
                   required: true

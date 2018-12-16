@@ -39,8 +39,8 @@ class List extends PureComponent {
       // },
       {
         title: <Trans>Name</Trans>,
-        dataIndex: "username",
-        key: "username",
+        dataIndex: "userName",
+        key: "userName",
         width: 100,
         fixed: "left",
         render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>
