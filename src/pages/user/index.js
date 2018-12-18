@@ -27,7 +27,9 @@ class User extends PureComponent {
     } = user;
 
     const dict = [];
+    const dictMap = new Map();
     for (let i = 0; i < channelDict.length; i++) {
+      dictMap.set(channelDict[i].channelName, channelDict[i].channelId);
       dict.push(
         <Select.Option key={channelDict[i].channelName}>
           {channelDict[i].channelName}
@@ -60,6 +62,11 @@ class User extends PureComponent {
       }`,
       wrapClassName: "vertical-center-modal",
       onOk(data) {
+        let channelId = [];
+        for (let i = 0; i < data.channelName.length; i++) {
+          channelId[i] = dictMap.get(data.channelName[i]);
+        }
+        data.channelId = channelId;
         dispatch({
           type: `user/${modalType}`,
           payload: data

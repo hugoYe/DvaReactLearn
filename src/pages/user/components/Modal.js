@@ -26,6 +26,7 @@ class UserModal extends PureComponent {
         return;
       }
       const data = {
+        id: item.id,
         ...getFieldsValue()
       };
       onOk(data);
