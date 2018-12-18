@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Table, Modal, Avatar } from "antd";
+import { Table, Modal, Avatar, Divider, Tag } from "antd";
 import { DropOption } from "components";
 import { Trans, withI18n } from "@lingui/react";
 import Link from "umi/link";
@@ -29,14 +29,6 @@ class List extends PureComponent {
     const { onDeleteItem, onEditItem, i18n, ...tableProps } = this.props;
 
     const columns = [
-      // {
-      //   title: <Trans>Avatar</Trans>,
-      //   dataIndex: "avatar",
-      //   key: "avatar",
-      //   width: 72,
-      //   fixed: "left",
-      //   render: text => <Avatar style={{ marginLeft: 8 }} icon="user" />
-      // },
       {
         title: <Trans>Name</Trans>,
         dataIndex: "userName",
@@ -50,26 +42,29 @@ class List extends PureComponent {
         dataIndex: "realName",
         key: "realName"
       },
-      // {
-      //   title: <Trans>Age</Trans>,
-      //   dataIndex: "age",
-      //   key: "age"
-      // },
-      // {
-      //   title: <Trans>Gender</Trans>,
-      //   dataIndex: "isMale",
-      //   key: "isMale",
-      //   render: text => <span>{text ? "Male" : "Female"}</span>
-      // },
       {
         title: <Trans>ChannelId</Trans>,
         dataIndex: "channelId",
-        key: "channelId"
+        key: "channelId",
+        render: channelId => (
+          <span>
+            {channelId.map(id => (
+              <Tag key={id}>{id}</Tag>
+            ))}
+          </span>
+        )
       },
       {
         title: <Trans>ChannelName</Trans>,
         dataIndex: "channelName",
-        key: "channelName"
+        key: "channelName",
+        render: channelName => (
+          <span>
+            {channelName.map(name => (
+              <Tag key={name}>{name}</Tag>
+            ))}
+          </span>
+        )
       },
       {
         title: <Trans>Company</Trans>,
