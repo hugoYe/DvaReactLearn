@@ -7,7 +7,7 @@ import {
   removeUser,
   updateUser,
   removeUserList,
-  getAllChannelName
+  getChannelDict
 } from "api";
 import { pageModel } from "utils/model";
 
@@ -19,7 +19,7 @@ export default modelExtend(pageModel, {
     modalVisible: false,
     modalType: "create",
     selectedRowKeys: [],
-    channelNameList: []
+    channelDict: []
   },
 
   subscriptions: {
@@ -31,7 +31,7 @@ export default modelExtend(pageModel, {
             type: "query",
             payload
           });
-          dispatch({ type: "getChannelNameDict" });
+          dispatch({ type: "getChannelDict" });
         }
       });
     }
@@ -98,13 +98,13 @@ export default modelExtend(pageModel, {
       }
     },
 
-    *getChannelNameDict({ payload }, { call, put }) {
-      const res = yield call(getAllChannelName);
+    *getChannelDict({ payload }, { call, put }) {
+      const res = yield call(getChannelDict);
       if (res.success) {
         yield put({
           type: "updateState",
           payload: {
-            channelNameList: res.data
+            channelDict: res.data
           }
         });
       }

@@ -23,14 +23,14 @@ class User extends PureComponent {
       modalVisible,
       modalType,
       selectedRowKeys,
-      channelNameList
+      channelDict
     } = user;
 
     const dict = [];
-    for (let i = 0; i < channelNameList.length; i++) {
+    for (let i = 0; i < channelDict.length; i++) {
       dict.push(
-        <Select.Option key={channelNameList[i]}>
-          {channelNameList[i]}
+        <Select.Option key={channelDict[i].channelName}>
+          {channelDict[i].channelName}
         </Select.Option>
       );
     }

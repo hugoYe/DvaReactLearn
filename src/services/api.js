@@ -13,7 +13,7 @@ export default {
   removeUserList: "POST /users/delete",
 
   // Channels
-  getAllChannelName: "/channel/getAllChannelName",
+  getChannelDict: "/channel/getChannelDict",
   getChannels: "/channel/getChannels",
   addChannel: "POST /channel",
   updateChannel: "PUT /channel",
