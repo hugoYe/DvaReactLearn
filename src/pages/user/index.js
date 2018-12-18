@@ -149,9 +149,7 @@ class User extends PureComponent {
     const handleDeleteItems = () => {
       dispatch({
         type: "user/multiDelete",
-        payload: {
-          ids: selectedRowKeys
-        }
+        payload: [...selectedRowKeys]
       }).then(() => {
         handleRefresh({
           page:

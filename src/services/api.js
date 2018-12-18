@@ -10,7 +10,7 @@ export default {
   updateUser: "PUT /user",
   createUser: "POST /user",
   removeUser: "DELETE /user/:id",
-  removeUserList: "POST /users/delete",
+  removeUserList: "DELETE /user/deleteUserBatch",
 
   // Channels
   getChannelDict: "/channel/getChannelDict",
