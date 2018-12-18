@@ -7,7 +7,7 @@ export default {
 
   queryUser: "/user/getUser/:id",
   queryUserList: "/user/getUsers",
-  updateUser: "Patch /user/:id",
+  updateUser: "PUT /user",
   createUser: "POST /user",
   removeUser: "DELETE /user/:id",
   removeUserList: "POST /users/delete",
