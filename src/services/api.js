@@ -11,6 +11,7 @@ export default {
   createUser: "POST /user",
   removeUser: "DELETE /user/:id",
   removeUserList: "DELETE /user/deleteUserBatch",
+  editUser: "POST /user/editUser",
 
   // Channels
   getChannelDict: "/channel/getChannelDict",

@@ -1,24 +1,22 @@
 import React, { PureComponent } from "react";
-import { Form, Input, Button } from "antd";
-import PropTypes from "prop-types";
+import { Form, Input, Button, Select } from "antd";
 import { withI18n } from "@lingui/react";
 import { connect } from "dva";
 import { Page } from "components";
+import { router } from "utils";
 
 const FormItem = Form.Item;
 
 @withI18n()
-@connect(({ app, usercenter, loading }) => ({
-  app,
-  usercenter,
+@Form.create()
+@connect(({ usercenter, loading }) => ({
+  user: usercenter.user,
   loading
 }))
 class UserCenter extends PureComponent {
   render() {
-    const { i18n } = this.props;
-    const name = "yzn";
-    const channelId = "pad20181130";
-    const realName = "yezhennan";
+    const { i18n, user, form, dispatch } = this.props;
+    const { getFieldDecorator } = form;
 
     const formItemLayout = {
       labelCol: { span: 4 },
@@ -29,29 +27,103 @@ class UserCenter extends PureComponent {
       wrapperCol: { span: 14, offset: 4 }
     };
 
+    const handleSubmit = e => {
+      e.preventDefault();
+      this.props.form.validateFields((err, values) => {
+        const { user } = this.props;
+        const param = { id: user.id, ...values };
+        dispatch({
+          type: "usercenter/editUser",
+          payload: { ...param }
+        });
+      });
+    };
+
     return (
       <Page inner>
-        <Form>
-          <FormItem label="User Name: " {...formItemLayout}>
-            <Input value={name} disabled="true" />
+        <Form onSubmit={handleSubmit}>
+          <FormItem label={i18n.t`User Name` + ": "} {...formItemLayout}>
+            <Input value={user.userName} disabled="true" />
           </FormItem>
-          <FormItem label="ChannelId: " {...formItemLayout}>
-            <Input value={channelId} disabled="true" />
+          <FormItem label={i18n.t`ChannelId` + ": "} {...formItemLayout}>
+            <Select
+              mode="multiple"
+              style={{ width: "100%" }}
+              defaultValue={user.channelId}
+              disabled
+            />
           </FormItem>
-          <FormItem label="Real Name: " {...formItemLayout}>
-            <Input value={realName} />
+          <FormItem
+            label={i18n.t`Real Name` + ": "}
+            hasFeedback
+            {...formItemLayout}
+          >
+            {getFieldDecorator("realName", {
+              initialValue: user.realName,
+              rules: [
+                {
+                  required: true
+                }
+              ]
+            })(<Input />)}
           </FormItem>
-          <FormItem label="Current Password: " {...formItemLayout}>
-            <Input placeholder="Please Enter Your Current Password!" />
+          <FormItem
+            label={i18n.t`Company` + ": "}
+            hasFeedback
+            {...formItemLayout}
+          >
+            {getFieldDecorator("company", {
+              initialValue: user.company,
+              rules: [
+                {
+                  required: true
+                }
+              ]
+            })(<Input />)}
           </FormItem>
-          <FormItem label="New Password: " {...formItemLayout}>
-            <Input placeholder="Please Enter Your New Password!" />
+          <FormItem
+            label={i18n.t`Current Password` + ": "}
+            hasFeedback
+            {...formItemLayout}
+          >
+            {getFieldDecorator("currentPassword", {
+              rules: [
+                {
+                  required: false
+                }
+              ]
+            })(<Input placeholder="Please Enter Your Current Password!" />)}
           </FormItem>
-          <FormItem label="Confirm Password: " {...formItemLayout}>
-            <Input placeholder="Please Enter Your Confirm Password!" />
+          <FormItem
+            label={i18n.t`New Password` + ": "}
+            hasFeedback
+            {...formItemLayout}
+          >
+            {getFieldDecorator("newPassword", {
+              rules: [
+                {
+                  required: false
+                }
+              ]
+            })(<Input placeholder="Please Enter Your New Password!" />)}
+          </FormItem>
+          <FormItem
+            label={i18n.t`Confirm Password` + ": "}
+            hasFeedback
+            {...formItemLayout}
+          >
+            {getFieldDecorator("confirmPassword", {
+              rules: [
+                {
+                  required: false
+                }
+              ]
+            })(<Input placeholder="Please Enter Your Confirm Password!" />)}
           </FormItem>
           <FormItem {...buttonItemLayout}>
-            <Button type="primary">Update Information</Button>
+            <Button type="primary" htmlType="submit">
+              Update Information
+            </Button>
           </FormItem>
         </Form>
       </Page>
