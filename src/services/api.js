@@ -1,7 +1,7 @@
 export default {
   queryRouteList: "/routes",
 
-  queryUserInfo: "/user/getUserInfo",
+  queryUserInfo: "/user/getLogonUserInfo",
   logoutUser: "/user/logout",
   loginUser: "POST /user/login",
 
