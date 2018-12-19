@@ -54,9 +54,7 @@ export default modelExtend(model, {
             })
           });
         } else {
-          router.push({
-            pathname: locationPathname
-          });
+          yield put({ type: "app/query" });
         }
       } else {
         throw res;
