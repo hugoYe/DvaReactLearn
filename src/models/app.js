@@ -8,6 +8,7 @@ import { queryLayout, pathMatchRegexp } from "utils";
 import { CANCEL_REQUEST_MESSAGE } from "utils/constant";
 import { queryRouteList, logoutUser, queryUserInfo } from "api";
 import config from "config";
+import { clearToken } from "utils/token";
 
 export default {
   namespace: "app",
@@ -128,6 +129,7 @@ export default {
       const data = yield call(logoutUser);
       const { locationPathname } = yield select(_ => _.app);
       if (data.success) {
+        clearToken();
         yield put({
           type: "updateState",
           payload: {

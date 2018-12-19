@@ -3,6 +3,7 @@ import modelExtend from "dva-model-extend";
 import { model } from "utils/model";
 import { stringify } from "qs";
 import { queryUserInfo, editUser } from "api";
+import { clearToken } from "../../utils/token";
 
 export default modelExtend(model, {
   namespace: "usercenter",
@@ -43,7 +44,9 @@ export default modelExtend(model, {
       const res = yield call(editUser, payload);
       if (res.success) {
         const { locationPathname } = yield select(_ => _.app);
-        if (res.data) {
+        const needLogout = res.data;
+        if (needLogout) {
+          clearToken();
           router.push({
             pathname: "/login",
             search: stringify({
