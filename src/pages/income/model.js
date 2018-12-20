@@ -1,10 +1,10 @@
 import modelExtend from "dva-model-extend";
-import { queryPostList } from "api";
+import { queryIncomeList } from "api";
 import { pathMatchRegexp } from "utils";
 import { pageModel } from "utils/model";
 
 export default modelExtend(pageModel, {
-  namespace: "post",
+  namespace: "income",
 
   subscriptions: {
     setup({ dispatch, history }) {
@@ -24,7 +24,7 @@ export default modelExtend(pageModel, {
 
   effects: {
     *query({ payload }, { call, put }) {
-      const res = yield call(queryPostList, payload);
+      const res = yield call(queryIncomeList, payload);
       if (res.success) {
         yield put({
           type: "querySuccess",

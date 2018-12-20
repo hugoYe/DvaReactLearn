@@ -21,7 +21,8 @@ export default {
   deleteChannel: "DELETE /channel",
   deleteChannelBatch: "DELETE /channel/deleteChannelBatch",
 
-  queryPostList: "/income",
+  // income
+  queryIncomeList: "/income",
 
   queryDashboard: "/dashboard"
 };

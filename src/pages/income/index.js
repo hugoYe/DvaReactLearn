@@ -11,18 +11,13 @@ import List from "./components/List";
 
 const { TabPane } = Tabs;
 
-// const EnumPostStatus = {
-//   UNPUBLISH: 1,
-//   PUBLISHED: 2
-// };
-
 @withI18n()
-@connect(({ app, post, loading }) => ({ app, post, loading }))
-class Post extends PureComponent {
+@connect(({ app, income, loading }) => ({ app, income, loading }))
+class Income extends PureComponent {
   render() {
-    const { app, post, loading, location, i18n } = this.props;
+    const { app, income, loading, location, i18n } = this.props;
     const { permissions } = app;
-    const { list, pagination } = post;
+    const { list, pagination } = income;
     const { query, pathname } = location;
 
     const handleRefresh = newQuery => {
@@ -54,7 +49,7 @@ class Post extends PureComponent {
       permissions,
       pagination,
       dataSource: list,
-      loading: loading.effects["post/query"],
+      loading: loading.effects["income/query"],
       onChange(page) {
         router.push({
           pathname,
@@ -67,49 +62,20 @@ class Post extends PureComponent {
       }
     };
 
-    // const handleTabClick = key => {
-    //   router.push({
-    //     pathname,
-    //     search: stringify({
-    //       status: key
-    //     })
-    //   });
-    // };
-
     return (
       <Page inner>
         <Filter {...filterProps} />
-        {/* <Tabs
-          activeKey={
-            query.status === String(EnumPostStatus.UNPUBLISH)
-              ? String(EnumPostStatus.UNPUBLISH)
-              : String(EnumPostStatus.PUBLISHED)
-          }
-          onTabClick={handleTabClick}
-        > */}
-        {/* <TabPane
-          tab={i18n.t`Publised`}
-          key={String(EnumPostStatus.PUBLISHED)}
-        > */}
         <List {...listProps} />
-        {/* </TabPane> */}
-        {/* <TabPane
-            tab={i18n.t`Unpublished`}
-            key={String(EnumPostStatus.UNPUBLISH)}
-          >
-            <List {...listProps} />
-          </TabPane> */}
-        {/* </Tabs> */}
       </Page>
     );
   }
 }
 
-Post.propTypes = {
-  post: PropTypes.object,
+Income.propTypes = {
+  income: PropTypes.object,
   loading: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func
 };
 
-export default Post;
+export default Income;
