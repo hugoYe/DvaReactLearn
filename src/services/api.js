@@ -23,6 +23,7 @@ export default {
 
   // income
   queryIncomeList: "/income",
+  addIncome: "POST /income",
 
   queryDashboard: "/dashboard"
 };

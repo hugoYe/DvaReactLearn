@@ -6,6 +6,10 @@ import { pageModel } from "utils/model";
 export default modelExtend(pageModel, {
   namespace: "income",
 
+  state: {
+    modalVisible: false
+  },
+
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(location => {
@@ -13,7 +17,6 @@ export default modelExtend(pageModel, {
           dispatch({
             type: "query",
             payload: {
-              status: 2,
               ...location.query
             }
           });
@@ -40,6 +43,16 @@ export default modelExtend(pageModel, {
       } else {
         throw res;
       }
+    }
+  },
+
+  reducers: {
+    showModal(state, { payload }) {
+      return { ...state, ...payload, modalVisible: true };
+    },
+
+    hideModal(state) {
+      return { ...state, modalVisible: false };
     }
   }
 });

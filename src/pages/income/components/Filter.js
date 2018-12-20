@@ -43,7 +43,7 @@ class Filter extends PureComponent {
   };
 
   adminUi = () => {
-    const { form, i18n } = this.props;
+    const { onAdd, form, i18n } = this.props;
     const { getFieldDecorator } = form;
 
     let initialCreateTime = [];
@@ -116,7 +116,7 @@ class Filter extends PureComponent {
                   <Trans>Reset</Trans>
                 </Button>
               </div>
-              <Button type="ghost">
+              <Button type="ghost" onClick={onAdd}>
                 <Trans>Add</Trans>
               </Button>
             </Row>

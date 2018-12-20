@@ -50,6 +50,12 @@ class List extends PureComponent {
         dataIndex: "income",
         width: 100,
         fixed: "right"
+      },
+      {
+        title: i18n.t`RealIncome`,
+        dataIndex: "realIncome",
+        width: 120,
+        fixed: "right"
       }
     ];
 
