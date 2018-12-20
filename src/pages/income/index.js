@@ -9,8 +9,6 @@ import { Page } from "components";
 import Filter from "./components/Filter";
 import List from "./components/List";
 
-const { TabPane } = Tabs;
-
 @withI18n()
 @connect(({ app, income, loading }) => ({ app, income, loading }))
 class Income extends PureComponent {
@@ -34,6 +32,7 @@ class Income extends PureComponent {
     };
 
     const filterProps = {
+      permissions,
       filter: {
         ...query
       },
