@@ -2,18 +2,27 @@ import React, { PureComponent } from "react";
 import { Table, Avatar } from "antd";
 import { withI18n } from "@lingui/react";
 import { Ellipsis } from "ant-design-pro";
+import { ROLE_TYPE } from "utils/constant";
 import styles from "./List.less";
 
 @withI18n()
 class List extends PureComponent {
   render() {
-    const { i18n, ...tableProps } = this.props;
-    const columns = [
+    const { i18n, permissions, ...tableProps } = this.props;
+    const adminColumns = [
       {
         title: i18n.t`Date`,
         dataIndex: "date",
         width: 100,
         fixed: "left"
+      },
+      {
+        title: i18n.t`UserName`,
+        dataIndex: "userName"
+      },
+      {
+        title: i18n.t`RealName`,
+        dataIndex: "realName"
       },
       {
         title: i18n.t`ChannelId`,
@@ -42,19 +51,41 @@ class List extends PureComponent {
         width: 100,
         fixed: "right"
       }
-      // {
-      //   title: i18n.t`Comments`,
-      //   dataIndex: "comments"
-      // },
-      // {
-      //   title: i18n.t`Views`,
-      //   dataIndex: "views"
-      // },
-      // {
-      //   title: i18n.t`Publish Date`,
-      //   dataIndex: "date"
-      // }
     ];
+
+    const vistorColumns = [
+      {
+        title: i18n.t`Date`,
+        dataIndex: "date",
+        width: 100,
+        fixed: "left"
+      },
+      {
+        title: i18n.t`ChannelId`,
+        dataIndex: "channelId",
+        render: text => (
+          <Ellipsis tooltip length={30}>
+            {text}
+          </Ellipsis>
+        )
+      },
+      {
+        title: i18n.t`PV`,
+        dataIndex: "pv"
+      },
+      {
+        title: i18n.t`UV`,
+        dataIndex: "uv"
+      },
+      {
+        title: i18n.t`Income`,
+        dataIndex: "income",
+        width: 100,
+        fixed: "right"
+      }
+    ];
+    const columns =
+      permissions.role === ROLE_TYPE.ADMIN ? adminColumns : vistorColumns;
 
     return (
       <Table

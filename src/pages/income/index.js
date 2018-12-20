@@ -17,10 +17,11 @@ const { TabPane } = Tabs;
 // };
 
 @withI18n()
-@connect(({ post, loading }) => ({ post, loading }))
+@connect(({ app, post, loading }) => ({ app, post, loading }))
 class Post extends PureComponent {
   render() {
-    const { post, loading, location, i18n } = this.props;
+    const { app, post, loading, location, i18n } = this.props;
+    const { permissions } = app;
     const { list, pagination } = post;
     const { query, pathname } = location;
 
@@ -50,6 +51,7 @@ class Post extends PureComponent {
     };
 
     const listProps = {
+      permissions,
       pagination,
       dataSource: list,
       loading: loading.effects["post/query"],
