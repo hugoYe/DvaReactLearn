@@ -35,8 +35,19 @@ class IncomeModal extends PureComponent {
   };
 
   render() {
-    const { onOk, form, i18n, ...modalProps } = this.props;
+    const {
+      channelDict,
+      userDict,
+      onOk,
+      form,
+      i18n,
+      ...modalProps
+    } = this.props;
     const { getFieldDecorator } = form;
+
+    const userOptions = userDict.map(user => (
+      <Option key={user.id}>{user.realName}</Option>
+    ));
 
     function handleChange(value) {
       console.log(`selected ${value}`);
@@ -63,8 +74,8 @@ class IncomeModal extends PureComponent {
             })(
               <Select
                 showSearch
-                style={{ width: 200 }}
-                placeholder="Select a user"
+                style={{ width: "100%" }}
+                placeholder="Select user"
                 optionFilterProp="children"
                 onChange={handleChange}
                 onFocus={handleFocus}
@@ -75,9 +86,7 @@ class IncomeModal extends PureComponent {
                     .indexOf(input.toLowerCase()) >= 0
                 }
               >
-                <Option value="jack">Jack</Option>
-                <Option value="lucy">Lucy</Option>
-                <Option value="tom">Tom</Option>
+                {userOptions}
               </Select>
             )}
           </FormItem>

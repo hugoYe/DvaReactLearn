@@ -16,7 +16,7 @@ class Income extends PureComponent {
   render() {
     const { app, income, loading, location, i18n, dispatch } = this.props;
     const { permissions } = app;
-    const { modalVisible, list, pagination } = income;
+    const { modalVisible, list, pagination, channelDict, userDict } = income;
     const { query, pathname } = location;
 
     const handleRefresh = newQuery => {
@@ -33,6 +33,8 @@ class Income extends PureComponent {
     };
 
     const filterProps = {
+      channelDict,
+      userDict,
       permissions,
       filter: {
         ...query
@@ -68,6 +70,8 @@ class Income extends PureComponent {
     };
 
     const modalProps = {
+      channelDict,
+      userDict,
       visible: modalVisible,
       maskClosable: false,
       title: "Add Income",

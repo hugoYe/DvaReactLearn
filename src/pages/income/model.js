@@ -1,5 +1,5 @@
 import modelExtend from "dva-model-extend";
-import { queryIncomeList } from "api";
+import { queryIncomeList, getUserDict, getChannelDict } from "api";
 import { pathMatchRegexp } from "utils";
 import { pageModel } from "utils/model";
 
@@ -7,7 +7,9 @@ export default modelExtend(pageModel, {
   namespace: "income",
 
   state: {
-    modalVisible: false
+    modalVisible: false,
+    channelDict: [],
+    userDict: []
   },
 
   subscriptions: {
@@ -19,6 +21,12 @@ export default modelExtend(pageModel, {
             payload: {
               ...location.query
             }
+          });
+          dispatch({
+            type: "getChannelDict"
+          });
+          dispatch({
+            type: "getUserDict"
           });
         }
       });
@@ -38,6 +46,34 @@ export default modelExtend(pageModel, {
               pageSize: Number(payload.pageSize) || 10,
               total: res.data.total
             }
+          }
+        });
+      } else {
+        throw res;
+      }
+    },
+
+    *getChannelDict({ payload }, { call, put }) {
+      const res = yield call(getChannelDict);
+      if (res.success) {
+        yield put({
+          type: "updateState",
+          payload: {
+            channelDict: res.data
+          }
+        });
+      } else {
+        throw res;
+      }
+    },
+
+    *getUserDict({ payload }, { call, put }) {
+      const res = yield call(getUserDict, payload);
+      if (res.success) {
+        yield put({
+          type: "updateState",
+          payload: {
+            userDict: res.data
           }
         });
       } else {
