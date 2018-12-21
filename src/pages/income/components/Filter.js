@@ -32,6 +32,33 @@ class Filter extends PureComponent {
     return fields;
   };
 
+  handleSubmit = () => {
+    const { onFilterChange, form } = this.props;
+    const { getFieldsValue } = form;
+
+    let fields = getFieldsValue();
+    fields = this.handleFields(fields);
+    onFilterChange(fields);
+  };
+
+  handleReset = () => {
+    const { form } = this.props;
+    const { getFieldsValue, setFieldsValue } = form;
+
+    const fields = getFieldsValue();
+    for (let item in fields) {
+      if ({}.hasOwnProperty.call(fields, item)) {
+        if (fields[item] instanceof Array) {
+          fields[item] = [];
+        } else {
+          fields[item] = undefined;
+        }
+      }
+    }
+    setFieldsValue(fields);
+    this.handleSubmit();
+  };
+
   handleChange = (key, values) => {
     const { form, onFilterChange } = this.props;
     const { getFieldsValue } = form;
@@ -43,8 +70,16 @@ class Filter extends PureComponent {
   };
 
   adminUi = () => {
-    const { onAdd, form, i18n } = this.props;
+    const { onAdd, form, i18n, channelDict, userDict } = this.props;
     const { getFieldDecorator } = form;
+
+    const userOptions = userDict.map(user => (
+      <Option key={user.id}>{user.realName}</Option>
+    ));
+
+    const channelOptions = channelDict.map(channel => (
+      <Option key={channel.channelId}>{channel.channelName}</Option>
+    ));
 
     let initialCreateTime = [];
 
@@ -78,12 +113,22 @@ class Filter extends PureComponent {
             md={{ span: 8 }}
             sm={{ span: 12 }}
           >
-            <Select
-              mode="multiple"
-              style={{ width: "100%" }}
-              placeholder="User"
-              defaultValue={["ppp", "zzz"]}
-            />
+            {getFieldDecorator("userIds")(
+              <Select
+                mode="multiple"
+                style={{ width: "100%" }}
+                showSearch
+                placeholder="Please select user"
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  option.props.children
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+                }
+              >
+                {userOptions}
+              </Select>
+            )}
           </Col>
           <Col
             {...ColProps}
@@ -91,12 +136,22 @@ class Filter extends PureComponent {
             md={{ span: 8 }}
             sm={{ span: 12 }}
           >
-            <Select
-              mode="multiple"
-              style={{ width: "100%" }}
-              placeholder="Channel"
-              defaultValue={["pad2010", "pad2012"]}
-            />
+            {getFieldDecorator("channelIds")(
+              <Select
+                mode="multiple"
+                style={{ width: "100%" }}
+                showSearch
+                placeholder="Please select channel"
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  option.props.children
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+                }
+              >
+                {channelOptions}
+              </Select>
+            )}
           </Col>
         </Row>
         <Row gutter={24}>
@@ -109,10 +164,14 @@ class Filter extends PureComponent {
           >
             <Row type="flex" align="middle" justify="space-between">
               <div>
-                <Button type="primary" className="margin-right">
+                <Button
+                  type="primary"
+                  className="margin-right"
+                  onClick={this.handleSubmit}
+                >
                   <Trans>Search</Trans>
                 </Button>
-                <Button>
+                <Button onClick={this.handleReset}>
                   <Trans>Reset</Trans>
                 </Button>
               </div>
@@ -127,7 +186,7 @@ class Filter extends PureComponent {
   };
 
   vistorUi = () => {
-    const { form, i18n } = this.props;
+    const { form, channelDict, i18n } = this.props;
     const { getFieldDecorator } = form;
 
     let initialCreateTime = [];
