@@ -22,6 +22,7 @@
   "Light": "明",
   "Male": "男性",
   "Name": "用户名",
+  "UserName": "用户名",
   "RealName": "真实姓名",
   "Company": "公司名称",
   "NickName": "昵称",
@@ -36,6 +37,9 @@
   "Publish Date": "发布日期",
   "Date": "日期",
   "Income": "收入",
+  "RealIncome": "真实收入",
+  "IncomeRate": "收入比例调整",
+  "Add Income": "添加收入",
   "Yesterday Income": "昨日收入",
   "Reset": "重置",
   "Search": "搜索",
@@ -60,5 +64,6 @@
   "ChannelName": "渠道名称",
   "UpdateTime": "更新时间",
   "Create Channel": "创建渠道",
-  "Update Channel": "更新渠道"
+  "Update Channel": "更新渠道",
+  "DatePicker": "选择日期"
 }

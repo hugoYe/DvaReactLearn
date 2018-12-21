@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Form, Input, Modal, Select } from "antd";
+import moment from "moment";
+import { Form, InputNumber, Modal, Select, DatePicker } from "antd";
 import { withI18n } from "@lingui/react";
 
 const FormItem = Form.Item;
@@ -19,7 +20,7 @@ const formItemLayout = {
 @Form.create()
 class IncomeModal extends PureComponent {
   handleOk = () => {
-    const { item = {}, onOk, form } = this.props;
+    const { onOk, form } = this.props;
     const { validateFields, getFieldsValue } = form;
 
     validateFields(errors => {
@@ -27,9 +28,10 @@ class IncomeModal extends PureComponent {
         return;
       }
       const data = {
-        id: item.id,
         ...getFieldsValue()
       };
+      data.date = moment(data.date).format("YYYY-MM-DD");
+
       onOk(data);
     });
   };
@@ -43,29 +45,39 @@ class IncomeModal extends PureComponent {
       i18n,
       ...modalProps
     } = this.props;
-    const { getFieldDecorator } = form;
+    const { getFieldDecorator, getFieldValue, setFieldsValue } = form;
 
     const userOptions = userDict.map(user => (
       <Option key={user.id}>{user.realName}</Option>
     ));
 
-    function handleChange(value) {
-      console.log(`selected ${value}`);
+    const channelOptions = channelDict.map(channel => (
+      <Option key={channel.channelId}>{channel.channelName}</Option>
+    ));
+
+    function handleRealIncomeChange(value) {
+      let rate = getFieldValue("incomeRate");
+      let res = (value * rate) / 100;
+      setFieldsValue({ income: res });
     }
 
-    function handleBlur() {
-      console.log("blur");
+    function handleIncomeChange(value) {
+      let real = getFieldValue("realIncome");
+      let res = (value / real) * 100;
+      setFieldsValue({ incomeRate: res });
     }
 
-    function handleFocus() {
-      console.log("focus");
+    function handleRateChange(value) {
+      let real = getFieldValue("realIncome");
+      let res = (real * value) / 100;
+      setFieldsValue({ income: res });
     }
 
     return (
       <Modal {...modalProps} onOk={this.handleOk}>
         <Form layout="horizontal">
           <FormItem label={i18n.t`Name`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator("userName", {
+            {getFieldDecorator("userId", {
               rules: [
                 {
                   required: true
@@ -75,11 +87,8 @@ class IncomeModal extends PureComponent {
               <Select
                 showSearch
                 style={{ width: "100%" }}
-                placeholder="Select user"
+                placeholder="Please select user"
                 optionFilterProp="children"
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
                 filterOption={(input, option) =>
                   option.props.children
                     .toLowerCase()
@@ -90,42 +99,141 @@ class IncomeModal extends PureComponent {
               </Select>
             )}
           </FormItem>
-          {/* <FormItem label={i18n.t`RealName`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator("realName", {
-              initialValue: item.realName,
-              rules: [
-                {
-                  required: true
-                }
-              ]
-            })(modalType === "create" ? <Input /> : <Input disabled="true" />)}
-          </FormItem>
-          <FormItem label={i18n.t`Company`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator("company", {
-              initialValue: item.company,
-              rules: [
-                {
-                  required: true
-                }
-              ]
-            })(modalType === "create" ? <Input /> : <Input disabled="true" />)}
-          </FormItem>
           <FormItem label={i18n.t`ChannelName`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator("channelName", {
-              initialValue: item.channelName,
+            {getFieldDecorator("channelId", {
               rules: [
                 {
                   required: true,
-                  message: "Please select channel!",
-                  type: "array"
+                  message: "Please select channel"
                 }
               ]
             })(
-              <Select mode="multiple" placeholder="Please select channel!">
-                {channelDict}
+              <Select
+                showSearch
+                style={{ width: "100%" }}
+                placeholder="Please select channel"
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  option.props.children
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+                }
+              >
+                {channelOptions}
               </Select>
             )}
-          </FormItem> */}
+          </FormItem>
+          <FormItem label={i18n.t`DatePicker`} {...formItemLayout}>
+            {getFieldDecorator("date", {
+              rules: [
+                {
+                  type: "object",
+                  required: true,
+                  message: "Please select date"
+                }
+              ]
+            })(
+              <DatePicker
+                style={{ width: "100%" }}
+                placeholder="Please select date"
+              />
+            )}
+          </FormItem>
+          <FormItem label={i18n.t`PV`} hasFeedback {...formItemLayout}>
+            {getFieldDecorator("pv", {
+              rules: [
+                {
+                  required: true
+                }
+              ]
+            })(
+              <InputNumber
+                placeholder="Please input pv"
+                style={{ width: "100%" }}
+                formatter={value =>
+                  `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                }
+                parser={value => value.replace(/\$\s?|(,*)/g, "")}
+              />
+            )}
+          </FormItem>
+          <FormItem label={i18n.t`UV`} hasFeedback {...formItemLayout}>
+            {getFieldDecorator("uv", {
+              rules: [
+                {
+                  required: true
+                }
+              ]
+            })(
+              <InputNumber
+                placeholder="Please input uv"
+                style={{ width: "100%" }}
+                formatter={value =>
+                  `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                }
+                parser={value => value.replace(/\$\s?|(,*)/g, "")}
+              />
+            )}
+          </FormItem>
+          <FormItem label={i18n.t`RealIncome`} hasFeedback {...formItemLayout}>
+            {getFieldDecorator("realIncome", {
+              rules: [
+                {
+                  required: true
+                }
+              ]
+            })(
+              <InputNumber
+                style={{ width: "100%" }}
+                step={0.1}
+                precision={2}
+                formatter={value =>
+                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                }
+                parser={value => value.replace(/\$\s?|(,*)/g, "")}
+                onChange={handleRealIncomeChange}
+              />
+            )}
+          </FormItem>
+          <FormItem label={i18n.t`Income`} hasFeedback {...formItemLayout}>
+            {getFieldDecorator("income", {
+              rules: [
+                {
+                  required: true
+                }
+              ]
+            })(
+              <InputNumber
+                style={{ width: "100%" }}
+                step={0.1}
+                precision={2}
+                formatter={value =>
+                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                }
+                parser={value => value.replace(/\$\s?|(,*)/g, "")}
+                onChange={handleIncomeChange}
+              />
+            )}
+          </FormItem>
+          <FormItem label={i18n.t`IncomeRate`} hasFeedback {...formItemLayout}>
+            {getFieldDecorator("incomeRate", {
+              initialValue: 100,
+              rules: [
+                {
+                  required: true
+                }
+              ]
+            })(
+              <InputNumber
+                min={0}
+                max={100}
+                precision={2}
+                formatter={value => `${value}%`}
+                parser={value => value.replace("%", "")}
+                onChange={handleRateChange}
+              />
+            )}
+          </FormItem>
         </Form>
       </Modal>
     );

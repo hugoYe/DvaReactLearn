@@ -74,14 +74,9 @@ class Income extends PureComponent {
       userDict,
       visible: modalVisible,
       maskClosable: false,
-      title: "Add Income",
+      title: i18n.t`Add Income`,
       wrapClassName: "vertical-center-modal",
       onOk(data) {
-        // let channelId = [];
-        // for (let i = 0; i < data.channelName.length; i++) {
-        //   channelId[i] = dictMap.get(data.channelName[i]);
-        // }
-        // data.channelId = channelId;
         dispatch({
           type: `income/add`,
           payload: data

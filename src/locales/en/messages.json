@@ -21,7 +21,8 @@
   "Image": "Image",
   "Light": "Light",
   "Male": "Male",
-  "Name": "UserName",
+  "Name": "Name",
+  "UserName": "UserName",
   "RealName": "RealName",
   "Company": "Company",
   "NickName": "NickName",
@@ -36,6 +37,9 @@
   "Publish Date": "Publish Date",
   "Date": "Date",
   "Income": "Income",
+  "RealIncome": "RealIncome",
+  "IncomeRate": "IncomeRate",
+  "Add Income": "Add Income",
   "Yesterday Income": "Yesterday Income",
   "Reset": "Reset",
   "Search": "Search",
@@ -60,5 +64,6 @@
   "ChannelName": "ChannelName",
   "UpdateTime": "UpdateTime",
   "Create Channel": "Create Channel",
-  "Update Channel": "更新渠道"
+  "Update Channel": "Update Channel",
+  "DatePicker": "DatePicker"
 }

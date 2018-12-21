@@ -1,7 +1,7 @@
 import modelExtend from "dva-model-extend";
-import { queryIncomeList, getUserDict, getChannelDict } from "api";
 import { pathMatchRegexp } from "utils";
 import { pageModel } from "utils/model";
+import { queryIncomeList, addIncome, getUserDict, getChannelDict } from "api";
 
 export default modelExtend(pageModel, {
   namespace: "income",
@@ -48,6 +48,15 @@ export default modelExtend(pageModel, {
             }
           }
         });
+      } else {
+        throw res;
+      }
+    },
+
+    *add({ payload }, { call, put }) {
+      const res = yield call(addIncome, payload);
+      if (res.success) {
+        yield put({ type: "hideModal" });
       } else {
         throw res;
       }
