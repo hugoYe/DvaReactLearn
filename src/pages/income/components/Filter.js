@@ -6,7 +6,6 @@ import { Trans, withI18n } from "@lingui/react";
 import { Form, Row, Col, DatePicker, Input, Button, Select, Alert } from "antd";
 import { ROLE_TYPE } from "utils/constant";
 
-const { Search } = Input;
 const { RangePicker } = DatePicker;
 const Option = Select.Option;
 
@@ -189,6 +188,10 @@ class Filter extends PureComponent {
     const { form, channelDict, i18n } = this.props;
     const { getFieldDecorator } = form;
 
+    const channelOptions = channelDict.map(channelId => (
+      <Option key={channelId}>{channelId}</Option>
+    ));
+
     let initialCreateTime = [];
 
     return (
@@ -215,20 +218,34 @@ class Filter extends PureComponent {
           </FilterItem>
         </Col>
         <Col {...ColProps} xl={{ span: 6 }} md={{ span: 8 }} sm={{ span: 12 }}>
-          <Select
-            mode="multiple"
-            style={{ width: "100%" }}
-            placeholder="Channel"
-            defaultValue={["pad2010", "pad2012"]}
-          />
+          {getFieldDecorator("channelIds")(
+            <Select
+              mode="multiple"
+              style={{ width: "100%" }}
+              showSearch
+              placeholder="Please select channel"
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                option.props.children
+                  .toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              {channelOptions}
+            </Select>
+          )}
         </Col>
         <Col {...ColProps} xl={{ span: 12 }} md={{ span: 8 }} sm={{ span: 12 }}>
           <Row type="flex" align="middle" justify="space-between">
             <div>
-              <Button type="primary" className="margin-right">
+              <Button
+                type="primary"
+                className="margin-right"
+                onClick={this.handleSubmit}
+              >
                 <Trans>Search</Trans>
               </Button>
-              <Button>
+              <Button onClick={this.handleReset}>
                 <Trans>Reset</Trans>
               </Button>
             </div>
