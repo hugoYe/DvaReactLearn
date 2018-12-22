@@ -73,7 +73,7 @@ class Filter extends PureComponent {
     const { getFieldDecorator } = form;
 
     const userOptions = userDict.map(user => (
-      <Option key={user.id}>{user.realName}</Option>
+      <Option key={user.id}>{user.userName}</Option>
     ));
 
     const channelOptions = channelDict.map(channel => (

@@ -50,7 +50,7 @@ class IncomeModal extends PureComponent {
     const { getFieldDecorator, getFieldValue, setFieldsValue } = form;
 
     const userOptions = userDict.map(user => (
-      <Option key={user.id}>{user.realName}</Option>
+      <Option key={user.id}>{user.userName}</Option>
     ));
 
     function handleUserSelected(value) {
