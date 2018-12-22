@@ -13,7 +13,6 @@ export default modelExtend(model, {
   },
   subscriptions: {
     setup({ dispatch, history }) {
-      console.log(history);
       history.listen(({ pathname }) => {
         if (
           pathMatchRegexp("/dashboard", pathname) ||
@@ -26,7 +25,6 @@ export default modelExtend(model, {
   },
   effects: {
     *query({ payload }, { call, put }) {
-      console.log(payload);
       const res = yield call(queryDashboard, parse(payload));
       yield put({
         type: "updateState",
