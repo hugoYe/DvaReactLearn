@@ -6,6 +6,7 @@ import { withI18n } from "@lingui/react";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
+const channelOptions = [];
 
 const formItemLayout = {
   labelCol: {
@@ -40,6 +41,7 @@ class IncomeModal extends PureComponent {
     const {
       channelDict,
       userDict,
+      userAndChannelDict,
       onOk,
       form,
       i18n,
@@ -51,9 +53,26 @@ class IncomeModal extends PureComponent {
       <Option key={user.id}>{user.realName}</Option>
     ));
 
-    const channelOptions = channelDict.map(channel => (
-      <Option key={channel.channelId}>{channel.channelName}</Option>
-    ));
+    function handleUserSelected(value) {
+      channelOptions.length = 0;
+      setFieldsValue({ channelId: [] });
+      let userId = Number(value);
+      let cIds = [];
+      userAndChannelDict.map(uc => {
+        if (uc.userId === userId) {
+          cIds.push(uc.channelId);
+        }
+      });
+      for (let i = 0; i < cIds.length; i++) {
+        channelDict.map(channel => {
+          if (channel.channelId === cIds[i]) {
+            channelOptions.push(
+              <Option key={channel.channelId}>{channel.channelName}</Option>
+            );
+          }
+        });
+      }
+    }
 
     function handleRealIncomeChange(value) {
       let rate = getFieldValue("incomeRate");
@@ -94,6 +113,7 @@ class IncomeModal extends PureComponent {
                     .toLowerCase()
                     .indexOf(input.toLowerCase()) >= 0
                 }
+                onChange={handleUserSelected}
               >
                 {userOptions}
               </Select>

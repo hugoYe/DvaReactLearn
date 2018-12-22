@@ -25,6 +25,7 @@ export default {
   // income
   queryIncomeList: "/income",
   addIncome: "POST /income",
+  getUserAndChannelDict: "/income/getUserAndChannelDict",
 
   queryDashboard: "/dashboard"
 };

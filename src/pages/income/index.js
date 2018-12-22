@@ -30,12 +30,23 @@ class Income extends PureComponent {
       type: "income/getUserDict",
       payload: {}
     });
+    dispatch({
+      type: "income/getUserAndChannelDict",
+      payload: {}
+    });
   }
 
   render() {
     const { app, income, loading, location, i18n, dispatch } = this.props;
     const { permissions } = app;
-    const { modalVisible, list, pagination, channelDict, userDict } = income;
+    const {
+      modalVisible,
+      list,
+      pagination,
+      channelDict,
+      userDict,
+      userAndChannelDict
+    } = income;
     const { query, pathname } = location;
 
     const handleRefresh = newQuery => {
@@ -92,6 +103,7 @@ class Income extends PureComponent {
     const modalProps = {
       channelDict,
       userDict,
+      userAndChannelDict,
       visible: modalVisible,
       maskClosable: false,
       title: i18n.t`Add Income`,

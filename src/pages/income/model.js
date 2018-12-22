@@ -2,7 +2,13 @@ import modelExtend from "dva-model-extend";
 import { pathMatchRegexp } from "utils";
 import { pageModel } from "utils/model";
 import { ROLE_TYPE } from "utils/constant";
-import { queryIncomeList, addIncome, getUserDict, getChannelDict } from "api";
+import {
+  queryIncomeList,
+  addIncome,
+  getUserDict,
+  getChannelDict,
+  getUserAndChannelDict
+} from "api";
 
 export default modelExtend(pageModel, {
   namespace: "income",
@@ -10,7 +16,8 @@ export default modelExtend(pageModel, {
   state: {
     modalVisible: false,
     channelDict: [],
-    userDict: []
+    userDict: [],
+    userAndChannelDict: []
   },
 
   subscriptions: {
@@ -102,6 +109,23 @@ export default modelExtend(pageModel, {
             type: "updateState",
             payload: {
               userDict: res.data
+            }
+          });
+        } else {
+          throw res;
+        }
+      }
+    },
+
+    *getUserAndChannelDict({ payload }, { call, put, select }) {
+      const { permissions } = yield select(_ => _.app);
+      if (permissions.role === ROLE_TYPE.ADMIN) {
+        const res = yield call(getUserAndChannelDict, payload);
+        if (res.success) {
+          yield put({
+            type: "updateState",
+            payload: {
+              userAndChannelDict: res.data
             }
           });
         } else {
