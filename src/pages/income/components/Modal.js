@@ -99,14 +99,15 @@ class IncomeModal extends PureComponent {
             {getFieldDecorator("userId", {
               rules: [
                 {
-                  required: true
+                  required: true,
+                  message: i18n.t`Please select user`
                 }
               ]
             })(
               <Select
                 showSearch
                 style={{ width: "100%" }}
-                placeholder="Please select user"
+                placeholder={i18n.t`Please select user`}
                 optionFilterProp="children"
                 filterOption={(input, option) =>
                   option.props.children
@@ -124,14 +125,14 @@ class IncomeModal extends PureComponent {
               rules: [
                 {
                   required: true,
-                  message: "Please select channel"
+                  message: i18n.t`Please select channel`
                 }
               ]
             })(
               <Select
                 showSearch
                 style={{ width: "100%" }}
-                placeholder="Please select channel"
+                placeholder={i18n.t`Please select channel`}
                 optionFilterProp="children"
                 filterOption={(input, option) =>
                   option.props.children
@@ -149,13 +150,13 @@ class IncomeModal extends PureComponent {
                 {
                   type: "object",
                   required: true,
-                  message: "Please select date"
+                  message: i18n.t`Please select date`
                 }
               ]
             })(
               <DatePicker
                 style={{ width: "100%" }}
-                placeholder="Please select date"
+                placeholder={i18n.t`Please select date`}
               />
             )}
           </FormItem>
@@ -168,7 +169,7 @@ class IncomeModal extends PureComponent {
               ]
             })(
               <InputNumber
-                placeholder="Please input pv"
+                placeholder={i18n.t`Please input pv`}
                 style={{ width: "100%" }}
                 formatter={value =>
                   `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -186,7 +187,7 @@ class IncomeModal extends PureComponent {
               ]
             })(
               <InputNumber
-                placeholder="Please input uv"
+                placeholder={i18n.t`Please input uv`}
                 style={{ width: "100%" }}
                 formatter={value =>
                   `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")

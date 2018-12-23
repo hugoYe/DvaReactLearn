@@ -70,5 +70,10 @@
   "CurrentPassword": "当前密码",
   "NewPassword": "新密码",
   "ConfirmPassword": "确认密码",
-  "Update Information": "更新信息"
+  "Update Information": "更新信息",
+  "Please select user": "请选择用户",
+  "Please select channel": "请选择渠道",
+  "Please select date": "请选择日期",
+  "Please input uv": "请输入uv",
+  "Please input pv": "请输入pv"
 }

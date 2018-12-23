@@ -117,7 +117,7 @@ class Filter extends PureComponent {
                 mode="multiple"
                 style={{ width: "100%" }}
                 showSearch
-                placeholder="Please select user"
+                placeholder={i18n.t`Please select user`}
                 optionFilterProp="children"
                 filterOption={(input, option) =>
                   option.props.children
@@ -140,7 +140,7 @@ class Filter extends PureComponent {
                 mode="multiple"
                 style={{ width: "100%" }}
                 showSearch
-                placeholder="Please select channel"
+                placeholder={i18n.t`Please select channel`}
                 optionFilterProp="children"
                 filterOption={(input, option) =>
                   option.props.children

@@ -70,5 +70,10 @@
   "CurrentPassword": "CurrentPassword",
   "NewPassword": "newPassword",
   "ConfirmPassword": "ConfirmPassword",
-  "Update Information": "Update Information"
+  "Update Information": "Update Information",
+  "Please select user": "Please select user",
+  "Please select channel": "Please select channel",
+  "Please select date": "Please select date",
+  "Please input uv": "Please input uv",
+  "Please input pv": "Please input pv"
 }
