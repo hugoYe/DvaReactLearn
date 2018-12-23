@@ -51,16 +51,6 @@ class Income extends PureComponent {
 
     const handleRefresh = newQuery => {
       this.queryData(newQuery);
-      // router.push({
-      //   pathname,
-      //   search: stringify(
-      //     {
-      //       ...query,
-      //       ...newQuery
-      //     },
-      //     { arrayFormat: "repeat" }
-      //   )
-      // });
     };
 
     const filterProps = {
@@ -96,6 +86,11 @@ class Income extends PureComponent {
             page: page.current,
             pageSize: page.pageSize
           })
+        });
+        handleRefresh({
+          ...query,
+          page: page.current,
+          pageSize: page.pageSize
         });
       }
     };
