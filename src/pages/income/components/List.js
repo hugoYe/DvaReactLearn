@@ -39,23 +39,35 @@ class List extends PureComponent {
       },
       {
         title: i18n.t`PV`,
-        dataIndex: "pv"
+        dataIndex: "pv",
+        render: text => {
+          return `${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
       },
       {
         title: i18n.t`UV`,
-        dataIndex: "uv"
+        dataIndex: "uv",
+        render: text => {
+          return `${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
       },
       {
         title: i18n.t`Income`,
         dataIndex: "income",
         width: 100,
-        fixed: "right"
+        fixed: "right",
+        render: text => {
+          return `$${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
       },
       {
         title: i18n.t`RealIncome`,
         dataIndex: "realIncome",
         width: 120,
-        fixed: "right"
+        fixed: "right",
+        render: text => {
+          return `$${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
       }
     ];
 
@@ -77,17 +89,26 @@ class List extends PureComponent {
       },
       {
         title: i18n.t`PV`,
-        dataIndex: "pv"
+        dataIndex: "pv",
+        render: text => {
+          return `${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
       },
       {
         title: i18n.t`UV`,
-        dataIndex: "uv"
+        dataIndex: "uv",
+        render: text => {
+          return `${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
       },
       {
         title: i18n.t`Income`,
         dataIndex: "income",
         width: 100,
-        fixed: "right"
+        fixed: "right",
+        render: text => {
+          return `$${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
       }
     ];
     const columns =
