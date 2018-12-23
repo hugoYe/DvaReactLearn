@@ -66,5 +66,9 @@
   "Create Channel": "Create Channel",
   "Update Channel": "Update Channel",
   "DatePicker": "DatePicker",
-  "Add": "Add"
+  "Add": "Add",
+  "CurrentPassword": "CurrentPassword",
+  "NewPassword": "newPassword",
+  "ConfirmPassword": "ConfirmPassword",
+  "Update Information": "Update Information"
 }

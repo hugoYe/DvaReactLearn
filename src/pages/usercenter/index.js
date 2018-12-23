@@ -16,7 +16,7 @@ const FormItem = Form.Item;
 class UserCenter extends PureComponent {
   render() {
     const { i18n, user, form, dispatch } = this.props;
-    const { getFieldDecorator } = form;
+    const { getFieldDecorator, getFieldValue, validateFields } = form;
 
     const formItemLayout = {
       labelCol: { span: 4 },
@@ -29,7 +29,7 @@ class UserCenter extends PureComponent {
 
     const handleSubmit = e => {
       e.preventDefault();
-      this.props.form.validateFields((err, values) => {
+      validateFields((err, values) => {
         const { user } = this.props;
         const param = { id: user.id, ...values };
         dispatch({
@@ -39,10 +39,25 @@ class UserCenter extends PureComponent {
       });
     };
 
+    const compareToFirstPassword = (rule, value, callback) => {
+      if (value && value !== getFieldValue("newPassword")) {
+        callback("Two passwords that you enter is inconsistent!");
+      } else {
+        callback();
+      }
+    };
+
+    const validateToNextPassword = (rule, value, callback) => {
+      if (value) {
+        validateFields(["confirmPassword"], { force: true });
+      }
+      callback();
+    };
+
     return (
       <Page inner>
         <Form onSubmit={handleSubmit}>
-          <FormItem label={i18n.t`User Name` + ": "} {...formItemLayout}>
+          <FormItem label={i18n.t`UserName` + ": "} {...formItemLayout}>
             <Input value={user.userName} disabled="true" />
           </FormItem>
           <FormItem label={i18n.t`ChannelId` + ": "} {...formItemLayout}>
@@ -54,7 +69,7 @@ class UserCenter extends PureComponent {
             />
           </FormItem>
           <FormItem
-            label={i18n.t`Real Name` + ": "}
+            label={i18n.t`RealName` + ": "}
             hasFeedback
             {...formItemLayout}
           >
@@ -82,7 +97,7 @@ class UserCenter extends PureComponent {
             })(<Input />)}
           </FormItem>
           <FormItem
-            label={i18n.t`Current Password` + ": "}
+            label={i18n.t`CurrentPassword` + ": "}
             hasFeedback
             {...formItemLayout}
           >
@@ -92,10 +107,15 @@ class UserCenter extends PureComponent {
                   required: false
                 }
               ]
-            })(<Input placeholder="Please Enter Your Current Password!" />)}
+            })(
+              <Input
+                placeholder="Please Enter Your Current Password!"
+                type="password"
+              />
+            )}
           </FormItem>
           <FormItem
-            label={i18n.t`New Password` + ": "}
+            label={i18n.t`NewPassword` + ": "}
             hasFeedback
             {...formItemLayout}
           >
@@ -103,12 +123,20 @@ class UserCenter extends PureComponent {
               rules: [
                 {
                   required: false
+                },
+                {
+                  validator: validateToNextPassword
                 }
               ]
-            })(<Input placeholder="Please Enter Your New Password!" />)}
+            })(
+              <Input
+                placeholder="Please Enter Your New Password!"
+                type="password"
+              />
+            )}
           </FormItem>
           <FormItem
-            label={i18n.t`Confirm Password` + ": "}
+            label={i18n.t`ConfirmPassword` + ": "}
             hasFeedback
             {...formItemLayout}
           >
@@ -116,13 +144,21 @@ class UserCenter extends PureComponent {
               rules: [
                 {
                   required: false
+                },
+                {
+                  validator: compareToFirstPassword
                 }
               ]
-            })(<Input placeholder="Please Enter Your Confirm Password!" />)}
+            })(
+              <Input
+                placeholder="Please Enter Your Confirm Password!"
+                type="password"
+              />
+            )}
           </FormItem>
           <FormItem {...buttonItemLayout}>
             <Button type="primary" htmlType="submit">
-              Update Information
+              {i18n.t`Update Information`}
             </Button>
           </FormItem>
         </Form>
