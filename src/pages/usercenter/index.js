@@ -61,12 +61,7 @@ class UserCenter extends PureComponent {
             <Input value={user.userName} disabled="true" />
           </FormItem>
           <FormItem label={i18n.t`ChannelId` + ": "} {...formItemLayout}>
-            <Select
-              mode="multiple"
-              style={{ width: "100%" }}
-              defaultValue={user.channelId}
-              disabled
-            />
+            <Input value={user.channelId} disabled="true" />
           </FormItem>
           <FormItem
             label={i18n.t`RealName` + ": "}
