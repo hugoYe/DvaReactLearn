@@ -45,7 +45,7 @@ function Completed({ data }) {
             }}
           />
           <XAxis
-            dataKey="name"
+            dataKey="xAxis"
             axisLine={{ stroke: Color.borderBase, strokeWidth: 1 }}
             tickLine={true}
           />
@@ -67,7 +67,8 @@ function Completed({ data }) {
                     className={styles.radiusdot}
                     style={{ background: item.color }}
                   />
-                  {`${item.name}:${item.value}`}
+                  {`${item.name}: ` +
+                    `${item.value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </li>
               ));
               return (
@@ -85,7 +86,7 @@ function Completed({ data }) {
             fill={Color.grass}
             strokeWidth={2}
             dot={{ fill: "#fff" }}
-            activeDot={{ r: 5, fill: "#fff", stroke: Color.green }}
+            activeDot={{ r: 5, fill: "#fff", stroke: Color.grass }}
           />
           <Area
             type="monotone"
@@ -95,6 +96,15 @@ function Completed({ data }) {
             strokeWidth={2}
             dot={{ fill: "#fff" }}
             activeDot={{ r: 5, fill: "#fff", stroke: Color.blue }}
+          />
+          <Area
+            type="monotone"
+            dataKey="income"
+            stroke={Color.green}
+            fill={Color.green}
+            strokeWidth={2}
+            dot={{ fill: "#fff" }}
+            activeDot={{ r: 5, fill: "#fff", stroke: Color.green }}
           />
         </AreaChart>
       </ResponsiveContainer>

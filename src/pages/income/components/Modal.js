@@ -31,7 +31,7 @@ class IncomeModal extends PureComponent {
       const data = {
         ...getFieldsValue()
       };
-      data.date = moment(data.date).format("YYYY-MM-DD");
+      data.date = moment(data.date).format("YYYY-MM-DD HH:mm:ss");
 
       onOk(data);
     });

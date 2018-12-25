@@ -8,8 +8,7 @@ export default modelExtend(model, {
   namespace: "dashboard",
   state: {
     numbers: [],
-    completed: [],
-    user: {}
+    completed: []
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -23,13 +22,18 @@ export default modelExtend(model, {
       });
     }
   },
+
   effects: {
     *query({ payload }, { call, put }) {
       const res = yield call(queryDashboard, parse(payload));
-      yield put({
-        type: "updateState",
-        payload: res.data
-      });
+      if (res.success) {
+        yield put({
+          type: "updateState",
+          payload: res.data
+        });
+      } else {
+        throw res;
+      }
     }
   }
 });
