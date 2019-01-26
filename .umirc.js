@@ -76,7 +76,7 @@ export default {
     //   changeOrigin: true,
     //   pathRewrite: { '^/api/v1/weather': '/v3/weather' },
     // },
-    '/api/v1': 'http://10.59.128.194:8081'
+    '/api/v1': 'http://localhost:8080'
   },
   alias: {
     api: resolve(__dirname, './src/services/'),
