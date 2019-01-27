@@ -4,6 +4,7 @@ import { withI18n } from "@lingui/react";
 import { connect } from "dva";
 import { Page } from "components";
 import { router } from "utils";
+import { ROLE_TYPE } from "utils/constant";
 
 const FormItem = Form.Item;
 
@@ -17,6 +18,8 @@ class UserCenter extends PureComponent {
   render() {
     const { i18n, user, form, dispatch } = this.props;
     const { getFieldDecorator, getFieldValue, validateFields } = form;
+    const { permissions } = user;
+    const admin = permissions.role === ROLE_TYPE.ADMIN ? true : false;
 
     const formItemLayout = {
       labelCol: { span: 4 },
@@ -60,9 +63,11 @@ class UserCenter extends PureComponent {
           <FormItem label={i18n.t`UserName` + ": "} {...formItemLayout}>
             <Input value={user.userName} disabled="true" />
           </FormItem>
-          <FormItem label={i18n.t`ChannelId` + ": "} {...formItemLayout}>
-            <Input value={user.channelId} disabled="true" />
-          </FormItem>
+          {!admin && (
+            <FormItem label={i18n.t`ChannelId` + ": "} {...formItemLayout}>
+              <Input value={user.channelId} disabled="true" />
+            </FormItem>
+          )}
           <FormItem
             label={i18n.t`RealName` + ": "}
             hasFeedback
