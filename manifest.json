@@ -1,9 +1,9 @@
 {
-  "name": "Phoenix AD",
+  "name": "HNMobi AD",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#fff",
-  "description": "Phoenix AD",
+  "description": "HNMobi AD",
   "icons": [
     {
       "src": "logo.svg",

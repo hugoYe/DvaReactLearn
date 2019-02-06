@@ -8,37 +8,37 @@ import { clearToken } from "../../utils/token";
 export default modelExtend(model, {
   namespace: "usercenter",
 
-  state: {
-    user: {}
-  },
+  // state: {
+  //   user: {}
+  // },
 
-  subscriptions: {
-    setup({ dispatch, history }) {
-      history.listen(location => {
-        if (pathMatchRegexp("/usercenter", location.pathname)) {
-          dispatch({
-            type: "query"
-          });
-        }
-      });
-    }
-  },
+  // subscriptions: {
+  //   setup({ dispatch, history }) {
+  //     history.listen(location => {
+  //       if (pathMatchRegexp("/usercenter", location.pathname)) {
+  //         dispatch({
+  //           type: "query"
+  //         });
+  //       }
+  //     });
+  //   }
+  // },
 
   effects: {
-    *query({ payload }, { call, select, put }) {
-      const res = yield call(queryUserInfo, payload);
+    // *query({ payload }, { call, select, put }) {
+    //   const res = yield call(queryUserInfo, payload);
 
-      if (res.success) {
-        yield put({
-          type: "updateState",
-          payload: {
-            user: res.data
-          }
-        });
-      } else {
-        throw res;
-      }
-    },
+    //   if (res.success) {
+    //     yield put({
+    //       type: "updateState",
+    //       payload: {
+    //         user: res.data
+    //       }
+    //     });
+    //   } else {
+    //     throw res;
+    //   }
+    // },
 
     *editUser({ payload }, { call, select, put }) {
       const res = yield call(editUser, payload);

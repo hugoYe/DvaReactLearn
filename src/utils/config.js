@@ -1,6 +1,6 @@
 module.exports = {
-  siteName: "Phoenix AD",
-  copyright: "© Copyright 2018 By Phoenix AD Tech.",
+  siteName: "HNMobi AD",
+  copyright: "© Copyright 2019 By HNMobi AD Tech.",
   logoPath: "/logo.svg",
   apiPrefix: "/api/v1",
   fixedHeader: false, // sticky primary layout header

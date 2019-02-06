@@ -14,10 +14,7 @@ const bodyStyle = {
   }
 };
 
-@connect(({ dashboard, loading }) => ({
-  dashboard,
-  loading
-}))
+@connect(({ dashboard, loading }) => ({ dashboard, loading }))
 class Dashboard extends PureComponent {
   render() {
     const { dashboard } = this.props;

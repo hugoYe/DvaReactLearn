@@ -10,15 +10,12 @@ const FormItem = Form.Item;
 
 @withI18n()
 @Form.create()
-@connect(({ usercenter, loading }) => ({
-  user: usercenter.user,
-  loading
-}))
+@connect(({ app, loading }) => ({ app, loading }))
 class UserCenter extends PureComponent {
   render() {
-    const { i18n, user, form, dispatch } = this.props;
+    const { i18n, app, form, dispatch } = this.props;
     const { getFieldDecorator, getFieldValue, validateFields } = form;
-    const { permissions } = user;
+    const { user, permissions } = app;
     const admin = permissions.role === ROLE_TYPE.ADMIN ? true : false;
 
     const formItemLayout = {
