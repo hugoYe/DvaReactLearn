@@ -133,6 +133,16 @@ export default function request(options) {
           msg = error.message || "Network Error";
         }
 
+        if (statusCode === 504 || statusCode === 600) {
+          clearToken();
+          router.push({
+            pathname: "/login",
+            search: qs.stringify({
+              from: window.location.pathname
+            })
+          });
+        }
+
         /* eslint-disable */
         return Promise.reject({
           success: false,
