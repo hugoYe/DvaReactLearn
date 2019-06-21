@@ -75,5 +75,7 @@
   "Please select channel": "请选择渠道",
   "Please select date": "请选择日期",
   "Please input uv": "请输入uv",
-  "Please input pv": "请输入pv"
+  "Please input pv": "请输入pv",
+  "PV": "pv/新增",
+  "UV": "uv/活跃"
 }

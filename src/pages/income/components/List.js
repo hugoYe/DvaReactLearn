@@ -20,10 +20,10 @@ class List extends PureComponent {
         title: i18n.t`UserName`,
         dataIndex: "userName"
       },
-      {
-        title: i18n.t`RealName`,
-        dataIndex: "realName"
-      },
+      // {
+      //   title: i18n.t`RealName`,
+      //   dataIndex: "realName"
+      // },
       {
         title: i18n.t`ChannelId`,
         dataIndex: "channelId",
