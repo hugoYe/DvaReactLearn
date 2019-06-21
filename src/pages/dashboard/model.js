@@ -13,10 +13,7 @@ export default modelExtend(model, {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
-        if (
-          pathMatchRegexp("/dashboard", pathname) ||
-          pathMatchRegexp("/", pathname)
-        ) {
+        if (pathMatchRegexp("/dashboard", pathname)) {
           dispatch({ type: "query" });
         }
       });
