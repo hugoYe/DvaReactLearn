@@ -1,7 +1,7 @@
 import { Mock, Constant, qs, randomAvatar } from './_utils'
 
 const { ApiPrefix } = Constant
-
+// mock用户数据
 let usersListData = Mock.mock({
   'data|80-100': [
     {
