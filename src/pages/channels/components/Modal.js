@@ -40,7 +40,7 @@ class ChannelModal extends PureComponent {
     return (
       <Modal {...modalProps} onOk={this.handleOk}>
         <Form layout="horizontal">
-          {/* <FormItem label={i18n.t`ChannelId`} hasFeedback {...formItemLayout}>
+          <FormItem label={i18n.t`ChannelId`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("channelId", {
               initialValue: item.channelId,
               rules: [
@@ -48,8 +48,8 @@ class ChannelModal extends PureComponent {
                   required: true
                 }
               ]
-            })(<Input />)}
-          </FormItem> */}
+            })(<Input disabled="true" />)}
+          </FormItem>
           <FormItem label={i18n.t`ChannelName`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("channelName", {
               initialValue: item.channelName,
