@@ -66,11 +66,11 @@ class List extends PureComponent {
           </span>
         )
       },
-      {
-        title: <Trans>Company</Trans>,
-        dataIndex: "company",
-        key: "company"
-      },
+      // {
+      //   title: <Trans>Company</Trans>,
+      //   dataIndex: "company",
+      //   key: "company"
+      // },
       {
         title: <Trans>CreateTime</Trans>,
         dataIndex: "createTime",
