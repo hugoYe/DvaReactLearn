@@ -34,22 +34,24 @@ class ChannelModal extends PureComponent {
   };
 
   render() {
-    const { item = {}, onOk, form, i18n, ...modalProps } = this.props;
+    const { type, item = {}, onOk, form, i18n, ...modalProps } = this.props;
     const { getFieldDecorator } = form;
 
     return (
       <Modal {...modalProps} onOk={this.handleOk}>
         <Form layout="horizontal">
-          <FormItem label={i18n.t`ChannelId`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator("channelId", {
-              initialValue: item.channelId,
-              rules: [
-                {
-                  required: true
-                }
-              ]
-            })(<Input disabled="true" />)}
-          </FormItem>
+          {type !== "create" && (
+            <FormItem label={i18n.t`ChannelId`} hasFeedback {...formItemLayout}>
+              {getFieldDecorator("channelId", {
+                initialValue: item.channelId,
+                rules: [
+                  {
+                    required: true
+                  }
+                ]
+              })(<Input disabled="true" />)}
+            </FormItem>
+          )}
           <FormItem label={i18n.t`ChannelName`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("channelName", {
               initialValue: item.channelName,

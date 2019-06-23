@@ -37,6 +37,7 @@ class Channels extends PureComponent {
     };
 
     const modalProps = {
+      type: modalType,
       item: modalType === "create" ? {} : currentItem,
       visible: modalVisible,
       maskClosable: false,
