@@ -30,7 +30,8 @@ class UserCenter extends PureComponent {
     const handleSubmit = e => {
       e.preventDefault();
       validateFields((err, values) => {
-        const { user } = this.props;
+        const { app } = this.props;
+        const { user } = app;
         const param = { id: user.id, ...values };
         dispatch({
           type: "usercenter/editUser",
@@ -65,7 +66,7 @@ class UserCenter extends PureComponent {
               <Input value={user.channelId} disabled="true" />
             </FormItem>
           )}
-          <FormItem
+          {/* <FormItem
             label={i18n.t`RealName` + ": "}
             hasFeedback
             {...formItemLayout}
@@ -78,8 +79,8 @@ class UserCenter extends PureComponent {
                 }
               ]
             })(<Input />)}
-          </FormItem>
-          <FormItem
+          </FormItem> */}
+          {/* <FormItem
             label={i18n.t`Company` + ": "}
             hasFeedback
             {...formItemLayout}
@@ -92,7 +93,7 @@ class UserCenter extends PureComponent {
                 }
               ]
             })(<Input />)}
-          </FormItem>
+          </FormItem> */}
           <FormItem
             label={i18n.t`CurrentPassword` + ": "}
             hasFeedback
