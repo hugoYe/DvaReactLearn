@@ -21,7 +21,7 @@ const database = [
     id: '2',
     breadcrumbParentId: '1',
     name: 'Users',
-    zhName: '用户管理',
+    zhName: '客户管理',
     icon: 'team',
     route: '/user',
   },
@@ -30,7 +30,7 @@ const database = [
     menuParentId: '-1',
     breadcrumbParentId: '2',
     name: 'User Detail',
-    zhName: '用户详情',
+    zhName: '客户详情',
     route: '/user/:id',
   },
   {

@@ -58,7 +58,7 @@ class UserModal extends PureComponent {
               ]
             })(modalType === "create" ? <Input /> : <Input disabled="true" />)}
           </FormItem>
-          <FormItem label={i18n.t`RealName`} hasFeedback {...formItemLayout}>
+          {/* <FormItem label={i18n.t`RealName`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("realName", {
               initialValue: item.realName,
               rules: [
@@ -67,7 +67,7 @@ class UserModal extends PureComponent {
                 }
               ]
             })(modalType === "create" ? <Input /> : <Input disabled="true" />)}
-          </FormItem>
+          </FormItem> */}
           <FormItem label={i18n.t`Company`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("company", {
               initialValue: item.company,
