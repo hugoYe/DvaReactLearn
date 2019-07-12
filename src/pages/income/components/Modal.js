@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import { Form, InputNumber, Modal, Select, DatePicker } from "antd";
+import { Form, Input, InputNumber, Modal, Select, DatePicker } from "antd";
 import { withI18n } from "@lingui/react";
 
 const FormItem = Form.Item;
@@ -57,6 +57,11 @@ class IncomeModal extends PureComponent {
       channelOptions.length = 0;
       setFieldsValue({ channelId: [] });
       let userId = Number(value);
+      userDict.map(user => {
+        if (user.id === userId) {
+          setFieldsValue({ incomeRate: user.incomeRate });
+        }
+      });
       let cIds = [];
       userAndChannelDict.map(uc => {
         if (uc.userId === userId) {
@@ -77,18 +82,6 @@ class IncomeModal extends PureComponent {
     function handleRealIncomeChange(value) {
       let rate = getFieldValue("incomeRate");
       let res = (value * rate) / 100;
-      setFieldsValue({ income: res });
-    }
-
-    function handleIncomeChange(value) {
-      let real = getFieldValue("realIncome");
-      let res = (value / real) * 100;
-      setFieldsValue({ incomeRate: res });
-    }
-
-    function handleRateChange(value) {
-      let real = getFieldValue("realIncome");
-      let res = (real * value) / 100;
       setFieldsValue({ income: res });
     }
 
@@ -223,18 +216,7 @@ class IncomeModal extends PureComponent {
                   required: true
                 }
               ]
-            })(
-              <InputNumber
-                style={{ width: "100%" }}
-                step={0.1}
-                precision={2}
-                formatter={value =>
-                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                }
-                parser={value => value.replace(/\$\s?|(,*)/g, "")}
-                onChange={handleIncomeChange}
-              />
-            )}
+            })(<Input disabled="true" />)}
           </FormItem>
           <FormItem label={i18n.t`IncomeRate`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("incomeRate", {
@@ -251,7 +233,7 @@ class IncomeModal extends PureComponent {
                 precision={2}
                 formatter={value => `${value}%`}
                 parser={value => value.replace("%", "")}
-                onChange={handleRateChange}
+                disabled="true"
               />
             )}
           </FormItem>
