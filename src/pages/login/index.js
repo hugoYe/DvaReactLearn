@@ -65,15 +65,18 @@ class Login extends PureComponent {
           </div>
           <form>
             <FormItem hasFeedback>
-              {getFieldDecorator("name", {
+              {getFieldDecorator("nameOrUserId", {
                 rules: [
-                  { required: true, message: "Please input your username!" }
+                  {
+                    required: true,
+                    message: "Please input your userName or userId!"
+                  }
                 ]
               })(
                 <Input
                   prefix={<Icon type="user" className={styles.prefixIcon} />}
                   onPressEnter={this.handleOk}
-                  placeholder={i18n.t`Username`}
+                  placeholder={i18n.t`loginName`}
                 />
               )}
             </FormItem>

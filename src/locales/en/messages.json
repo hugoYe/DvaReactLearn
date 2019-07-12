@@ -21,6 +21,7 @@
   "Image": "Image",
   "Light": "Light",
   "Male": "Male",
+  "loginName":"userName/userId",
   "Name": "Name",
   "UserId":"UserId",
   "UserName": "UserName",
