@@ -48,6 +48,11 @@ class List extends PureComponent {
       //   key: "realName"
       // },
       {
+        title: <Trans>IncomeRate</Trans>,
+        dataIndex: "incomeRate",
+        key: "incomeRate"
+      },
+      {
         title: <Trans>ChannelId</Trans>,
         dataIndex: "channelId",
         key: "channelId",

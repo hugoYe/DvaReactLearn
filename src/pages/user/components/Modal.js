@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Form, Input, Modal, Select } from "antd";
+import { Form, Input, InputNumber, Modal, Select } from "antd";
 import { withI18n } from "@lingui/react";
 
 const FormItem = Form.Item;
@@ -92,6 +92,24 @@ class UserModal extends PureComponent {
               <Select mode="multiple" placeholder="Please select channel!">
                 {channelDict}
               </Select>
+            )}
+          </FormItem>
+          <FormItem label={i18n.t`IncomeRate`} hasFeedback {...formItemLayout}>
+            {getFieldDecorator("incomeRate", {
+              initialValue: item.incomeRate,
+              rules: [
+                {
+                  required: true
+                }
+              ]
+            })(
+              <InputNumber
+                min={0}
+                max={100}
+                precision={2}
+                formatter={value => `${value}%`}
+                parser={value => value.replace("%", "")}
+              />
             )}
           </FormItem>
         </Form>
