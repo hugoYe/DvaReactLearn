@@ -22,6 +22,7 @@
   "Light": "Light",
   "Male": "Male",
   "Name": "Name",
+  "UserId":"UserId",
   "UserName": "UserName",
   "RealName": "RealName",
   "Company": "Company",

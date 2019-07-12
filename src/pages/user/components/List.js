@@ -30,11 +30,16 @@ class List extends PureComponent {
 
     const columns = [
       {
+        title: <Trans>UserId</Trans>,
+        dataIndex: "userId",
+        width: 100,
+        fixed: "left",
+        key: "userId"
+      },
+      {
         title: <Trans>Name</Trans>,
         dataIndex: "userName",
         key: "userName",
-        width: 100,
-        fixed: "left",
         render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>
       },
       // {

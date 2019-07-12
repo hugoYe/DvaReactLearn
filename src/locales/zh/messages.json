@@ -22,6 +22,7 @@
   "Light": "明",
   "Male": "男性",
   "Name": "客户名",
+  "UserId":"客户Id",
   "UserName": "客户名",
   "RealName": "真实姓名",
   "Company": "公司名称",
