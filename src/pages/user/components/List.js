@@ -50,7 +50,10 @@ class List extends PureComponent {
       {
         title: <Trans>IncomeRate</Trans>,
         dataIndex: "incomeRate",
-        key: "incomeRate"
+        key: "incomeRate",
+        render: text => {
+          return `${text}%`;
+        }
       },
       {
         title: <Trans>ChannelId</Trans>,
