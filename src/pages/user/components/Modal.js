@@ -56,7 +56,7 @@ class UserModal extends PureComponent {
                   required: true
                 }
               ]
-            })(modalType === "create" ? <Input /> : <Input disabled="true" />)}
+            })(<Input />)}
           </FormItem>
           {/* <FormItem label={i18n.t`RealName`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("realName", {
