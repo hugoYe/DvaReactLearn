@@ -17,22 +17,26 @@ class List extends PureComponent {
         fixed: "left"
       },
       {
-        title: i18n.t`UserName`,
-        dataIndex: "userName"
+        title: i18n.t`UserId`,
+        dataIndex: "customerId"
       },
+      // {
+      //   title: i18n.t`UserName`,
+      //   dataIndex: "userName"
+      // },
       // {
       //   title: i18n.t`RealName`,
       //   dataIndex: "realName"
       // },
-      {
-        title: i18n.t`ChannelId`,
-        dataIndex: "channelId",
-        render: text => (
-          <Ellipsis tooltip length={30}>
-            {text}
-          </Ellipsis>
-        )
-      },
+      // {
+      //   title: i18n.t`ChannelId`,
+      //   dataIndex: "channelId",
+      //   render: text => (
+      //     <Ellipsis tooltip length={30}>
+      //       {text}
+      //     </Ellipsis>
+      //   )
+      // },
       {
         title: i18n.t`ChannelName`,
         dataIndex: "channelName"
@@ -79,13 +83,8 @@ class List extends PureComponent {
         fixed: "left"
       },
       {
-        title: i18n.t`ChannelId`,
-        dataIndex: "channelId",
-        render: text => (
-          <Ellipsis tooltip length={30}>
-            {text}
-          </Ellipsis>
-        )
+        title: i18n.t`UserId`,
+        dataIndex: "customerId"
       },
       {
         title: i18n.t`PV`,
