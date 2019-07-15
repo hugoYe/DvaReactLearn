@@ -50,33 +50,34 @@ class IncomeModal extends PureComponent {
     const { getFieldDecorator, getFieldValue, setFieldsValue } = form;
 
     const userOptions = userDict.map(user => (
-      <Option key={user.id}>{user.userName}</Option>
+      <Option key={user.id}>{user.userId}</Option>
     ));
 
     function handleUserSelected(value) {
-      channelOptions.length = 0;
-      setFieldsValue({ channelId: [] });
       let userId = Number(value);
       userDict.map(user => {
         if (user.id === userId) {
           setFieldsValue({ incomeRate: user.incomeRate });
         }
       });
-      let cIds = [];
-      userAndChannelDict.map(uc => {
-        if (uc.userId === userId) {
-          cIds.push(uc.channelId);
-        }
-      });
-      for (let i = 0; i < cIds.length; i++) {
-        channelDict.map(channel => {
-          if (channel.channelId === cIds[i]) {
-            channelOptions.push(
-              <Option key={channel.channelId}>{channel.channelName}</Option>
-            );
-          }
-        });
-      }
+
+      // channelOptions.length = 0;
+      // setFieldsValue({ channelId: [] });
+      // let cIds = [];
+      // userAndChannelDict.map(uc => {
+      //   if (uc.userId === userId) {
+      //     cIds.push(uc.channelId);
+      //   }
+      // });
+      // for (let i = 0; i < cIds.length; i++) {
+      //   channelDict.map(channel => {
+      //     if (channel.channelId === cIds[i]) {
+      //       channelOptions.push(
+      //         <Option key={channel.channelId}>{channel.channelName}</Option>
+      //       );
+      //     }
+      //   });
+      // }
     }
 
     function handleRealIncomeChange(value) {
@@ -88,7 +89,7 @@ class IncomeModal extends PureComponent {
     return (
       <Modal {...modalProps} onOk={this.handleOk}>
         <Form layout="horizontal">
-          <FormItem label={i18n.t`Name`} hasFeedback {...formItemLayout}>
+          <FormItem label={i18n.t`UserId`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("userId", {
               rules: [
                 {
@@ -113,7 +114,7 @@ class IncomeModal extends PureComponent {
               </Select>
             )}
           </FormItem>
-          <FormItem label={i18n.t`ChannelName`} hasFeedback {...formItemLayout}>
+          {/* <FormItem label={i18n.t`ChannelName`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("channelId", {
               rules: [
                 {
@@ -136,7 +137,7 @@ class IncomeModal extends PureComponent {
                 {channelOptions}
               </Select>
             )}
-          </FormItem>
+          </FormItem> */}
           <FormItem label={i18n.t`DatePicker`} {...formItemLayout}>
             {getFieldDecorator("date", {
               rules: [
