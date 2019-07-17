@@ -18,7 +18,8 @@ class List extends PureComponent {
       },
       {
         title: i18n.t`UserId`,
-        dataIndex: "customerId"
+        dataIndex: "customerId",
+        width: 120
       },
       // {
       //   title: i18n.t`UserName`,
@@ -58,8 +59,6 @@ class List extends PureComponent {
       {
         title: i18n.t`Income`,
         dataIndex: "income",
-        width: 100,
-        fixed: "right",
         render: text => {
           return `$${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
@@ -67,8 +66,6 @@ class List extends PureComponent {
       {
         title: i18n.t`RealIncome`,
         dataIndex: "realIncome",
-        width: 120,
-        fixed: "right",
         render: text => {
           return `$${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
@@ -84,7 +81,8 @@ class List extends PureComponent {
       },
       {
         title: i18n.t`UserId`,
-        dataIndex: "customerId"
+        dataIndex: "customerId",
+        width: 120
       },
       {
         title: i18n.t`PV`,
@@ -103,8 +101,6 @@ class List extends PureComponent {
       {
         title: i18n.t`Income`,
         dataIndex: "income",
-        width: 100,
-        fixed: "right",
         render: text => {
           return `$${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
@@ -121,7 +117,7 @@ class List extends PureComponent {
           showTotal: total => i18n.t`Total ${total} Items`
         }}
         bordered
-        scroll={{ x: 1200 }}
+        scroll={{ x: 900 }}
         className={styles.table}
         columns={columns}
         simple
