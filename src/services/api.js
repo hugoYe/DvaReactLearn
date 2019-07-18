@@ -25,6 +25,8 @@ export default {
   // income
   queryIncomeList: "/income",
   addIncome: "POST /income",
+  deleteIncome: "DELETE /income",
+  updateIncome: "PUT /income",
   getUserAndChannelDict: "/income/getUserAndChannelDict",
 
   queryDashboard: "/dashboard"

@@ -21,7 +21,7 @@ const formItemLayout = {
 @Form.create()
 class IncomeModal extends PureComponent {
   handleOk = () => {
-    const { onOk, form } = this.props;
+    const { item = {}, onOk, form } = this.props;
     const { validateFields, getFieldsValue } = form;
 
     validateFields(errors => {
@@ -32,7 +32,7 @@ class IncomeModal extends PureComponent {
         ...getFieldsValue()
       };
       data.date = moment(data.date).format("YYYY-MM-DD HH:mm:ss");
-
+      data.id = item.id;
       onOk(data);
     });
   };
@@ -43,6 +43,8 @@ class IncomeModal extends PureComponent {
       userDict,
       userAndChannelDict,
       onOk,
+      item = {},
+      modalType,
       form,
       i18n,
       ...modalProps
@@ -91,6 +93,7 @@ class IncomeModal extends PureComponent {
         <Form layout="horizontal">
           <FormItem label={i18n.t`UserId`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("userId", {
+              initialValue: modalType === "update" ? item.userId : undefined,
               rules: [
                 {
                   required: true,
@@ -140,6 +143,10 @@ class IncomeModal extends PureComponent {
           </FormItem> */}
           <FormItem label={i18n.t`DatePicker`} {...formItemLayout}>
             {getFieldDecorator("date", {
+              initialValue:
+                modalType === "update"
+                  ? moment(item.date, "YYYY-MM-DD")
+                  : undefined,
               rules: [
                 {
                   type: "object",
@@ -156,6 +163,7 @@ class IncomeModal extends PureComponent {
           </FormItem>
           <FormItem label={i18n.t`PV`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("pv", {
+              initialValue: modalType === "update" ? item.pv : undefined,
               rules: [
                 {
                   required: true
@@ -174,6 +182,7 @@ class IncomeModal extends PureComponent {
           </FormItem>
           <FormItem label={i18n.t`UV`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("uv", {
+              initialValue: modalType === "update" ? item.uv : undefined,
               rules: [
                 {
                   required: true
@@ -192,6 +201,8 @@ class IncomeModal extends PureComponent {
           </FormItem>
           <FormItem label={i18n.t`RealIncome`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("realIncome", {
+              initialValue:
+                modalType === "update" ? item.realIncome : undefined,
               rules: [
                 {
                   required: true
@@ -212,6 +223,7 @@ class IncomeModal extends PureComponent {
           </FormItem>
           <FormItem label={i18n.t`Income`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("income", {
+              initialValue: modalType === "update" ? item.income : undefined,
               rules: [
                 {
                   required: true
@@ -221,7 +233,8 @@ class IncomeModal extends PureComponent {
           </FormItem>
           <FormItem label={i18n.t`IncomeRate`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("incomeRate", {
-              initialValue: 100,
+              initialValue:
+                modalType === "update" ? item.incomeRate : undefined,
               rules: [
                 {
                   required: true

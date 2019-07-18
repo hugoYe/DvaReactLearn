@@ -1,12 +1,30 @@
 import React, { PureComponent } from "react";
-import { Table, Avatar } from "antd";
-import { withI18n } from "@lingui/react";
+import { Table, Modal } from "antd";
+import { DropOption } from "components";
+import { Trans, withI18n } from "@lingui/react";
 import { Ellipsis } from "ant-design-pro";
 import { ROLE_TYPE } from "utils/constant";
 import styles from "./List.less";
 
+const { confirm } = Modal;
+
 @withI18n()
 class List extends PureComponent {
+  handleMenuClick = (record, e) => {
+    const { onDeleteItem, onEditItem, i18n } = this.props;
+
+    if (e.key === "1") {
+      onEditItem(record);
+    } else if (e.key === "2") {
+      confirm({
+        title: i18n.t`Are you sure delete this record?`,
+        onOk() {
+          onDeleteItem(record.id);
+        }
+      });
+    }
+  };
+
   render() {
     const { i18n, permissions, ...tableProps } = this.props;
     const adminColumns = [
@@ -68,6 +86,23 @@ class List extends PureComponent {
         dataIndex: "realIncome",
         render: text => {
           return `$${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+      },
+      {
+        title: <Trans>Operation</Trans>,
+        key: "operation",
+        width: 100,
+        fixed: "right",
+        render: (text, record) => {
+          return (
+            <DropOption
+              onMenuClick={e => this.handleMenuClick(record, e)}
+              menuOptions={[
+                { key: "1", name: i18n.t`Update` },
+                { key: "2", name: i18n.t`Delete` }
+              ]}
+            />
+          );
         }
       }
     ];

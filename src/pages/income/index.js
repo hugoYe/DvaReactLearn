@@ -40,7 +40,9 @@ class Income extends PureComponent {
     const { app, income, loading, location, i18n, dispatch } = this.props;
     const { permissions } = app;
     const {
+      currentItem,
       modalVisible,
+      modalType,
       list,
       pagination,
       channelDict,
@@ -68,7 +70,10 @@ class Income extends PureComponent {
       },
       onAdd() {
         dispatch({
-          type: "income/showModal"
+          type: "income/showModal",
+          payload: {
+            modalType: "add"
+          }
         });
       }
     };
@@ -92,20 +97,47 @@ class Income extends PureComponent {
           page: page.current,
           pageSize: page.pageSize
         });
+      },
+      onDeleteItem(id) {
+        dispatch({
+          type: "income/delete",
+          payload: { id }
+        }).then(() => {
+          handleRefresh({
+            page:
+              list.length === 1 && pagination.current > 1
+                ? pagination.current - 1
+                : pagination.current
+          });
+        });
+      },
+      onEditItem(item) {
+        dispatch({
+          type: "income/showModal",
+          payload: {
+            modalType: "update",
+            currentItem: item
+          }
+        });
       }
     };
 
     const modalProps = {
+      modalType: modalType,
+      item: modalType === "add" ? {} : currentItem,
       channelDict,
       userDict,
       userAndChannelDict,
       visible: modalVisible,
       maskClosable: false,
-      title: i18n.t`Add Income`,
+      confirmLoading: loading.effects[`income/${modalType}`],
+      title: `${
+        modalType === "add" ? i18n.t`Add Income` : i18n.t`Update Income`
+      }`,
       wrapClassName: "vertical-center-modal",
       onOk(data) {
         dispatch({
-          type: `income/add`,
+          type: `income/${modalType}`,
           payload: data
         }).then(() => {
           handleRefresh();

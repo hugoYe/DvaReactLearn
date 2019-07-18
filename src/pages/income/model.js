@@ -5,6 +5,8 @@ import { ROLE_TYPE } from "utils/constant";
 import {
   queryIncomeList,
   addIncome,
+  deleteIncome,
+  updateIncome,
   getUserDict,
   getChannelDict,
   getUserAndChannelDict
@@ -14,7 +16,9 @@ export default modelExtend(pageModel, {
   namespace: "income",
 
   state: {
+    currentItem: {},
     modalVisible: false,
+    modalType: "add",
     channelDict: [],
     userDict: [],
     userAndChannelDict: []
@@ -78,6 +82,26 @@ export default modelExtend(pageModel, {
       const res = yield call(addIncome, payload);
       if (res.success) {
         yield put({ type: "hideModal" });
+      } else {
+        throw res;
+      }
+    },
+
+    *update({ payload }, { call, put }) {
+      const res = yield call(updateIncome, payload);
+      if (res.success) {
+        yield put({ type: "hideModal" });
+      } else {
+        throw res;
+      }
+    },
+
+    *delete({ payload }, { call, put, select }) {
+      const res = yield call(deleteIncome, payload);
+      if (res.success) {
+        yield put({
+          type: "updateState"
+        });
       } else {
         throw res;
       }
