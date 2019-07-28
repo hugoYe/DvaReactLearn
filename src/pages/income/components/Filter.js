@@ -73,7 +73,7 @@ class Filter extends PureComponent {
     const { getFieldDecorator } = form;
 
     const userOptions = userDict.map(user => (
-      <Option key={user.id}>{user.userName}</Option>
+      <Option key={user.id}>{user.userId}</Option>
     ));
 
     const channelOptions = channelDict.map(channel => (
@@ -217,13 +217,13 @@ class Filter extends PureComponent {
             )}
           </FilterItem>
         </Col>
-        <Col {...ColProps} xl={{ span: 6 }} md={{ span: 8 }} sm={{ span: 12 }}>
+        {/* <Col {...ColProps} xl={{ span: 6 }} md={{ span: 8 }} sm={{ span: 12 }}>
           {getFieldDecorator("channelIds")(
             <Select
               mode="multiple"
               style={{ width: "100%" }}
               showSearch
-              placeholder="Please select channel"
+              placeholder={i18n.t`Please select channel`}
               optionFilterProp="children"
               filterOption={(input, option) =>
                 option.props.children
@@ -234,7 +234,7 @@ class Filter extends PureComponent {
               {channelOptions}
             </Select>
           )}
-        </Col>
+        </Col> */}
         <Col {...ColProps} xl={{ span: 12 }} md={{ span: 8 }} sm={{ span: 12 }}>
           <Row type="flex" align="middle" justify="space-between">
             <div>
