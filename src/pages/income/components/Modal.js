@@ -52,16 +52,22 @@ class IncomeModal extends PureComponent {
     const { getFieldDecorator, getFieldValue, setFieldsValue } = form;
 
     const userOptions = userDict.map(user => (
-      <Option key={user.id}>{user.userId}</Option>
+      <Option key={user.userId}>{user.userId}</Option>
     ));
 
     function handleUserSelected(value) {
-      let userId = Number(value);
       userDict.map(user => {
-        if (user.id === userId) {
+        if (user.userId === value) {
           setFieldsValue({ incomeRate: user.incomeRate });
         }
       });
+
+      let realIncome = getFieldValue("realIncome");
+      if (realIncome > 0) {
+        let rate = getFieldValue("incomeRate");
+        let res = (realIncome * rate) / 100;
+        setFieldsValue({ income: res });
+      }
 
       // channelOptions.length = 0;
       // setFieldsValue({ channelId: [] });
@@ -93,7 +99,8 @@ class IncomeModal extends PureComponent {
         <Form layout="horizontal">
           <FormItem label={i18n.t`UserId`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("userId", {
-              initialValue: modalType === "update" ? item.userId : undefined,
+              initialValue:
+                modalType === "update" ? item.customerId : undefined,
               rules: [
                 {
                   required: true,
