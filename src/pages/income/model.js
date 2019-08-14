@@ -25,24 +25,23 @@ export default modelExtend(pageModel, {
   },
 
   subscriptions: {
-    // setup({ dispatch, history }) {
-    //   history.listen(location => {
-    //     if (pathMatchRegexp("/income", location.pathname)) {
-    //       dispatch({
-    //         type: "query",
-    //         payload: {
-    //           ...location.query
-    //         }
-    //       });
-    //       dispatch({
-    //         type: "getChannelDict"
-    //       });
-    //       dispatch({
-    //         type: "getUserDict"
-    //       });
-    //     }
-    //   });
-    // }
+    setup({ dispatch, history }) {
+      history.listen(location => {
+        if (pathMatchRegexp("/income", location.pathname)) {
+          const payload = location.query || { page: 1, pageSize: 10 };
+          dispatch({
+            type: "query",
+            payload
+          });
+          dispatch({
+            type: "getChannelDict"
+          });
+          dispatch({
+            type: "getUserDict"
+          });
+        }
+      });
+    }
   },
 
   effects: {

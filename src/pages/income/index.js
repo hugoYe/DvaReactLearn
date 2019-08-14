@@ -12,30 +12,6 @@ import Modal from "./components/Modal";
 @withI18n()
 @connect(({ app, income, loading }) => ({ app, income, loading }))
 class Income extends PureComponent {
-  componentWillMount() {
-    this.queryData({});
-  }
-
-  queryData(queryParam) {
-    const { dispatch } = this.props;
-    dispatch({
-      type: "income/query",
-      payload: { ...queryParam }
-    });
-    dispatch({
-      type: "income/getChannelDict",
-      payload: {}
-    });
-    dispatch({
-      type: "income/getUserDict",
-      payload: {}
-    });
-    dispatch({
-      type: "income/getUserAndChannelDict",
-      payload: {}
-    });
-  }
-
   render() {
     const { app, income, loading, location, i18n, dispatch } = this.props;
     const { permissions } = app;
@@ -52,7 +28,16 @@ class Income extends PureComponent {
     const { query, pathname } = location;
 
     const handleRefresh = newQuery => {
-      this.queryData(newQuery);
+      router.push({
+        pathname,
+        search: stringify(
+          {
+            ...query,
+            ...newQuery
+          },
+          { arrayFormat: "repeat" }
+        )
+      });
     };
 
     const filterProps = {
