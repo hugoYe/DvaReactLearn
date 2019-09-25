@@ -125,7 +125,9 @@ class Income extends PureComponent {
           type: `income/${modalType}`,
           payload: data
         }).then(() => {
-          handleRefresh();
+          handleRefresh({
+            ...query
+          });
         });
       },
       onCancel() {
