@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Table, Modal } from "antd";
+import { Table, Modal, Statistic, Row, Col, Button } from "antd";
 import { DropOption } from "components";
 import { Trans, withI18n } from "@lingui/react";
 import { Ellipsis } from "ant-design-pro";
@@ -144,6 +144,45 @@ class List extends PureComponent {
     const columns =
       permissions.role === ROLE_TYPE.ADMIN ? adminColumns : vistorColumns;
 
+    const footerRender = currentPageData => {
+      let totalPv = 0;
+      let totalUv = 0;
+      let totalIncome = 0;
+      let totalRealIncome = 0;
+
+      currentPageData.map(current => {
+        totalPv = totalPv + current.pv;
+        totalUv = totalUv + current.uv;
+        totalIncome = totalIncome + current.income;
+        totalRealIncome = totalRealIncome + current.realIncome;
+      });
+
+      return (
+        <Row gutter={16}>
+          <Col span={3}>
+            <Statistic title={i18n.t`PV`} value={totalPv} />
+          </Col>
+          <Col span={3}>
+            <Statistic title={i18n.t`UV`} value={totalUv} />
+          </Col>
+          <Col span={3}>
+            <Statistic
+              title={i18n.t`Income`}
+              value={totalIncome}
+              precision={2}
+            />
+          </Col>
+          <Col span={3}>
+            <Statistic
+              title={i18n.t`RealIncome`}
+              value={totalRealIncome}
+              precision={2}
+            />
+          </Col>
+        </Row>
+      );
+    };
+
     return (
       <Table
         {...tableProps}
@@ -157,6 +196,7 @@ class List extends PureComponent {
         columns={columns}
         simple
         rowKey={record => record.id}
+        footer={footerRender}
       />
     );
   }
