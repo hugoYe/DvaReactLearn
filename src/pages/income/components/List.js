@@ -157,25 +157,47 @@ class List extends PureComponent {
         totalRealIncome = totalRealIncome + current.realIncome;
       });
 
-      return (
-        <Row gutter={16}>
-          <Col span={3}>
-            <Statistic title={i18n.t`PV`} value={totalPv} />
+      return permissions.role === ROLE_TYPE.ADMIN ? (
+        <Row>
+          <Col span={8} style={{ color: "#000000", fontSize: 18 }}>
+            总和
           </Col>
-          <Col span={3}>
-            <Statistic title={i18n.t`UV`} value={totalUv} />
+          <Col span={3} style={{ textAlign: "center" }}>
+            <Statistic value={totalPv} valueStyle={{ fontSize: 18 }} />
           </Col>
-          <Col span={3}>
+          <Col span={4} style={{ textAlign: "center" }}>
+            <Statistic value={totalUv} valueStyle={{ fontSize: 18 }} />
+          </Col>
+          <Col span={3} style={{ textAlign: "center" }}>
             <Statistic
-              title={i18n.t`Income`}
               value={totalIncome}
+              valueStyle={{ fontSize: 18 }}
               precision={2}
             />
           </Col>
-          <Col span={3}>
+          <Col span={5} style={{ textAlign: "center" }}>
             <Statistic
-              title={i18n.t`RealIncome`}
               value={totalRealIncome}
+              valueStyle={{ fontSize: 18 }}
+              precision={2}
+            />
+          </Col>
+        </Row>
+      ) : (
+        <Row>
+          <Col span={5} style={{ color: "#000000", fontSize: 18 }}>
+            总和
+          </Col>
+          <Col span={4} style={{ textAlign: "center" }}>
+            <Statistic value={totalPv} valueStyle={{ fontSize: 18 }} />
+          </Col>
+          <Col span={9} style={{ textAlign: "center" }}>
+            <Statistic value={totalUv} valueStyle={{ fontSize: 18 }} />
+          </Col>
+          <Col span={5} style={{ textAlign: "center" }}>
+            <Statistic
+              value={totalIncome}
+              valueStyle={{ fontSize: 18 }}
               precision={2}
             />
           </Col>
@@ -191,7 +213,6 @@ class List extends PureComponent {
           showTotal: total => i18n.t`Total ${total} Items`
         }}
         bordered
-        scroll={{ x: 900 }}
         className={styles.table}
         columns={columns}
         simple
