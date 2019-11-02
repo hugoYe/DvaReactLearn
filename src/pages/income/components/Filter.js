@@ -40,6 +40,15 @@ class Filter extends PureComponent {
     onFilterChange(fields);
   };
 
+  handleDownload = () => {
+    const { onDownload, form } = this.props;
+    const { getFieldsValue } = form;
+
+    let fields = getFieldsValue();
+    fields = this.handleFields(fields);
+    onDownload(fields);
+  };
+
   handleReset = () => {
     const { form } = this.props;
     const { getFieldsValue, setFieldsValue } = form;
@@ -170,10 +179,18 @@ class Filter extends PureComponent {
                 >
                   <Trans>Search</Trans>
                 </Button>
-                <Button onClick={this.handleReset}>
+                <Button className="margin-right" onClick={this.handleReset}>
                   <Trans>Reset</Trans>
                 </Button>
+                <Button
+                  type="primary"
+                  icon="download"
+                  onClick={this.handleDownload}
+                >
+                  <Trans>Download</Trans>
+                </Button>
               </div>
+
               <Button type="ghost" onClick={onAdd}>
                 <Trans>Add</Trans>
               </Button>

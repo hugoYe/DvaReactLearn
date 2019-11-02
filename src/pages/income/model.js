@@ -9,7 +9,8 @@ import {
   updateIncome,
   getUserDict,
   getChannelDict,
-  getUserAndChannelDict
+  getUserAndChannelDict,
+  downloadReport
 } from "api";
 
 export default modelExtend(pageModel, {
@@ -104,6 +105,80 @@ export default modelExtend(pageModel, {
       } else {
         throw res;
       }
+    },
+
+    *download({ payload }, { call, put }) {
+      var downloadUrl = "/api/v1/reports/exportEverydayIncome?";
+      var addFirstJoint = false;
+      var date = Object.getOwnPropertyDescriptor(payload, "date");
+      if (date.value !== undefined && date.value.length > 0) {
+        for (let [index, elem] of date.value.entries()) {
+          downloadUrl = downloadUrl + "date=" + elem;
+          if (index < date.value.length - 1) {
+            downloadUrl = downloadUrl + "&";
+          }
+        }
+        addFirstJoint = true;
+      }
+      var userIds = Object.getOwnPropertyDescriptor(payload, "userIds");
+      if (userIds.value !== undefined && userIds.value.length > 0) {
+        for (let [index, elem] of userIds.value.entries()) {
+          if (addFirstJoint) {
+            downloadUrl = downloadUrl + "&";
+            addFirstJoint = false;
+          }
+          downloadUrl = downloadUrl + "userIds=" + elem;
+          if (index < userIds.value.length - 1) {
+            downloadUrl = downloadUrl + "&";
+          }
+        }
+        addFirstJoint = true;
+      }
+      var channelIds = Object.getOwnPropertyDescriptor(payload, "channelIds");
+      if (channelIds.value !== undefined && channelIds.value.length > 0) {
+        for (let [index, elem] of channelIds.value.entries()) {
+          if (addFirstJoint) {
+            downloadUrl = downloadUrl + "&";
+            addFirstJoint = false;
+          }
+          downloadUrl = downloadUrl + "channelIds=" + elem;
+          if (index < channelIds.value.length - 1) {
+            downloadUrl = downloadUrl + "&";
+          }
+        }
+        addFirstJoint = true;
+      }
+      window.open(downloadUrl);
+      // const res = yield call(downloadReport, payload);
+      // if (res.success) {
+      //   let req = res.data;
+      //   let blobObject = new Blob([req], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+      //   var filename = 'temp-' + new Date().getFullYear() + '' + (new Date().getMonth() + 1) + '' + new Date().getDate() + '.xlsx';
+
+      //   // chrome `浏览器;
+      //   if (typeof window.chrome !== 'undefined') {
+      //       let url = window.URL.createObjectURL(blobObject);
+      //       let link = document.createElement('a');
+
+      //       link.style.display = 'none';
+      //       link.href = url;
+      //       link.setAttribute('download', filename);
+      //       document.body.appendChild(link);
+      //       link.click();
+      //   } else if (typeof window.navigator.msSaveBlob !== 'undefined') {
+      //       // IE version
+      //       var blob = new Blob([req], {type: 'application/force-download'});
+
+      //       window.navigator.msSaveBlob(blob, filename);
+      //   } else {
+      //       // Firefox version
+      //       var file = new File([req], filename, {type: 'application/force-download'});
+
+      //       window.open(URL.createObjectURL(file));
+      //   }
+      // } else {
+      //   throw res;
+      // }
     },
 
     *getChannelDict({ payload }, { call, put, select }) {

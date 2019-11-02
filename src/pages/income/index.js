@@ -53,6 +53,14 @@ class Income extends PureComponent {
           page: 1
         });
       },
+      onDownload(value) {
+        dispatch({
+          type: "income/download",
+          payload: {
+            ...value
+          }
+        });
+      },
       onAdd() {
         dispatch({
           type: "income/showModal",

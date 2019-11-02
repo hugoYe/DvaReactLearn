@@ -29,5 +29,7 @@ export default {
   updateIncome: "PUT /income",
   getUserAndChannelDict: "/income/getUserAndChannelDict",
 
+  downloadReport: "/reports/exportEverydayIncome",
+
   queryDashboard: "/dashboard"
 };
