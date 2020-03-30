@@ -81,5 +81,8 @@
   "Please input uv": "Please input uv",
   "Please input pv": "Please input pv",
   "PV": "pv/Increase",
-  "UV": "uv/active"
+  "UV": "uv/active",
+  "upload": "file uploaded successfully.",
+  "Upload fail": "file upload failed.",
+  "Batch Add": "Upload"
 }

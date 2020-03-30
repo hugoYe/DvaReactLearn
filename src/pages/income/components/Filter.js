@@ -3,7 +3,19 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import { FilterItem } from "components";
 import { Trans, withI18n } from "@lingui/react";
-import { Form, Row, Col, DatePicker, Input, Button, Select, Alert } from "antd";
+import {
+  Form,
+  Row,
+  Col,
+  DatePicker,
+  Input,
+  Button,
+  Select,
+  Alert,
+  Upload,
+  message
+} from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import { ROLE_TYPE } from "utils/constant";
 
 const { RangePicker } = DatePicker;
@@ -89,6 +101,23 @@ class Filter extends PureComponent {
       <Option key={channel.channelId}>{channel.channelName}</Option>
     ));
 
+    const uploadProps = {
+      name: "file",
+      headers: {
+        authorization: "authorization-text"
+      },
+      onChange(info) {
+        if (info.file.status !== "uploading") {
+          console.log(info.file, info.fileList);
+        }
+        if (info.file.status === "done") {
+          message.success(`${info.file.name} ${i18n.t`upload`}`);
+        } else if (info.file.status === "error") {
+          message.error(`${info.file.name} ${i18n.t`Upload fail`}`);
+        }
+      }
+    };
+
     let initialCreateTime = [];
 
     return (
@@ -165,10 +194,10 @@ class Filter extends PureComponent {
         <Row gutter={24}>
           <Col
             {...ColProps}
-            xl={{ span: 8 }}
-            md={{ span: 8 }}
+            xl={{ span: 12 }}
+            md={{ span: 12 }}
             sm={{ span: 12 }}
-            offset={15}
+            offset={11}
           >
             <Row type="flex" align="middle" justify="space-between">
               <div>
@@ -191,9 +220,16 @@ class Filter extends PureComponent {
                 </Button>
               </div>
 
-              <Button type="ghost" onClick={onAdd}>
-                <Trans>Add</Trans>
-              </Button>
+              <div>
+                <Button type="ghost" className="margin-right" onClick={onAdd}>
+                  <Trans>Add</Trans>
+                </Button>
+                <Upload {...uploadProps}>
+                  <Button>
+                    <UploadOutlined /> {i18n.t`Batch Add`}
+                  </Button>
+                </Upload>
+              </div>
             </Row>
           </Col>
         </Row>
