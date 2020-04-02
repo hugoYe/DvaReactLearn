@@ -90,7 +90,14 @@ class Filter extends PureComponent {
   };
 
   adminUi = () => {
-    const { onAdd, form, i18n, channelDict, userDict } = this.props;
+    const {
+      onFilterChange,
+      onAdd,
+      form,
+      i18n,
+      channelDict,
+      userDict
+    } = this.props;
     const { getFieldDecorator } = form;
 
     const userOptions = userDict.map(user => (
@@ -103,6 +110,7 @@ class Filter extends PureComponent {
 
     const uploadProps = {
       name: "file",
+      action: "/api/v1/reports/upload",
       headers: {
         authorization: "authorization-text"
       },
@@ -112,6 +120,7 @@ class Filter extends PureComponent {
         }
         if (info.file.status === "done") {
           message.success(`${info.file.name} ${i18n.t`upload`}`);
+          onFilterChange();
         } else if (info.file.status === "error") {
           message.error(`${info.file.name} ${i18n.t`Upload fail`}`);
         }
