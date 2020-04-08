@@ -55,6 +55,14 @@ class List extends PureComponent {
         }
       },
       {
+        title: <Trans>Currency</Trans>,
+        dataIndex: "currency",
+        key: "currency",
+        render: text => {
+          return text === "rmb" ? <Trans>RMB</Trans> : <Trans>Dollar</Trans>;
+        }
+      },
+      {
         title: <Trans>ChannelId</Trans>,
         dataIndex: "channelId",
         key: "channelId",

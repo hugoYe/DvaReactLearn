@@ -84,5 +84,8 @@
   "UV": "uv/活跃",
   "upload": "文件上传成功",
   "Upload fail": "文件上传失败",
-  "Batch Add": "批量添加"
+  "Batch Add": "批量添加",
+  "Currency": "币种",
+  "RMB": "人民币",
+  "Dollar": "美元"
 }

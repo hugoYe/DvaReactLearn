@@ -4,6 +4,7 @@ import { Form, Input, InputNumber, Modal, Select } from "antd";
 import { withI18n } from "@lingui/react";
 
 const FormItem = Form.Item;
+const Option = Select.Option;
 
 const formItemLayout = {
   labelCol: {
@@ -110,6 +111,22 @@ class UserModal extends PureComponent {
                 formatter={value => `${value}%`}
                 parser={value => value.replace("%", "")}
               />
+            )}
+          </FormItem>
+          <FormItem label={i18n.t`Currency`} hasFeedback {...formItemLayout}>
+            {getFieldDecorator("currency", {
+              initialValue:
+                item.currency === undefined ? "dollar" : item.currency,
+              rules: [
+                {
+                  required: true
+                }
+              ]
+            })(
+              <Select style={{ width: "50%" }}>
+                <Option value="rmb">{i18n.t`RMB`}</Option>
+                <Option value="dollar">{i18n.t`Dollar`}</Option>
+              </Select>
             )}
           </FormItem>
         </Form>

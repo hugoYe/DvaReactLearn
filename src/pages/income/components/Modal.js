@@ -221,7 +221,7 @@ class IncomeModal extends PureComponent {
                 step={0.1}
                 precision={2}
                 formatter={value =>
-                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                 }
                 parser={value => value.replace(/\$\s?|(,*)/g, "")}
                 onChange={handleRealIncomeChange}

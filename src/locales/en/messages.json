@@ -84,5 +84,8 @@
   "UV": "uv/active",
   "upload": "file uploaded successfully.",
   "Upload fail": "file upload failed.",
-  "Batch Add": "Upload"
+  "Batch Add": "Upload",
+  "Currency": "Currency",
+  "RMB": "RMB",
+  "Dollar": "Dollar"
 }
