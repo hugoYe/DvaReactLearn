@@ -1,6 +1,6 @@
 module.exports = {
   siteName: "HNMobi AD",
-  copyright: "© Copyright 2019 By HNMobi AD Tech.",
+  copyright: "© Copyright 2020 By HNMobi AD Tech.",
   logoPath: "/logo.svg",
   apiPrefix: "/api/v1",
   fixedHeader: false, // sticky primary layout header

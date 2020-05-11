@@ -34,6 +34,10 @@ export default {
   },
 
   subscriptions: {
+    setup({ dispatch }) {
+      dispatch({ type: "query" });
+    },
+
     setupHistory({ dispatch, history }) {
       history.listen(location => {
         dispatch({
@@ -44,24 +48,20 @@ export default {
           }
         });
       });
-    },
-
-    setupRequestCancel({ history }) {
-      history.listen(() => {
-        const { cancelRequest = new Map() } = window;
-
-        cancelRequest.forEach((value, key) => {
-          if (value.pathname !== window.location.pathname) {
-            value.cancel(CANCEL_REQUEST_MESSAGE);
-            cancelRequest.delete(key);
-          }
-        });
-      });
-    },
-
-    setup({ dispatch }) {
-      dispatch({ type: "query" });
     }
+
+    // setupRequestCancel({ history }) {
+    //   history.listen(() => {
+    //     const { cancelRequest = new Map() } = window;
+
+    //     cancelRequest.forEach((value, key) => {
+    //       if (value.pathname !== window.location.pathname) {
+    //         value.cancel(CANCEL_REQUEST_MESSAGE);
+    //         cancelRequest.delete(key);
+    //       }
+    //     });
+    //   });
+    // },
   },
 
   effects: {
