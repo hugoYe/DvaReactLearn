@@ -65,11 +65,11 @@ class Login extends PureComponent {
           </div>
           <form>
             <FormItem hasFeedback>
-              {getFieldDecorator("nameOrUserId", {
+              {getFieldDecorator("account", {
                 rules: [
                   {
                     required: true,
-                    message: "Please input your userName or userId!"
+                    message: "Please input your account!"
                   }
                 ]
               })(
