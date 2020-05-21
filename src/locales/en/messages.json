@@ -87,5 +87,16 @@
   "Batch Add": "Upload",
   "Currency": "Currency",
   "RMB": "RMB",
-  "Dollar": "Dollar"
+  "Dollar": "Dollar",
+  "Create Advertiser": "Create Advertiser",
+  "Update Advertiser": "Update Advertiser",
+  "AdvertiserId": "Id",
+  "AdvertiserName": "Name",
+  "AdvertiserSales": "Sales",
+  "AdvertiserType": "Type",
+  "AdvertiserCompany": "Company",
+  "AdvertiserContact": "Contact",
+  "AdvertiserPhone": "Phone",
+  "AdvertiserEmail": "Email",
+  "AdvertiserEmailWarn": "multiple mailboxes separated by;"
 }

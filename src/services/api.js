@@ -31,5 +31,11 @@ export default {
 
   downloadReport: "/reports/exportEverydayIncome",
 
-  queryDashboard: "/dashboard"
+  queryDashboard: "/dashboard",
+
+  //--------------- 以下为广告业务相应接口 ---------------//
+  queryAdvertisersList: "/advertiser/getAdvertiserList",
+  createAdvertiser: "POST /advertiser",
+  deleteAdvertiser: "DELETE /advertiser",
+  updateAdvertiser: "PUT /advertiser"
 };

@@ -87,5 +87,16 @@
   "Batch Add": "批量添加",
   "Currency": "币种",
   "RMB": "人民币",
-  "Dollar": "美元"
+  "Dollar": "美元",
+  "Create Advertiser": "创建广告主",
+  "Update Advertiser": "更新广告主",
+  "AdvertiserId": "广告主ID",
+  "AdvertiserName": "广告主名称",
+  "AdvertiserSales": "广告主对接人",
+  "AdvertiserType": "广告类型",
+  "AdvertiserCompany": "广告主公司名称",
+  "AdvertiserContact": "广告主联系人",
+  "AdvertiserPhone": "广告主联系方式",
+  "AdvertiserEmail": "广告主邮箱",
+  "AdvertiserEmailWarn": "支持多个填写邮箱，中间由;隔开"
 }
