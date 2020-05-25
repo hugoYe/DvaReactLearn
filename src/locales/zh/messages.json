@@ -98,5 +98,16 @@
   "AdvertiserContact": "广告主联系人",
   "AdvertiserPhone": "广告主联系方式",
   "AdvertiserEmail": "广告主邮箱",
-  "AdvertiserEmailWarn": "支持多个填写邮箱，中间由;隔开"
+  "AdvertiserEmailWarn": "支持多个填写邮箱，中间由;隔开",
+  "Create Customer": "创建客户",
+  "Update Customer": "更新客户",
+  "CustomerId": "客户ID",
+  "CustomerName": "客户名称",
+  "CustomerSales": "客户对接人",
+  "CustomerType": "广告类型",
+  "CustomerCompany": "客户公司名称",
+  "CustomerEmail": "客户邮箱",
+  "PostbackUrl": "PostbackUrl",
+  "CustomerEmailWarn": "支持多个填写邮箱，中间由;隔开",
+  "Proportion": "转化比例"
 }

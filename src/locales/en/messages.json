@@ -98,5 +98,16 @@
   "AdvertiserContact": "Contact",
   "AdvertiserPhone": "Phone",
   "AdvertiserEmail": "Email",
-  "AdvertiserEmailWarn": "multiple mailboxes separated by;"
+  "AdvertiserEmailWarn": "multiple mailboxes separated by;",
+  "Create Customer": "Create Customer",
+  "Update Customer": "Update Customer",
+  "CustomerId": "Id",
+  "CustomerName": "Name",
+  "CustomerSales": "Sales",
+  "CustomerType": "Type",
+  "CustomerCompany": "Company",
+  "CustomerEmail": "Email",
+  "PostbackUrl": "PostbackUrl",
+  "CustomerEmailWarn": "multiple mailboxes separated by;",
+  "Proportion": "proportion"
 }

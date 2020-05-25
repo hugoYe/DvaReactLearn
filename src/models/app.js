@@ -104,9 +104,16 @@ export default {
           pathMatchRegexp("/login", window.location.pathname) ||
           pathMatchRegexp("/", window.location.pathname)
         ) {
-          router.push({
-            pathname: "/dashboard"
-          });
+          var fdStart = user.userId.indexOf("wy");
+          if (fdStart == 0) {
+            router.push({
+              pathname: "/dashboard"
+            });
+          } else {
+            router.push({
+              pathname: "/advertiser"
+            });
+          }
         }
       } else if (queryLayout(config.layouts, locationPathname) !== "public") {
         router.push({

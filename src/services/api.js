@@ -37,5 +37,10 @@ export default {
   queryAdvertisersList: "/advertiser/getAdvertiserList",
   createAdvertiser: "POST /advertiser",
   deleteAdvertiser: "DELETE /advertiser",
-  updateAdvertiser: "PUT /advertiser"
+  updateAdvertiser: "PUT /advertiser",
+
+  queryCustomersList: "/customer/getCustomerList",
+  createCustomer: "POST /customer",
+  deleteCustomer: "DELETE /customer",
+  updateCustomer: "PUT /customer"
 };

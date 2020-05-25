@@ -18,10 +18,25 @@ export default {
         const { from } = locationQuery;
         yield put({ type: "app/query" });
         if (!pathMatchRegexp("/login", from)) {
-          if (from === "/") router.push("/dashboard");
-          else router.push(from);
+          if (from === "/") {
+            var data = response.data;
+            var fdStart = data.account.indexOf("wy");
+            if (fdStart == 0) {
+              router.push("/dashboard");
+            } else {
+              router.push("/advertiser");
+            }
+          } else {
+            router.push(from);
+          }
         } else {
-          router.push("/dashboard");
+          var data = response.data;
+          var fdStart = data.account.indexOf("wy");
+          if (fdStart == 0) {
+            router.push("/dashboard");
+          } else {
+            router.push("/advertiser");
+          }
         }
       } else {
         throw response;
