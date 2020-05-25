@@ -16,7 +16,6 @@ class UserCenter extends PureComponent {
     const { i18n, app, form, dispatch } = this.props;
     const { getFieldDecorator, getFieldValue, validateFields } = form;
     const { user, permissions } = app;
-    const admin = permissions.role === ROLE_TYPE.ADMIN ? true : false;
 
     const formItemLayout = {
       labelCol: { span: 4 },
@@ -32,7 +31,7 @@ class UserCenter extends PureComponent {
       validateFields((err, values) => {
         const { app } = this.props;
         const { user } = app;
-        const param = { id: user.id, ...values };
+        const param = { userId: user.userId, ...values };
         dispatch({
           type: "usercenter/editUser",
           payload: { ...param }
@@ -42,7 +41,7 @@ class UserCenter extends PureComponent {
 
     const compareToFirstPassword = (rule, value, callback) => {
       if (value && value !== getFieldValue("newPassword")) {
-        callback("Two passwords that you enter is inconsistent!");
+        callback(i18n.t`Password Verify`);
       } else {
         callback();
       }
@@ -61,7 +60,7 @@ class UserCenter extends PureComponent {
           <FormItem label={i18n.t`UserName` + ": "} {...formItemLayout}>
             <Input value={user.userName} disabled="true" />
           </FormItem>
-          {!admin && (
+          {permissions.role === ROLE_TYPE.VISITOR && (
             <FormItem label={i18n.t`ChannelId` + ": "} {...formItemLayout}>
               <Input value={user.channelId} disabled="true" />
             </FormItem>
@@ -107,7 +106,7 @@ class UserCenter extends PureComponent {
               ]
             })(
               <Input
-                placeholder="Please Enter Your Current Password!"
+                placeholder={i18n.t`CurrentPassword Placeholder`}
                 type="password"
               />
             )}
@@ -128,7 +127,7 @@ class UserCenter extends PureComponent {
               ]
             })(
               <Input
-                placeholder="Please Enter Your New Password!"
+                placeholder={i18n.t`NewPassword Placeholder`}
                 type="password"
               />
             )}
@@ -149,7 +148,7 @@ class UserCenter extends PureComponent {
               ]
             })(
               <Input
-                placeholder="Please Enter Your Confirm Password!"
+                placeholder={i18n.t`ConfirmPassword Placeholder`}
                 type="password"
               />
             )}
