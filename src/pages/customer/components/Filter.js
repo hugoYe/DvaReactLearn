@@ -60,10 +60,10 @@ class Filter extends PureComponent {
   };
 
   render() {
-    const { list, onAdd, filter, form, i18n } = this.props;
+    const { customersDict, onAdd, filter, form, i18n } = this.props;
     const { getFieldDecorator } = form;
 
-    const custNameOptions = list.map(item => (
+    const custNameOptions = customersDict.map(item => (
       <Option key={item.custName}>{item.custName}</Option>
     ));
 

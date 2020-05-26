@@ -21,7 +21,8 @@ class Advertiser extends PureComponent {
       pagination,
       currentItem,
       modalVisible,
-      modalType
+      modalType,
+      advertiserDict
     } = advertiser;
 
     const handleRefresh = newQuery => {
@@ -99,7 +100,7 @@ class Advertiser extends PureComponent {
     };
 
     const filterProps = {
-      list: list,
+      advertiserDict: advertiserDict,
       filter: {
         ...query
       },

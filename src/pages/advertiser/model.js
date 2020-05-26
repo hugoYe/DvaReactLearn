@@ -5,7 +5,8 @@ import {
   queryAdvertisersList,
   createAdvertiser,
   deleteAdvertiser,
-  updateAdvertiser
+  updateAdvertiser,
+  getAdvertiserDict
 } from "api";
 import { pageModel } from "utils/model";
 
@@ -16,7 +17,7 @@ export default modelExtend(pageModel, {
     currentItem: {},
     modalVisible: false,
     modalType: "create",
-    selectedRowKeys: []
+    advertiserDict: []
   },
 
   subscriptions: {
@@ -27,6 +28,9 @@ export default modelExtend(pageModel, {
           dispatch({
             type: "query",
             payload
+          });
+          dispatch({
+            type: "getAdvertiserDict"
           });
         }
       });
@@ -75,6 +79,20 @@ export default modelExtend(pageModel, {
         yield put({ type: "hideModal" });
       } else {
         throw data;
+      }
+    },
+
+    *getAdvertiserDict({ payload }, { call, put }) {
+      const res = yield call(getAdvertiserDict, payload);
+      if (res.success) {
+        yield put({
+          type: "updateState",
+          payload: {
+            advertiserDict: res.data
+          }
+        });
+      } else {
+        throw res;
       }
     }
   },

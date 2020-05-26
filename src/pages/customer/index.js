@@ -16,7 +16,14 @@ class Customer extends PureComponent {
   render() {
     const { location, dispatch, customer, loading, i18n } = this.props;
     const { query, pathname } = location;
-    const { list, pagination, currentItem, modalVisible, modalType } = customer;
+    const {
+      list,
+      pagination,
+      currentItem,
+      modalVisible,
+      modalType,
+      customersDict
+    } = customer;
 
     const handleRefresh = newQuery => {
       router.push({
@@ -93,7 +100,7 @@ class Customer extends PureComponent {
     };
 
     const filterProps = {
-      list: list,
+      customersDict: customersDict,
       filter: {
         ...query
       },

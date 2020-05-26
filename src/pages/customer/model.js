@@ -5,7 +5,8 @@ import {
   queryCustomersList,
   createCustomer,
   deleteCustomer,
-  updateCustomer
+  updateCustomer,
+  getCustomerDict
 } from "api";
 import { pageModel } from "utils/model";
 
@@ -16,7 +17,7 @@ export default modelExtend(pageModel, {
     currentItem: {},
     modalVisible: false,
     modalType: "create",
-    selectedRowKeys: []
+    customersDict: []
   },
 
   subscriptions: {
@@ -27,6 +28,9 @@ export default modelExtend(pageModel, {
           dispatch({
             type: "query",
             payload
+          });
+          dispatch({
+            type: "getCustomerDict"
           });
         }
       });
@@ -75,6 +79,20 @@ export default modelExtend(pageModel, {
         yield put({ type: "hideModal" });
       } else {
         throw data;
+      }
+    },
+
+    *getCustomerDict({ payload }, { call, put }) {
+      const res = yield call(getCustomerDict, payload);
+      if (res.success) {
+        yield put({
+          type: "updateState",
+          payload: {
+            customersDict: res.data
+          }
+        });
+      } else {
+        throw res;
       }
     }
   },
