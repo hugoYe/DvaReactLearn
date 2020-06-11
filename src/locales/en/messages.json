@@ -92,8 +92,10 @@
   "Currency": "Currency",
   "RMB": "RMB",
   "Dollar": "Dollar",
+  "Euro": "EUR",
   "Create Advertiser": "Create Advertiser",
   "Update Advertiser": "Update Advertiser",
+  "Advertiser": "Advertiser",
   "AdvertiserId": "Id",
   "AdvertiserName": "Name",
   "AdvertiserSales": "Sales",
@@ -113,5 +115,16 @@
   "CustomerEmail": "Email",
   "PostbackUrl": "PostbackUrl",
   "CustomerEmailWarn": "multiple mailboxes separated by;",
-  "Proportion": "proportion"
+  "Proportion": "Proportion",
+  "Create Offer": "Create Offer",
+  "Update Offer": "Update Offer",
+  "AdvOfferId": "Advertiser OfferId",
+  "OfferName": "Offer Name",
+  "Category": "Category",
+  "Adult": "Adult",
+  "NonAdult": "NonAdult",
+  "Country": "Country",
+  "Carrier": "Carrier",
+  "Preview": "Preview",
+  "Description": "Description"
 }

@@ -92,8 +92,10 @@
   "Currency": "币种",
   "RMB": "人民币",
   "Dollar": "美元",
+  "Euro": "欧元",
   "Create Advertiser": "创建广告主",
   "Update Advertiser": "更新广告主",
+  "Advertiser": "广告主",
   "AdvertiserId": "广告主ID",
   "AdvertiserName": "广告主名称",
   "AdvertiserSales": "广告主对接人",
@@ -113,5 +115,16 @@
   "CustomerEmail": "客户邮箱",
   "PostbackUrl": "PostbackUrl",
   "CustomerEmailWarn": "支持多个填写邮箱，中间由;隔开",
-  "Proportion": "转化比例"
+  "Proportion": "转化比例",
+  "Create Offer": "创建offer",
+  "Update Offer": "更新offer",
+  "AdvOfferId": "广告主OfferId",
+  "OfferName": "Offer名称",
+  "Category": "分类",
+  "Adult": "成人",
+  "NonAdult": "非成人",
+  "Country": "国家",
+  "Carrier": "运营商",
+  "Preview": "预览",
+  "Description": "备注"
 }

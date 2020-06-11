@@ -279,24 +279,6 @@ class Filter extends PureComponent {
             )}
           </FilterItem>
         </Col>
-        {/* <Col {...ColProps} xl={{ span: 6 }} md={{ span: 8 }} sm={{ span: 12 }}>
-          {getFieldDecorator("channelIds")(
-            <Select
-              mode="multiple"
-              style={{ width: "100%" }}
-              showSearch
-              placeholder={i18n.t`Please select channel`}
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                option.props.children
-                  .toLowerCase()
-                  .indexOf(input.toLowerCase()) >= 0
-              }
-            >
-              {channelOptions}
-            </Select>
-          )}
-        </Col> */}
         <Col {...ColProps} xl={{ span: 12 }} md={{ span: 8 }} sm={{ span: 12 }}>
           <Row type="flex" align="middle" justify="space-between">
             <div>

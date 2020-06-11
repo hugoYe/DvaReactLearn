@@ -44,5 +44,11 @@ export default {
   createCustomer: "POST /customer",
   deleteCustomer: "DELETE /customer",
   updateCustomer: "PUT /customer",
-  getCustomerDict: "/customer/getCustomerDict"
+  getCustomerDict: "/customer/getCustomerDict",
+
+  queryOfferList: "/offermanager/getOfferList",
+  createOffer: "POST /offermanager",
+  deleteOffer: "DELETE /offermanager",
+  updateOffer: "PUT /offermanager",
+  getOfferDict: "/offermanager/getOfferDict"
 };
