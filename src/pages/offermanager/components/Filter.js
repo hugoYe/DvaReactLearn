@@ -59,6 +59,14 @@ class Filter extends PureComponent {
     onFilterChange(fields);
   };
 
+  handleDownload = () => {
+    const { onDownload, form } = this.props;
+    const { getFieldsValue } = form;
+
+    let fields = getFieldsValue();
+    onDownload(fields);
+  };
+
   render() {
     const { advertiserDict, offerDict, onAdd, filter, form, i18n } = this.props;
     const { getFieldDecorator } = form;

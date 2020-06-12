@@ -87,6 +87,81 @@ export default modelExtend(pageModel, {
       }
     },
 
+    *download({ payload }, { call, put }) {
+      var downloadUrl = "/api/v1/reports/exportOfferManager?";
+      var addFirstJoint = false;
+      var advertiser = Object.getOwnPropertyDescriptor(payload, "advertiser");
+      if (advertiser.value !== undefined) {
+        downloadUrl = downloadUrl + "advertiser=" + advertiser.value;
+        addFirstJoint = true;
+      }
+      var offerId = Object.getOwnPropertyDescriptor(payload, "offerId");
+      if (offerId.value !== undefined) {
+        if (addFirstJoint) {
+          downloadUrl = downloadUrl + "&";
+          addFirstJoint = false;
+        }
+        downloadUrl = downloadUrl + "offerId=" + offerId.value;
+        addFirstJoint = true;
+      }
+      var advOfferId = Object.getOwnPropertyDescriptor(payload, "advOfferId");
+      if (advOfferId.value !== undefined) {
+        if (addFirstJoint) {
+          downloadUrl = downloadUrl + "&";
+          addFirstJoint = false;
+        }
+        downloadUrl = downloadUrl + "advOfferId=" + advOfferId.value;
+        addFirstJoint = true;
+      }
+      var offerName = Object.getOwnPropertyDescriptor(payload, "offerName");
+      if (offerName.value !== undefined) {
+        if (addFirstJoint) {
+          downloadUrl = downloadUrl + "&";
+          addFirstJoint = false;
+        }
+        downloadUrl = downloadUrl + "offerName=" + offerName.value;
+        addFirstJoint = true;
+      }
+      var offerType = Object.getOwnPropertyDescriptor(payload, "offerType");
+      if (offerType.value !== undefined) {
+        if (addFirstJoint) {
+          downloadUrl = downloadUrl + "&";
+          addFirstJoint = false;
+        }
+        downloadUrl = downloadUrl + "offerType=" + offerType.value;
+        addFirstJoint = true;
+      }
+      var country = Object.getOwnPropertyDescriptor(payload, "country");
+      if (country.value !== undefined) {
+        if (addFirstJoint) {
+          downloadUrl = downloadUrl + "&";
+          addFirstJoint = false;
+        }
+        downloadUrl = downloadUrl + "country=" + country.value;
+        addFirstJoint = true;
+      }
+      var carrier = Object.getOwnPropertyDescriptor(payload, "carrier");
+      if (carrier.value !== undefined) {
+        if (addFirstJoint) {
+          downloadUrl = downloadUrl + "&";
+          addFirstJoint = false;
+        }
+        downloadUrl = downloadUrl + "carrier=" + carrier.value;
+        addFirstJoint = true;
+      }
+      var status = Object.getOwnPropertyDescriptor(payload, "status");
+      if (status.value !== undefined) {
+        if (addFirstJoint) {
+          downloadUrl = downloadUrl + "&";
+          addFirstJoint = false;
+        }
+        downloadUrl = downloadUrl + "status=" + status.value;
+        addFirstJoint = true;
+      }
+
+      window.open(downloadUrl);
+    },
+
     *getOfferDict({ payload }, { call, put }) {
       const res = yield call(getOfferDict, payload);
       if (res.success) {

@@ -119,6 +119,14 @@ class OfferManager extends PureComponent {
             modalType: "create"
           }
         });
+      },
+      onDownload(value) {
+        dispatch({
+          type: "offerManager/download",
+          payload: {
+            ...value
+          }
+        });
       }
     };
 
