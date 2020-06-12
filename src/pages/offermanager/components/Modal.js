@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { Form, Input, InputNumber, Modal, Select, Radio } from "antd";
 import { withI18n } from "@lingui/react";
+import { COUNTRY_DICT, CARRIER_DICT } from "utils/constant";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -13,23 +14,6 @@ const formItemLayout = {
   wrapperCol: {
     span: 14
   }
-};
-const countryData = [
-  "ge-Abkhazia",
-  "af-Afghanistan",
-  "al-Albania",
-  "dz-Algeria"
-];
-const CarrierData = {
-  "ge-Abkhazia": ["28968-A-Mobile", "28988-A-Mobile", "28967-28967"],
-  "af-Afghanistan": [
-    "41288-Afghan Telecom Corp. (AT)",
-    "41280-Afghan Telecom Corp. (AT)",
-    "41201-Afghan Wireless/AWCC",
-    "41240-Areeba/MTN"
-  ],
-  "al-Albania": ["27601-AMC/Cosmote", "27603-Eagle Mobile"],
-  "dz-Algeria": ["60301-ATM Mobils"]
 };
 
 @withI18n()
@@ -51,7 +35,6 @@ class OfferManagerModal extends PureComponent {
         ...getFieldsValue()
       };
       data.offerId = item.offerId;
-      data.status = item.status;
       let countryList = Array.from(data.country);
       let carrierList = Array.from(data.carrier);
       data.country = "";
@@ -90,7 +73,7 @@ class OfferManagerModal extends PureComponent {
 
     var carrierList = [];
     let countryList = Array.from(value);
-    countryList.map(v => (carrierList = [...carrierList, ...CarrierData[v]]));
+    countryList.map(v => (carrierList = [...carrierList, ...CARRIER_DICT[v]]));
     this.setState({
       carrier: carrierList
     });
@@ -192,7 +175,7 @@ class OfferManagerModal extends PureComponent {
                 style={{ width: "100%" }}
                 onChange={this.handleCountrySelected}
               >
-                {countryData.map(item => (
+                {COUNTRY_DICT.map(item => (
                   <Option key={item}>{item}</Option>
                 ))}
               </Select>
@@ -361,6 +344,16 @@ class OfferManagerModal extends PureComponent {
                 }
               ]
             })(<Input />)}
+          </FormItem>
+          <FormItem label="Status" hasFeedback {...formItemLayout}>
+            {getFieldDecorator("status", {
+              initialValue: item.status != undefined ? item.status : 1
+            })(
+              <Select style={{ width: "50%" }}>
+                <Option value={1}>on</Option>
+                <Option value={0}>off</Option>
+              </Select>
+            )}
           </FormItem>
           <FormItem label={i18n.t`Description`} hasFeedback {...formItemLayout}>
             {getFieldDecorator("description", {

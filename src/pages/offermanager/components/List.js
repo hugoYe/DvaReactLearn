@@ -37,7 +37,13 @@ class List extends PureComponent {
       },
       {
         title: <Trans>Preview</Trans>,
-        dataIndex: "previewUrl"
+        dataIndex: "previewUrl",
+        render: text => (
+          <a href={text} target="_blank">
+            {" "}
+            preview
+          </a>
+        )
       },
       {
         title: <Trans>AdvOfferId</Trans>,
