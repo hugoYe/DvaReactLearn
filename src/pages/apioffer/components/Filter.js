@@ -49,26 +49,9 @@ class Filter extends PureComponent {
     setFieldsValue(fields);
     this.handleSubmit();
   };
-  handleChange = (key, values) => {
-    const { form, onFilterChange } = this.props;
-    const { getFieldsValue } = form;
-
-    let fields = getFieldsValue();
-    fields[key] = values;
-    fields = this.handleFields(fields);
-    onFilterChange(fields);
-  };
-
-  handleDownload = () => {
-    const { onDownload, form } = this.props;
-    const { getFieldsValue } = form;
-
-    let fields = getFieldsValue();
-    onDownload(fields);
-  };
 
   render() {
-    const { advertiserDict, onAdd, form, i18n } = this.props;
+    const { advertiserDict, form, i18n } = this.props;
     const { getFieldDecorator } = form;
 
     const advOptions = advertiserDict.map(item => (
@@ -85,13 +68,6 @@ class Filter extends PureComponent {
               )}
             </FilterItem>
           </Col>
-          <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
-            <FilterItem label="OfferId">
-              {getFieldDecorator("offerId")(
-                <Search onSearch={this.handleSubmit} />
-              )}
-            </FilterItem>
-          </Col>
           <Col {...ColProps} xl={{ span: 5 }} md={{ span: 8 }}>
             <FilterItem label={i18n.t`AdvOfferId`}>
               {getFieldDecorator("advOfferId")(
@@ -99,25 +75,6 @@ class Filter extends PureComponent {
               )}
             </FilterItem>
           </Col>
-          <Col {...ColProps} xl={{ span: 5 }} md={{ span: 8 }}>
-            <FilterItem label="OfferName">
-              {getFieldDecorator("offerName")(
-                <Search onSearch={this.handleSubmit} />
-              )}
-            </FilterItem>
-          </Col>
-          <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
-            <FilterItem label={i18n.t`AdvertiserType`}>
-              {getFieldDecorator("offerType")(
-                <Select style={{ width: "70%" }}>
-                  <Option value="cpa">cpa</Option>
-                  <Option value="cpi">cpi</Option>
-                </Select>
-              )}
-            </FilterItem>
-          </Col>
-        </Row>
-        <Row gutter={24}>
           <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
             <FilterItem label={i18n.t`Country`}>
               {getFieldDecorator("country")(
@@ -132,22 +89,14 @@ class Filter extends PureComponent {
               )}
             </FilterItem>
           </Col>
-          <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
-            <FilterItem label="Status">
-              {getFieldDecorator("status")(
-                <Select style={{ width: "50%" }}>
-                  <Option value="1">on</Option>
-                  <Option value="0">off</Option>
-                </Select>
-              )}
-            </FilterItem>
-          </Col>
+        </Row>
+        <Row gutter={24}>
           <Col
             {...ColProps}
             xl={{ span: 11 }}
             md={{ span: 12 }}
             sm={{ span: 12 }}
-            offset={0}
+            offset={15}
           >
             <Row type="flex" align="middle" justify="space-between">
               <div>
@@ -161,17 +110,7 @@ class Filter extends PureComponent {
                 <Button className="margin-right" onClick={this.handleReset}>
                   <Trans>Reset</Trans>
                 </Button>
-                <Button
-                  type="primary"
-                  icon="download"
-                  onClick={this.handleDownload}
-                >
-                  <Trans>Download</Trans>
-                </Button>
               </div>
-              <Button type="ghost" onClick={onAdd}>
-                <Trans>Create</Trans>
-              </Button>
             </Row>
           </Col>
         </Row>

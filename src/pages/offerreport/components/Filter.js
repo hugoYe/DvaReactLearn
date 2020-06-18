@@ -68,7 +68,7 @@ class Filter extends PureComponent {
   };
 
   render() {
-    const { advertiserDict, onAdd, form, i18n } = this.props;
+    const { advertiserDict, offerDict, onAdd, filter, form, i18n } = this.props;
     const { getFieldDecorator } = form;
 
     const advOptions = advertiserDict.map(item => (

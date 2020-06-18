@@ -11,10 +11,10 @@ import Filter from "./components/Filter";
 import Modal from "./components/Modal";
 
 @withI18n()
-@connect(({ offerManager, loading }) => ({ offerManager, loading }))
-class OfferManager extends PureComponent {
+@connect(({ offerReport, loading }) => ({ offerReport, loading }))
+class OfferReport extends PureComponent {
   render() {
-    const { location, dispatch, offerManager, loading, i18n } = this.props;
+    const { location, dispatch, offerReport, loading, i18n } = this.props;
     const { query, pathname } = location;
     const {
       list,
@@ -22,8 +22,9 @@ class OfferManager extends PureComponent {
       currentItem,
       modalVisible,
       modalType,
+      offerDict,
       advertiserDict
-    } = offerManager;
+    } = offerReport;
 
     const handleRefresh = newQuery => {
       router.push({
@@ -45,14 +46,14 @@ class OfferManager extends PureComponent {
       visible: modalVisible,
       width: 800,
       maskClosable: false,
-      confirmLoading: loading.effects[`offerManager/${modalType}`],
+      confirmLoading: loading.effects[`offerReport/${modalType}`],
       title: `${
         modalType === "create" ? i18n.t`Create Offer` : i18n.t`Update Offer`
       }`,
       wrapClassName: "vertical-center-modal",
       onOk(data) {
         dispatch({
-          type: `offerManager/${modalType}`,
+          type: `offerReport/${modalType}`,
           payload: data
         }).then(() => {
           handleRefresh();
@@ -60,14 +61,14 @@ class OfferManager extends PureComponent {
       },
       onCancel() {
         dispatch({
-          type: "offerManager/hideModal"
+          type: "offerReport/hideModal"
         });
       }
     };
 
     const listProps = {
       dataSource: list,
-      loading: loading.effects["offerManager/query"],
+      loading: loading.effects["offerReport/query"],
       pagination,
       onChange(page) {
         handleRefresh({
@@ -77,7 +78,7 @@ class OfferManager extends PureComponent {
       },
       onDeleteItem(advId) {
         dispatch({
-          type: "offerManager/delete",
+          type: "offerReport/delete",
           payload: advId
         }).then(() => {
           handleRefresh({
@@ -90,7 +91,7 @@ class OfferManager extends PureComponent {
       },
       onEditItem(item) {
         dispatch({
-          type: "offerManager/showModal",
+          type: "offerReport/showModal",
           payload: {
             modalType: "update",
             currentItem: item
@@ -101,6 +102,7 @@ class OfferManager extends PureComponent {
 
     const filterProps = {
       advertiserDict: advertiserDict,
+      offerDict: offerDict,
       filter: {
         ...query
       },
@@ -112,7 +114,7 @@ class OfferManager extends PureComponent {
       },
       onAdd() {
         dispatch({
-          type: "offerManager/showModal",
+          type: "offerReport/showModal",
           payload: {
             modalType: "create"
           }
@@ -120,7 +122,7 @@ class OfferManager extends PureComponent {
       },
       onDownload(value) {
         dispatch({
-          type: "offerManager/download",
+          type: "offerReport/download",
           payload: {
             ...value
           }
@@ -138,11 +140,11 @@ class OfferManager extends PureComponent {
   }
 }
 
-OfferManager.propTypes = {
-  offerManager: PropTypes.object,
+OfferReport.propTypes = {
+  offerReport: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func,
   loading: PropTypes.object
 };
 
-export default OfferManager;
+export default OfferReport;

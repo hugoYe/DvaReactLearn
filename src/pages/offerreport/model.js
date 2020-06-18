@@ -12,7 +12,7 @@ import {
 import { pageModel } from "utils/model";
 
 export default modelExtend(pageModel, {
-  namespace: "offerManager",
+  namespace: "offerReport",
 
   state: {
     currentItem: {},
@@ -25,11 +25,14 @@ export default modelExtend(pageModel, {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(location => {
-        if (pathMatchRegexp("/offermanager", location.pathname)) {
+        if (pathMatchRegexp("/offerReport", location.pathname)) {
           const payload = location.query || { page: 1, pageSize: 10 };
           dispatch({
             type: "query",
             payload
+          });
+          dispatch({
+            type: "getOfferDict"
           });
           dispatch({
             type: "getAdvertiserDict"

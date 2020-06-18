@@ -50,5 +50,7 @@ export default {
   createOffer: "POST /offermanager",
   deleteOffer: "DELETE /offermanager",
   updateOffer: "PUT /offermanager",
-  getOfferDict: "/offermanager/getOfferDict"
+  getOfferDict: "/offermanager/getOfferDict",
+
+  getApiOffers: "/apiOffer/getApiOffers"
 };
