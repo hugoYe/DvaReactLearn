@@ -2,11 +2,13 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { FilterItem } from "components";
+import moment from "moment";
 import { Trans, withI18n } from "@lingui/react";
-import { Form, Button, Row, Col, Input, Select } from "antd";
+import { Form, Button, Row, Col, Input, Select, DatePicker } from "antd";
 
 const { Search } = Input;
 const Option = Select.Option;
+const { RangePicker } = DatePicker;
 
 const ColProps = {
   xs: 24,
@@ -24,6 +26,17 @@ const TwoColProps = {
 @withI18n()
 @Form.create()
 class Filter extends PureComponent {
+  handleFields = fields => {
+    const { date } = fields;
+    if (date.length) {
+      fields.date = [
+        moment(date[0]).format("YYYY-MM-DD"),
+        moment(date[1]).format("YYYY-MM-DD")
+      ];
+    }
+    return fields;
+  };
+
   handleSubmit = () => {
     const { onFilterChange, form } = this.props;
     const { getFieldsValue } = form;
@@ -68,23 +81,14 @@ class Filter extends PureComponent {
   };
 
   render() {
-    const { advertiserDict, offerDict, onAdd, filter, form, i18n } = this.props;
+    const { form, i18n } = this.props;
     const { getFieldDecorator } = form;
 
-    const advOptions = advertiserDict.map(item => (
-      <Option key={item.advId}>{item.advName + item.advId}</Option>
-    ));
+    let initialCreateTime = [];
 
     return (
       <div>
         <Row gutter={24}>
-          <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
-            <FilterItem label={i18n.t`Advertiser`}>
-              {getFieldDecorator("advertiser")(
-                <Select style={{ width: "100%" }}>{advOptions}</Select>
-              )}
-            </FilterItem>
-          </Col>
           <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
             <FilterItem label="OfferId">
               {getFieldDecorator("offerId")(
@@ -107,18 +111,6 @@ class Filter extends PureComponent {
             </FilterItem>
           </Col>
           <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
-            <FilterItem label={i18n.t`AdvertiserType`}>
-              {getFieldDecorator("offerType")(
-                <Select style={{ width: "70%" }}>
-                  <Option value="cpa">cpa</Option>
-                  <Option value="cpi">cpi</Option>
-                </Select>
-              )}
-            </FilterItem>
-          </Col>
-        </Row>
-        <Row gutter={24}>
-          <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
             <FilterItem label={i18n.t`Country`}>
               {getFieldDecorator("country")(
                 <Search onSearch={this.handleSubmit} />
@@ -132,13 +124,33 @@ class Filter extends PureComponent {
               )}
             </FilterItem>
           </Col>
+        </Row>
+        <Row gutter={24}>
           <Col {...ColProps} xl={{ span: 4 }} md={{ span: 8 }}>
-            <FilterItem label="Status">
-              {getFieldDecorator("status")(
-                <Select style={{ width: "50%" }}>
-                  <Option value="1">on</Option>
-                  <Option value="0">off</Option>
-                </Select>
+            <FilterItem label={i18n.t`CustomerId`}>
+              {getFieldDecorator("custId")(
+                <Search onSearch={this.handleSubmit} />
+              )}
+            </FilterItem>
+          </Col>
+          <Col
+            {...ColProps}
+            xl={{ span: 6 }}
+            md={{ span: 8 }}
+            sm={{ span: 12 }}
+            id="dateRangePicker"
+          >
+            <FilterItem label={i18n.t`Date`}>
+              {getFieldDecorator("date", {
+                initialValue: initialCreateTime
+              })(
+                <RangePicker
+                  style={{ width: "100%" }}
+                  onChange={this.handleChange.bind(this, "date")}
+                  getCalendarContainer={() => {
+                    return document.getElementById("dateRangePicker");
+                  }}
+                />
               )}
             </FilterItem>
           </Col>
@@ -169,9 +181,6 @@ class Filter extends PureComponent {
                   <Trans>Download</Trans>
                 </Button>
               </div>
-              <Button type="ghost" onClick={onAdd}>
-                <Trans>Create</Trans>
-              </Button>
             </Row>
           </Col>
         </Row>

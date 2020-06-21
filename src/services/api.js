@@ -52,5 +52,7 @@ export default {
   updateOffer: "PUT /offermanager",
   getOfferDict: "/offermanager/getOfferDict",
 
-  getApiOffers: "/apiOffer/getApiOffers"
+  getApiOffers: "/apiOffer/getApiOffers",
+
+  getOfferReportLists: "/offerReport/getOfferReportLists"
 };

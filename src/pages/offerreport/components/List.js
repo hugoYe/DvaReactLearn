@@ -10,131 +10,41 @@ const { confirm } = Modal;
 
 @withI18n()
 class List extends PureComponent {
-  handleMenuClick = (record, e) => {
-    const { onDeleteItem, onEditItem, i18n } = this.props;
-
-    if (e.key === "1") {
-      onEditItem(record);
-    } else if (e.key === "2") {
-      confirm({
-        title: i18n.t`Are you sure delete this record?`,
-        onOk() {
-          onDeleteItem(record.offerId);
-        }
-      });
-    }
-  };
-
   render() {
     const { onDeleteItem, onEditItem, i18n, ...tableProps } = this.props;
 
     const columns = [
       {
-        title: "OfferId",
-        dataIndex: "offerId",
+        title: i18n.t`Date`,
+        dataIndex: "date",
         width: 100,
         fixed: "left"
       },
       {
-        title: <Trans>Preview</Trans>,
-        dataIndex: "previewUrl",
-        render: text => (
-          <a href={text} target="_blank">
-            {" "}
-            preview
-          </a>
-        )
-      },
-      {
-        title: <Trans>AdvOfferId</Trans>,
-        dataIndex: "advOfferId",
+        title: "Gross Clicks",
+        dataIndex: "grossClicks",
         width: 100
       },
       {
-        title: <Trans>Advertiser</Trans>,
-        dataIndex: "advertiser",
+        title: "Unique Clicks",
+        dataIndex: "uniqueClicks",
         width: 100
       },
       {
-        title: <Trans>OfferName</Trans>,
-        dataIndex: "offerName",
-        width: 100
+        title: "Conversions",
+        dataIndex: "conversions"
       },
       {
-        title: <Trans>AdvertiserType</Trans>,
-        dataIndex: "offerType"
+        title: "Revenue",
+        dataIndex: "revenue"
       },
       {
-        title: <Trans>Country</Trans>,
-        dataIndex: "country",
-        render: country => (
-          <span>
-            {country != undefined &&
-              country.split(";").map(c => <Tag key={c}>{c}</Tag>)}
-          </span>
-        )
+        title: "CR(%)",
+        dataIndex: "cr"
       },
       {
-        title: <Trans>Carrier</Trans>,
-        dataIndex: "carrier",
-        render: carrier => (
-          <span>
-            {carrier != undefined &&
-              carrier.split(";").map(c => <Tag key={c}>{c}</Tag>)}
-          </span>
-        )
-      },
-      {
-        title: "Payout IN",
-        dataIndex: "payoutIn"
-      },
-      {
-        title: "Payout OUT",
-        dataIndex: "payoutOut"
-      },
-      {
-        title: "Daily Cap",
-        dataIndex: "cap"
-      },
-      {
-        title: "Process",
-        dataIndex: "process"
-      },
-      {
-        title: "Time Zone",
-        dataIndex: "timeZone"
-      },
-      {
-        title: "Status",
-        dataIndex: "status",
-        render: text => {
-          return text === 1 ? "on" : "off";
-        }
-      },
-      {
-        title: <Trans>CreateTime</Trans>,
-        dataIndex: "createTime"
-      },
-      {
-        title: <Trans>UpdateTime</Trans>,
-        dataIndex: "updateTime"
-      },
-      {
-        title: <Trans>Operation</Trans>,
-        key: "operation",
-        width: 100,
-        fixed: "right",
-        render: (text, record) => {
-          return (
-            <DropOption
-              onMenuClick={e => this.handleMenuClick(record, e)}
-              menuOptions={[
-                { key: "1", name: i18n.t`Update` },
-                { key: "2", name: i18n.t`Delete` }
-              ]}
-            />
-          );
-        }
+        title: "ECPC",
+        dataIndex: "ecpc"
       }
     ];
 

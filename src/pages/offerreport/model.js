@@ -1,26 +1,13 @@
 /* global window */
 import modelExtend from "dva-model-extend";
 import { pathMatchRegexp } from "utils";
-import {
-  queryOfferList,
-  createOffer,
-  deleteOffer,
-  updateOffer,
-  getOfferDict,
-  getAdvertiserDict
-} from "api";
+import { getOfferReportLists } from "api";
 import { pageModel } from "utils/model";
 
 export default modelExtend(pageModel, {
   namespace: "offerReport",
 
-  state: {
-    currentItem: {},
-    modalVisible: false,
-    modalType: "create",
-    offerDict: [],
-    advertiserDict: []
-  },
+  state: {},
 
   subscriptions: {
     setup({ dispatch, history }) {
@@ -31,12 +18,6 @@ export default modelExtend(pageModel, {
             type: "query",
             payload
           });
-          dispatch({
-            type: "getOfferDict"
-          });
-          dispatch({
-            type: "getAdvertiserDict"
-          });
         }
       });
     }
@@ -44,12 +25,12 @@ export default modelExtend(pageModel, {
 
   effects: {
     *query({ payload = {} }, { call, put }) {
-      const res = yield call(queryOfferList, payload);
+      const res = yield call(getOfferReportLists, payload);
       if (res.success) {
         yield put({
           type: "querySuccess",
           payload: {
-            list: res.data.list,
+            list: res.data,
             pagination: {
               current: Number(payload.page) || 1,
               pageSize: Number(payload.pageSize) || 10,
@@ -57,33 +38,6 @@ export default modelExtend(pageModel, {
             }
           }
         });
-      }
-    },
-
-    *delete({ payload }, { call }) {
-      const data = yield call(deleteOffer, payload);
-      if (data.success) {
-      } else {
-        throw data;
-      }
-    },
-
-    *create({ payload }, { call, put }) {
-      const data = yield call(createOffer, payload);
-      if (data.success) {
-        yield put({ type: "hideModal" });
-      } else {
-        throw data;
-      }
-    },
-
-    *update({ payload }, { call, put }) {
-      const newOffer = { ...payload };
-      const data = yield call(updateOffer, newOffer);
-      if (data.success) {
-        yield put({ type: "hideModal" });
-      } else {
-        throw data;
       }
     },
 
@@ -160,34 +114,6 @@ export default modelExtend(pageModel, {
       }
 
       window.open(downloadUrl);
-    },
-
-    *getOfferDict({ payload }, { call, put }) {
-      const res = yield call(getOfferDict, payload);
-      if (res.success) {
-        yield put({
-          type: "updateState",
-          payload: {
-            OfferDict: res.data
-          }
-        });
-      } else {
-        throw res;
-      }
-    },
-
-    *getAdvertiserDict({ payload }, { call, put }) {
-      const res = yield call(getAdvertiserDict, payload);
-      if (res.success) {
-        yield put({
-          type: "updateState",
-          payload: {
-            advertiserDict: res.data
-          }
-        });
-      } else {
-        throw res;
-      }
     }
   },
 
