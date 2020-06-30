@@ -38,10 +38,10 @@ class List extends PureComponent {
       {
         title: <Trans>Preview</Trans>,
         dataIndex: "previewUrl",
+        width: 100,
         render: text => (
           <a href={text} target="_blank">
-            {" "}
-            preview
+            {"preview"}
           </a>
         )
       },
@@ -62,11 +62,14 @@ class List extends PureComponent {
       },
       {
         title: <Trans>AdvertiserType</Trans>,
-        dataIndex: "offerType"
+        dataIndex: "offerType",
+        width: 100
       },
       {
         title: <Trans>Country</Trans>,
         dataIndex: "country",
+        ellipsis: true,
+        textWrap: "word-break",
         render: country => (
           <span>
             {country != undefined &&
@@ -77,6 +80,8 @@ class List extends PureComponent {
       {
         title: <Trans>Carrier</Trans>,
         dataIndex: "carrier",
+        ellipsis: true,
+        textWrap: "word-break",
         render: carrier => (
           <span>
             {carrier != undefined &&
@@ -147,7 +152,7 @@ class List extends PureComponent {
         }}
         className={styles.table}
         bordered
-        scroll={{ x: 1200 }}
+        scroll={{ x: 2500 }}
         columns={columns}
         simple
         rowKey={record => record.custId}

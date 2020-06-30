@@ -67,7 +67,7 @@ class AdvertiserModal extends PureComponent {
               </Select>
             )}
           </FormItem>
-          <FormItem
+          {/* <FormItem
             label={i18n.t`AdvertiserName`}
             hasFeedback
             {...formItemLayout}
@@ -80,7 +80,7 @@ class AdvertiserModal extends PureComponent {
                 }
               ]
             })(<Input />)}
-          </FormItem>
+          </FormItem> */}
           <FormItem
             label={i18n.t`AdvertiserSales`}
             hasFeedback

@@ -36,8 +36,8 @@ class List extends PureComponent {
         fixed: "left"
       },
       {
-        title: <Trans>CustomerName</Trans>,
-        dataIndex: "custName"
+        title: <Trans>CustomerCompany</Trans>,
+        dataIndex: "custCompany"
       },
       {
         title: <Trans>CustomerSales</Trans>,

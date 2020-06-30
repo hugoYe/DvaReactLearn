@@ -67,7 +67,7 @@ class CustomerModal extends PureComponent {
               </Select>
             )}
           </FormItem>
-          <FormItem
+          {/* <FormItem
             label={i18n.t`CustomerName`}
             hasFeedback
             {...formItemLayout}
@@ -80,7 +80,7 @@ class CustomerModal extends PureComponent {
                 }
               ]
             })(<Input />)}
-          </FormItem>
+          </FormItem> */}
           <FormItem
             label={i18n.t`CustomerSales`}
             hasFeedback

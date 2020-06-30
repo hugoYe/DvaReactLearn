@@ -23,12 +23,12 @@ class List extends PureComponent {
       {
         title: "Gross Clicks",
         dataIndex: "grossClicks",
-        width: 100
+        width: 150
       },
       {
         title: "Unique Clicks",
         dataIndex: "uniqueClicks",
-        width: 100
+        width: 150
       },
       {
         title: "Conversions",

@@ -4,7 +4,16 @@ import PropTypes from "prop-types";
 import { FilterItem } from "components";
 import moment from "moment";
 import { Trans, withI18n } from "@lingui/react";
-import { Form, Button, Row, Col, Input, Select, DatePicker } from "antd";
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  Input,
+  Select,
+  DatePicker,
+  Checkbox
+} from "antd";
 
 const { Search } = Input;
 const Option = Select.Option;
@@ -83,6 +92,7 @@ class Filter extends PureComponent {
   render() {
     const { form, i18n } = this.props;
     const { getFieldDecorator } = form;
+    const plainOptions = ["Date", "Country", "Carrier", "OfferID", "Cust ID"];
 
     let initialCreateTime = [];
 
@@ -182,6 +192,18 @@ class Filter extends PureComponent {
                 </Button>
               </div>
             </Row>
+          </Col>
+        </Row>
+        <Row gutter={24}>
+          <Col {...ColProps} xl={{ span: 24 }} md={{ span: 8 }}>
+            <FilterItem label="Group by: ">
+              {getFieldDecorator("groupBy")(
+                <Checkbox.Group
+                  options={plainOptions}
+                  defaultValue={["Date"]}
+                />
+              )}
+            </FilterItem>
           </Col>
         </Row>
       </div>
